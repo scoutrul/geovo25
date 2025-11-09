@@ -217,6 +217,8 @@ goevo25/
 | Vue | 3.2.13 | ✅ |
 | Vite | 7.2.2 | ✅ |
 | Tailwind CSS | 3.4.1 | ✅ |
+| GSAP | 3.13.0 | ✅ |
+| VueUse | 14.0.0 | ✅ |
 | PostCSS | 8.5.6 | ✅ |
 | @vitejs/plugin-vue | 6.0.1 | ✅ |
 
