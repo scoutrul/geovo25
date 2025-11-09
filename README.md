@@ -126,11 +126,33 @@ white-80:  '#dedede'  // Средний светлый
 
 ### BaseContainer
 
-Адаптивный контейнер с настройкой максимальной ширины.
+Универсальный адаптивный контейнер с поддержкой фона, отступов и семантических тегов.
 
 **Props:**
-- `maxWidth`: 'sm' | 'md' | 'lg' | 'xl' | 'full'
-- `padding`: boolean
+- `maxWidth`: 'sm' | 'md' | 'lg' | 'xl' | 'full' - максимальная ширина контента
+- `padding`: boolean - горизонтальные отступы (px-4 sm:px-6 lg:px-8)
+- `verticalPadding`: boolean | 'sm' | 'md' | 'lg' | 'xl' - вертикальные отступы (адаптивные)
+- `bg`: string - класс фона Tailwind (например, 'bg-white-90', 'bg-black-90')
+- `as`: string - HTML тег для рендера (по умолчанию 'div')
+
+**Примеры:**
+```vue
+<!-- Секция с фоном и отступами -->
+<BaseContainer 
+  :as="'section'"
+  :vertical-padding="true"
+  :bg="'bg-white-90'"
+>
+  Content
+</BaseContainer>
+
+<!-- Контейнер без вертикальных отступов -->
+<BaseContainer :padding="true" :max-width="'xl'">
+  Content
+</BaseContainer>
+```
+
+> Полная документация: `BASE_CONTAINER.md`
 
 ### BaseHeading
 
@@ -245,6 +267,7 @@ pnpm preview
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) - Архитектура проекта
 - [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) - Дизайн-система
+- [BASE_CONTAINER.md](./BASE_CONTAINER.md) - Универсальный контейнер
 - [BUTTONS.md](./BUTTONS.md) - Документация по кнопкам
 - [QUICK_START_BUTTONS.md](./QUICK_START_BUTTONS.md) - Быстрый старт с кнопками
 - [FAQ_ACCORDION.md](./FAQ_ACCORDION.md) - FAQ секция и аккордион

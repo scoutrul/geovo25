@@ -1,7 +1,7 @@
 <template>
-  <div :class="containerClasses">
+  <component :is="as" :class="containerClasses">
     <slot />
-  </div>
+  </component>
 </template>
 
 <script setup>
@@ -16,6 +16,23 @@ const props = defineProps({
   padding: {
     type: Boolean,
     default: true
+  },
+  verticalPadding: {
+    type: [Boolean, String],
+    default: false,
+    validator: (value) => {
+      if (typeof value === 'boolean') return true
+      return ['sm', 'md', 'lg', 'xl'].includes(value)
+    }
+  },
+  bg: {
+    type: String,
+    default: '',
+    validator: (value) => {
+      // Разрешаем пустую строку или любой Tailwind bg-* класс
+      if (value === '') return true
+      return value.startsWith('bg-')
+    }
   },
   as: {
     type: String,
@@ -35,13 +52,34 @@ const containerClasses = computed(() => {
     full: 'w-full'
   }
   
-  // Padding
+  // Горизонтальный padding
   const paddingClasses = props.padding ? 'px-4 sm:px-6 lg:px-8' : ''
+  
+  // Вертикальный padding (адаптивный)
+  let verticalPaddingClasses = ''
+  if (props.verticalPadding === true || props.verticalPadding === 'lg') {
+    // Большие отступы (для основных секций)
+    verticalPaddingClasses = 'py-16 lg:py-32 xl:py-40'
+  } else if (props.verticalPadding === 'md') {
+    // Средние отступы
+    verticalPaddingClasses = 'py-12 lg:py-24 xl:py-32'
+  } else if (props.verticalPadding === 'sm') {
+    // Маленькие отступы
+    verticalPaddingClasses = 'py-8 lg:py-16 xl:py-20'
+  } else if (props.verticalPadding === 'xl') {
+    // Очень большие отступы
+    verticalPaddingClasses = 'py-20 lg:py-40 xl:py-48'
+  }
+  
+  // Фон
+  const bgClasses = props.bg || ''
   
   return [
     baseClasses,
     maxWidthClasses[props.maxWidth],
-    paddingClasses
+    paddingClasses,
+    verticalPaddingClasses,
+    bgClasses
   ].filter(Boolean).join(' ')
 })
 </script>
