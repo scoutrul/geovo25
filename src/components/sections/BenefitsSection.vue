@@ -1,49 +1,35 @@
 <template>
-  <BaseContainer 
-    :as="'section'"
-    :max-width="'full'"
-    :bg="'bg-black-90'"
-  >
-    <!-- Мобильная: вертикальная раскладка, Планшет+Десктоп: горизонтальная с CTA справа -->
+  <BaseContainer :as="'section'" :max-width="'full'" :bg="'bg-black-90'" class="relative">
+
+    <DecorativeLine :pin-count="0" class="hidden lg:block !absolute top-0 left-1/2 transform -translate-x-1/2"
+      :style="{ top: ltXl ? '405px' : '342px' }" />
+
     <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start w-full">
-      <!-- Основной контент (заголовок + карточки) -->
-      <div class="flex flex-col gap-16 sm:gap-[90px] items-start w-full sm:flex-1">
+
+      <div class="flex flex-col items-start w-full sm:flex-1">
         <!-- Заголовок секции -->
-        <BaseHeading 
-          :level="4" 
-          :as="'h2'"
-          class="w-full text-white-90 text-[46px] leading-[1.2] sm:text-[64px] sm:leading-none"
-        >
+        <BaseHeading :level="4" :as="'h2'"
+          class="w-full text-white-90 text-[46px] leading-[1.2] sm:text-[64px] sm:leading-none mb-[90px]"
+          :style="{ height: gtXl ? '92px' : '188px' }">
           {{ title }}
         </BaseHeading>
 
+        <DecorativeLine :pin-count="benefits.length + 1" :hide-line="gtLg" class="hidden sm:block" />
         <!-- Контейнер с карточками преимуществ -->
-        <!-- Мобильная: flex-wrap 2 колонки, Планшет+: 4 колонки flex -->
-        <div class="flex flex-wrap sm:flex-nowrap gap-8 w-full">
-          <BenefitCard
-            v-for="(benefit, index) in benefits"
-            :key="index"
-            :text="benefit.text"
-            class="w-[140px] sm:w-full sm:flex-1 sm:pt-16"
-          />
+        <div class="flex flex-wrap sm:flex-nowrap gap-11 w-full">
+          <BenefitCard v-for="(benefit, index) in benefits" :key="index" :text="benefit.text"
+            class="w-[140px] sm:w-full sm:flex-1" />
         </div>
       </div>
 
       <!-- CTA блок -->
       <!-- Мобильная: внизу на всю ширину, Планшет+: справа фиксированная ширина -->
       <div class="flex flex-col gap-6 items-start w-full sm:w-[300px] xl:w-[max-content] sm:py-4 sm:self-stretch">
-        <BaseText 
-          size="p3" 
-          class="text-black-50"
-        >
+        <BaseText size="p3" class="text-black-50">
           {{ ctaText }}
         </BaseText>
-        
-        <BaseButton 
-          variant="primary" 
-          size="md"
-          @click="handleCtaClick"
-        >
+
+        <BaseButton variant="primary" size="md" @click="handleCtaClick">
           {{ ctaButtonText }}
         </BaseButton>
       </div>
@@ -54,6 +40,10 @@
 <script setup>
 import { BaseContainer, BaseHeading, BaseText, BaseButton } from '../base'
 import BenefitCard from '../ui/BenefitCard.vue'
+import DecorativeLine from '../ui/DecorativeLine.vue'
+import { useBreakpoints } from '../../composables/useBreakpoints.js'
+
+const { gtLg, gtXl, ltXl } = useBreakpoints()
 
 const props = defineProps({
   title: {
@@ -80,5 +70,5 @@ const handleCtaClick = () => {
   emit('cta-click')
   console.log('CTA кнопка нажата')
 }
-</script>
 
+</script>
