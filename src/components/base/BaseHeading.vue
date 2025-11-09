@@ -16,10 +16,6 @@ const props = defineProps({
   as: {
     type: String,
     default: null
-  },
-  color: {
-    type: String,
-    default: 'white-90'
   }
 })
 
@@ -32,20 +28,17 @@ const headingClasses = computed(() => {
   
   // Размеры в зависимости от уровня
   const levelClasses = {
-    1: 'text-h4',
-    2: 'text-4xl leading-tight',
-    3: 'text-3xl leading-snug',
+    1: 'text-h1',
+    2: 'text-h2',
+    3: 'text-h3',
     4: 'text-h4',
-    5: 'text-xl leading-normal',
+    5: 'text-h5',
     6: 'text-lg leading-normal'
   }
   
-  const colorClass = `text-${props.color}`
-  
   return [
     baseClasses,
-    levelClasses[Number(props.level)],
-    colorClass
+    levelClasses[Number(props.level)]
   ].join(' ')
 })
 </script>

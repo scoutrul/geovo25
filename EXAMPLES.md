@@ -121,7 +121,7 @@ const submitForm = async () => {
 
 ### H1 для главного заголовка страницы
 ```vue
-<BaseHeading :level="1" as="h1" color="white-90">
+<BaseHeading :level="1" as="h1" color="text-light">
   Главный заголовок страницы
 </BaseHeading>
 ```
@@ -129,7 +129,7 @@ const submitForm = async () => {
 ### H4 со стилем h2 (semantic override)
 ```vue
 <!-- Визуально выглядит как H4, но семантически H2 -->
-<BaseHeading :level="4" as="h2" color="white-90">
+<BaseHeading :level="4" as="h2" color="text-light">
   Что нас ждет впереди
 </BaseHeading>
 ```
@@ -147,21 +147,21 @@ const submitForm = async () => {
 
 ### Основной текст параграфа
 ```vue
-<BaseText as="p" size="p2" color="white-100">
+<BaseText as="p" size="p2" color="text-white">
   Это основной текст с размером 16px и line-height 1.6
 </BaseText>
 ```
 
 ### Крупный текст
 ```vue
-<BaseText as="p" size="p1" color="white-90">
+<BaseText as="p" size="p1" color="text-light">
   Крупный текст (18px) для важных описаний
 </BaseText>
 ```
 
 ### Вторичный текст (меньше и приглушенный)
 ```vue
-<BaseText as="span" size="p3" color="black-50" weight="medium">
+<BaseText as="span" size="p3" color="text-gray" weight="medium">
   Готовы перейти на новый уровень?
 </BaseText>
 ```
@@ -354,14 +354,14 @@ const buttonSize = computed(() => {
 ### Страница с несколькими секциями
 ```vue
 <template>
-  <div class="min-h-screen bg-black-90">
+  <div class="min-h-screen bg-bg-dark">
     <!-- Hero секция -->
     <section class="py-20">
       <BaseContainer max-width="xl">
-        <BaseHeading :level="1" as="h1" color="white-90" class="mb-6">
+        <BaseHeading :level="1" as="h1" color="text-light" class="mb-6">
           Добро пожаловать в Goevo
         </BaseHeading>
-        <BaseText size="p1" color="white-90" class="mb-8">
+        <BaseText size="p1" color="text-light" class="mb-8">
           Современная разработка интерфейсов
         </BaseText>
         <BaseButton variant="primary" size="lg" @click="scrollToBenefits">
@@ -417,7 +417,7 @@ const openModal = () => {
 <template>
   <BaseContainer max-width="md">
     <form @submit.prevent="handleSubmit" class="flex flex-col gap-6">
-      <BaseHeading :level="3" color="white-90">
+      <BaseHeading :level="3" color="text-light">
         Свяжитесь с нами
       </BaseHeading>
       
@@ -444,7 +444,7 @@ const openModal = () => {
       <BaseText 
         v-if="submitMessage" 
         size="body-sm" 
-        :color="submitSuccess ? 'primary' : 'accent-red'"
+        :color="submitSuccess ? 'primary' : 'text-gray'"
       >
         {{ submitMessage }}
       </BaseText>

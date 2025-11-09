@@ -20,7 +20,9 @@
   }
 
   body {
-    @apply m-0 p-0 font-sans text-body text-white-100;
+    @apply m-0 p-0 font-sans text-p2 text-white-100;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   #app {

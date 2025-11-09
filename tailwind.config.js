@@ -7,41 +7,36 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Цветовая палитра Goevo из макета Figma
+        // Цветовая палитра Goevo из макета Figma (актуальная дизайн-система)
         primary: {
           DEFAULT: '#429512',
-          dark: '#358a0e',
-          light: '#5ca931',
+          hover: '#4fa61d',
+          active: '#3b870e',
         },
         black: {
-          DEFAULT: '#161616',
-          50: '#5c5c5c',
-          90: '#161616',
+          50: '#5c5c5c',       // Серый вторичный текст
+          90: '#161616',       // Темный фон
+          '90-alpha': '#232323cc', // Black-90 с прозрачностью 80%
         },
         white: {
-          DEFAULT: '#ffffff',
-          90: '#f6f6f5',
-          100: '#ffffff',
-        },
-        neutral: {
-          space: '#1D1D1D',
-          dark: '#444444',
-          gray: '#a7a7a7',
-          medium: '#666666',
-          light: '#f2f2f2',
+          80: '#dedede',       // White-80
+          90: '#f6f6f5',       // Светлый фон/текст
+          100: '#ffffff',      // Чисто белый
         },
       },
       fontFamily: {
-        sans: ['TT Neoris Trial', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Neue Montreal', 'TT Neoris Trial', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       fontSize: {
-        // Типографическая система из макета
-        'h4': ['46px', { lineHeight: '1.2', fontWeight: '500' }],
-        'p1': ['18px', { lineHeight: '1.6', fontWeight: '400' }],
-        'p2': ['16px', { lineHeight: '1.6', fontWeight: '400' }],
-        'p3': ['15px', { lineHeight: '1.6', fontWeight: '500' }],
-        'body': ['16px', { lineHeight: '1.6', fontWeight: '400' }],
-        'body-sm': ['14px', { lineHeight: '1.5', fontWeight: '400' }],
+        // Типографическая система из макета Figma (Font: Neue Montreal)
+        'h1': ['180px', { lineHeight: '0.9', fontWeight: '500' }],    // 90% line-height
+        'h2': ['100px', { lineHeight: '0.95', fontWeight: '500' }],   // 95% line-height
+        'h3': ['64px', { lineHeight: '1', fontWeight: '500' }],       // 100% line-height
+        'h4': ['46px', { lineHeight: '1', fontWeight: '500' }],       // 100% line-height
+        'h5': ['28px', { lineHeight: '1.3', fontWeight: '500' }],     // 130% line-height
+        'p1': ['20px', { lineHeight: '1.4', fontWeight: '400' }],     // 140% line-height
+        'p2': ['16px', { lineHeight: '1.6', fontWeight: '400' }],     // 160% line-height
+        'p3': ['14px', { lineHeight: '1.8', fontWeight: '400' }],     // 180% line-height
       },
       spacing: {
         '18': '72px',

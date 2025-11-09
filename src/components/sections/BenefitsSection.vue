@@ -6,14 +6,13 @@
         <BaseHeading 
           :level="4" 
           :as="'h2'"
-          color="white-90"
-          class="w-full"
+          class="w-full text-white-90"
         >
           {{ title }}
         </BaseHeading>
 
         <!-- Контейнер с карточками преимуществ -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
+        <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 w-full">
           <BenefitCard
             v-for="(benefit, index) in benefits"
             :key="index"
@@ -25,9 +24,7 @@
         <div class="flex flex-col gap-6 items-start w-full">
           <BaseText 
             size="p3" 
-            color="black-50"
-            weight="medium"
-            class="tracking-tight"
+            class="text-black-50"
           >
             {{ ctaText }}
           </BaseText>
@@ -52,7 +49,7 @@ import BenefitCard from '../ui/BenefitCard.vue'
 const props = defineProps({
   title: {
     type: String,
-    default: 'Что нас ждет впереди'
+    default: ''
   },
   benefits: {
     type: Array,
@@ -60,11 +57,11 @@ const props = defineProps({
   },
   ctaText: {
     type: String,
-    default: 'Готовы перейти на новый уровень?'
+    default: ''
   },
   ctaButtonText: {
     type: String,
-    default: 'Познакомиться'
+    default: ''
   }
 })
 

@@ -112,7 +112,7 @@ const { isMobile, isDesktop } = useBreakpoints()
 
 **Пример:**
 ```vue
-<div class="flex flex-col gap-16 bg-black-90 p-4">
+<div class="flex flex-col gap-16 bg-bg-dark p-4">
   <!-- Все стили - utility классы -->
 </div>
 ```

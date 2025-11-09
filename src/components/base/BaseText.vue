@@ -15,16 +15,7 @@ const props = defineProps({
   size: {
     type: String,
     default: 'p2',
-    validator: (value) => ['p1', 'p2', 'p3', 'body', 'body-sm'].includes(value)
-  },
-  color: {
-    type: String,
-    default: 'white-100'
-  },
-  weight: {
-    type: String,
-    default: 'normal',
-    validator: (value) => ['normal', 'medium', 'semibold', 'bold'].includes(value)
+    validator: (value) => ['p1', 'p2', 'p3'].includes(value)
   }
 })
 
@@ -34,25 +25,10 @@ const textClasses = computed(() => {
   const sizeClasses = {
     'p1': 'text-p1',
     'p2': 'text-p2',
-    'p3': 'text-p3',
-    'body': 'text-body',
-    'body-sm': 'text-body-sm'
+    'p3': 'text-p3'
   }
   
-  const weightClasses = {
-    normal: 'font-normal',
-    medium: 'font-medium',
-    semibold: 'font-semibold',
-    bold: 'font-bold'
-  }
-  
-  const colorClass = `text-${props.color}`
-  
-  return [
-    sizeClasses[props.size],
-    weightClasses[props.weight],
-    colorClass
-  ].join(' ')
+  return sizeClasses[props.size]
 })
 </script>
 

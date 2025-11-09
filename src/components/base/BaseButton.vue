@@ -50,8 +50,8 @@ const buttonClasses = computed(() => {
   
   // Варианты
   const variantClasses = {
-    primary: 'bg-primary text-white-100 hover:bg-primary-dark focus:ring-primary shadow-button hover:shadow-button-hover',
-    secondary: 'bg-neutral-dark text-white-100 hover:bg-neutral-space focus:ring-neutral-dark',
+    primary: 'bg-primary text-white-100 hover:bg-primary-hover active:bg-primary-active focus:ring-primary shadow-button hover:shadow-button-hover',
+    secondary: 'bg-black-50 text-white-100 hover:bg-black-90 focus:ring-black-50',
     outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white-100 focus:ring-primary',
     ghost: 'text-primary hover:bg-primary/10 focus:ring-primary'
   }

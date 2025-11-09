@@ -3,8 +3,7 @@
     <BaseText 
       :as="'p'" 
       size="p2" 
-      color="white-100"
-      class="whitespace-pre-wrap"
+      class="text-white-100 whitespace-pre-wrap"
     >
       {{ text }}
     </BaseText>
