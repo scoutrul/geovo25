@@ -1,6 +1,8 @@
 <template>
   <component :is="as" :class="containerClasses">
+    <div class="flex flex-col gap-16 lg:gap-32 items-start w-full max-w-[1048px] mx-auto">
     <slot />
+    </div>
   </component>
 </template>
 
@@ -8,23 +10,6 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  maxWidth: {
-    type: String,
-    default: 'full',
-    validator: (value) => ['sm', 'md', 'lg', 'xl', 'full'].includes(value)
-  },
-  padding: {
-    type: Boolean,
-    default: true
-  },
-  verticalPadding: {
-    type: [Boolean, String],
-    default: false,
-    validator: (value) => {
-      if (typeof value === 'boolean') return true
-      return ['sm', 'md', 'lg', 'xl'].includes(value)
-    }
-  },
   bg: {
     type: String,
     default: '',
@@ -41,44 +26,13 @@ const props = defineProps({
 })
 
 const containerClasses = computed(() => {
-  const baseClasses = 'w-full'
-  
-  // Максимальная ширина
-  const maxWidthClasses = {
-    sm: 'max-w-screen-sm mx-auto',
-    md: 'max-w-screen-md mx-auto',
-    lg: 'max-w-screen-lg mx-auto',
-    xl: 'max-w-screen-xl mx-auto',
-    full: 'w-full'
-  }
-  
-  // Горизонтальный padding
-  const paddingClasses = props.padding ? 'px-4 sm:px-6 lg:px-8' : ''
-  
-  // Вертикальный padding (адаптивный)
-  let verticalPaddingClasses = ''
-  if (props.verticalPadding === true || props.verticalPadding === 'lg') {
-    // Большие отступы (для основных секций)
-    verticalPaddingClasses = 'py-16 lg:py-32 xl:py-40'
-  } else if (props.verticalPadding === 'md') {
-    // Средние отступы
-    verticalPaddingClasses = 'py-12 lg:py-24 xl:py-32'
-  } else if (props.verticalPadding === 'sm') {
-    // Маленькие отступы
-    verticalPaddingClasses = 'py-8 lg:py-16 xl:py-20'
-  } else if (props.verticalPadding === 'xl') {
-    // Очень большие отступы
-    verticalPaddingClasses = 'py-20 lg:py-40 xl:py-48'
-  }
+  const baseClasses = 'w-full px-4 py-16 sm:px-10 sm:py-32 xl:py-40'
   
   // Фон
   const bgClasses = props.bg || ''
   
   return [
     baseClasses,
-    maxWidthClasses[props.maxWidth],
-    paddingClasses,
-    verticalPaddingClasses,
     bgClasses
   ].filter(Boolean).join(' ')
 })

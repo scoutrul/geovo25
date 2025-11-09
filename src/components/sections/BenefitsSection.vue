@@ -1,32 +1,37 @@
 <template>
   <BaseContainer 
     :as="'section'"
-    :padding="true" 
-    :vertical-padding="'sm'"
     :max-width="'full'"
     :bg="'bg-black-90'"
   >
-    <div class="flex flex-col gap-16 items-start w-full">
-      <!-- Заголовок секции -->
-      <BaseHeading 
-        :level="4" 
-        :as="'h2'"
-        class="w-full text-white-90"
-      >
-        {{ title }}
-      </BaseHeading>
+    <!-- Мобильная: вертикальная раскладка, Планшет+Десктоп: горизонтальная с CTA справа -->
+    <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start w-full">
+      <!-- Основной контент (заголовок + карточки) -->
+      <div class="flex flex-col gap-16 sm:gap-[90px] items-start w-full sm:flex-1">
+        <!-- Заголовок секции -->
+        <BaseHeading 
+          :level="4" 
+          :as="'h2'"
+          class="w-full text-white-90 text-[46px] leading-[1.2] sm:text-[64px] sm:leading-none"
+        >
+          {{ title }}
+        </BaseHeading>
 
-      <!-- Контейнер с карточками преимуществ -->
-      <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 w-full">
-        <BenefitCard
-          v-for="(benefit, index) in benefits"
-          :key="index"
-          :text="benefit.text"
-        />
+        <!-- Контейнер с карточками преимуществ -->
+        <!-- Мобильная: flex-wrap 2 колонки, Планшет+: 4 колонки flex -->
+        <div class="flex flex-wrap sm:flex-nowrap gap-8 w-full">
+          <BenefitCard
+            v-for="(benefit, index) in benefits"
+            :key="index"
+            :text="benefit.text"
+            class="w-[140px] sm:w-full sm:flex-1 sm:pt-16"
+          />
+        </div>
       </div>
 
       <!-- CTA блок -->
-      <div class="flex flex-col gap-6 items-start w-full">
+      <!-- Мобильная: внизу на всю ширину, Планшет+: справа фиксированная ширина -->
+      <div class="flex flex-col gap-6 items-start w-full sm:w-[300px] xl:w-[max-content] sm:py-4 sm:self-stretch">
         <BaseText 
           size="p3" 
           class="text-black-50"

@@ -6,8 +6,7 @@
     :max-width="'full'"
     :bg="'bg-white-90'"
   >
-    <div class="flex flex-col gap-16 lg:gap-32 items-start w-full max-w-[1048px] mx-auto">
-      <!-- Заголовок секции -->
+
       <BaseHeading 
         :level="3" 
         :as="'h2'"
@@ -16,7 +15,6 @@
         {{ title }}
       </BaseHeading>
 
-      <!-- Список вопросов (аккордион) -->
       <div class="flex flex-col items-start w-full">
         <AccordionItem
           v-for="(item, index) in faqItems"
@@ -28,7 +26,7 @@
           @toggle="toggle(index)"
         />
       </div>
-    </div>
+
   </BaseContainer>
 </template>
 
@@ -48,7 +46,6 @@ const props = defineProps({
   }
 })
 
-// Инициализируем аккордион с количеством элементов
 const { isOpen, toggle } = useAccordion(props.faqItems.length)
 </script>
 
