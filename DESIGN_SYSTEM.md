@@ -159,10 +159,27 @@ p3: 14px / line-height: 1.8 / weight: 400  /* 180% - мелкий текст */
 - **Вторичный текст (серый):** `text-black-50` ✅
 - **Текст на светлом:** `text-black-90`
 
-### 3. Кнопки
-- **Primary:** `bg-primary text-white-100 hover:bg-primary-hover`
-- **Secondary:** `bg-black-50 text-white-100 hover:bg-black-90`
-- **Outline:** `border-2 border-primary text-primary hover:bg-primary hover:text-white-100`
+### 3. Кнопки (из Figma дизайн-системы)
+
+#### Primary (зеленая кнопка)
+- **Base:** `bg-primary text-white-100`
+- **Hover:** `hover:bg-primary-hover`
+- **Active:** `active:bg-primary-active`
+- **Disabled:** `opacity-50 cursor-not-allowed`
+
+#### Secondary (кнопка с border)
+- **Base:** `border border-black-70 text-black-90`
+- **Hover:** `hover:bg-white-100`
+- **Active:** `active:bg-white-80`
+- **Disabled:** `opacity-50 cursor-not-allowed`
+
+#### Outline (обводка primary)
+- **Base:** `border-2 border-primary text-primary`
+- **Hover:** `hover:bg-primary hover:text-white-100`
+
+#### Ghost (прозрачная)
+- **Base:** `text-primary`
+- **Hover:** `hover:bg-primary/10`
 
 ### 4. Типографика
 - Заголовки: используйте `text-h1` - `text-h5`

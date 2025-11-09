@@ -16,11 +16,17 @@
 
 **Цветовая палитра:**
 ```javascript
-primary: '#429512'      // Основной зеленый
-bg-dark: '#161616'      // Темный фон секций
-text-gray: '#5c5c5c'    // Серый вторичный текст
-text-light: '#f6f6f5'   // Светлый текст заголовков
-text-white: '#ffffff'   // Белый текст
+primary:        '#429512'  // Основной зеленый
+primary-hover:  '#4fa61d'  // Hover состояние
+primary-active: '#3b870e'  // Active состояние
+
+black-90: '#161616'  // Темный фон секций
+black-70: '#cdcdcd'  // Border для Secondary кнопок
+black-50: '#5c5c5c'  // Серый вторичный текст
+
+white-100: '#ffffff'  // Чисто белый
+white-90:  '#f6f6f5'  // Светлый фон/текст
+white-80:  '#dedede'  // White-80
 ```
 
 **Типографика:**
@@ -41,10 +47,12 @@ p3:  15px / line-height 1.6 / weight 500
 ### 2. ✅ Базовые компоненты (Atoms)
 
 #### BaseButton.vue
-- ✅ 4 варианта: primary, secondary, outline, ghost
+- ✅ 4 варианта из Figma: primary, secondary, outline, ghost
 - ✅ 3 размера: sm, md, lg
-- ✅ Состояния: loading, disabled
-- ✅ Hover эффекты и transitions
+- ✅ Полная поддержка состояний: base, hover, active, disabled, loading
+- ✅ Primary: bg-primary → hover → active (#429512 → #4fa61d → #3b870e)
+- ✅ Secondary: border-black-70 → hover:bg-white-100 → active:bg-white-80
+- ✅ Transitions 200ms, gap-2 между элементами
 - ✅ Полная типизация props
 
 #### BaseContainer.vue

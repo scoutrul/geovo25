@@ -46,19 +46,26 @@ const props = defineProps({
 const emit = defineEmits(['click'])
 
 const buttonClasses = computed(() => {
-  const baseClasses = 'inline-flex items-center justify-center font-sans transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
+  const baseClasses = 'inline-flex items-center justify-center gap-2 font-sans transition-all duration-200 '
   
-  // Варианты
+  // Варианты (из дизайн-системы Figma)
   const variantClasses = {
-    primary: 'bg-primary text-white-100 hover:bg-primary-hover active:bg-primary-active focus:ring-primary shadow-button hover:shadow-button-hover',
-    secondary: 'bg-black-50 text-white-100 hover:bg-black-90 focus:ring-black-50',
+    // Primary: зеленая кнопка
+    primary: 'bg-primary text-white-100 hover:bg-primary-hover active:bg-primary-active focus:ring-primary',
+    
+    // Secondary: кнопка с border
+    secondary: 'border border-black-70 text-black-90 hover:bg-white-100 active:bg-white-80 focus:ring-black-70',
+    
+    // Outline: обводка primary
     outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white-100 focus:ring-primary',
+    
+    // Ghost: прозрачная
     ghost: 'text-primary hover:bg-primary/10 focus:ring-primary'
   }
   
   // Размеры
   const sizeClasses = {
-    sm: 'h-10 px-4 py-2 text-body-sm rounded-button',
+    sm: 'h-10 px-4 py-2 text-sm rounded-button',
     md: 'h-12 px-6 py-2 text-p2 rounded-button',
     lg: 'h-14 px-8 py-3 text-p1 rounded-button'
   }

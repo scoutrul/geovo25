@@ -79,20 +79,45 @@ white-80:  '#dedede'  // Средний светлый
 
 ### BaseButton
 
-Универсальная кнопка с поддержкой вариаций и состояний.
+Универсальная кнопка согласно дизайн-системе Figma с полной поддержкой всех состояний.
 
 **Props:**
 - `variant`: 'primary' | 'secondary' | 'outline' | 'ghost'
 - `size`: 'sm' | 'md' | 'lg'
 - `disabled`: boolean
 - `loading`: boolean
+- `type`: 'button' | 'submit' | 'reset'
+
+**Варианты (из Figma):**
+- **Primary:** Зеленая кнопка для главных действий
+- **Secondary:** Кнопка с обводкой для вторичных действий
+- **Outline:** Обводка primary для альтернативных действий
+- **Ghost:** Прозрачная для третичных действий
+
+**Состояния (автоматические):**
+- Base → Hover → Active
+- Disabled (opacity-50)
+- Loading (spinner + disabled)
 
 **Пример использования:**
 ```vue
+<!-- Primary кнопка -->
 <BaseButton variant="primary" size="md" @click="handleClick">
   Познакомиться
 </BaseButton>
+
+<!-- Secondary кнопка -->
+<BaseButton variant="secondary" size="md">
+  Подробнее
+</BaseButton>
+
+<!-- Loading состояние -->
+<BaseButton variant="primary" :loading="isLoading">
+  Сохранить
+</BaseButton>
 ```
+
+> Полная документация: `BUTTONS.md`
 
 ### BaseContainer
 
