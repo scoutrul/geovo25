@@ -6,6 +6,12 @@
       :faq-items="faqData"
     />
     
+    <!-- How We Work Секция -->
+    <HowWeWorkSection
+      :title="'Как мы будем работать'"
+      :items="howWeWorkData"
+    />
+    
     <!-- Benefits Секция -->
     <BenefitsSection
       :title="sectionData.title"
@@ -20,7 +26,52 @@
 <script setup>
 import { reactive } from 'vue'
 import FaqSection from './components/sections/FaqSection.vue'
+import HowWeWorkSection from './components/sections/HowWeWorkSection.vue'
 import BenefitsSection from './components/sections/BenefitsSection.vue'
+
+// Данные "Как мы будем работать" из макета Figma
+const howWeWorkData = reactive([
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/172c286c-d8df-4dd2-81be-65b365566a20',
+    title: 'Старт',
+    description: 'Разберу проблемы, вижн и цели. Проведу анализ и сформирую роадмап'
+  },
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/409b671b-8afd-448f-974d-b671c0a33526',
+    title: 'Задачи',
+    description: 'Заведу, отприоритизирую и актуализирую задачи и статусы в JIRA/Notion/Slack'
+  },
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/ff852c15-8d92-4e8a-af41-75fc883343b7',
+    title: 'Скорость',
+    description: 'В разы быстрее, чем у обычного дизайнера. Использую AI, горячие клавиши и инструменты автоматизации'
+  },
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/ba81415a-31c0-4d40-b62f-566842ae126c',
+    title: 'Передача',
+    description: 'Тщательно проработаю макеты с edge cases, подготовлю анимации, ассеты и гайды в Figma/Notion'
+  },
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/c73852da-566d-415e-8bf9-4c977bd309bc',
+    title: 'Автономность',
+    description: 'Самостоятельно организую работу, найм и закрою задачи не отвлекая ресурсы команды'
+  },
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/51ac48f3-55e9-42b5-9dda-e986b42dd7f7',
+    title: 'Кругозор',
+    description: 'Запущу целые продукты как в качестве единственного дизайнера-визионера, так и в составе сложных команд'
+  },
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/a8b6b7b8-c255-49cc-a3d9-b270cdce76d2',
+    title: 'Системность',
+    description: 'Предоставлю решения от иконок и графики до дизайн-систем и готовых к разработке продуктов'
+  },
+  {
+    icon: 'https://www.figma.com/api/mcp/asset/475a404e-9148-44bb-a747-b7c16f6989d8',
+    title: 'Сопровождение',
+    description: 'Тщательно проконтролирую разработку и доведу до идеального результата'
+  }
+])
 
 // Данные FAQ из макета Figma
 const faqData = reactive([

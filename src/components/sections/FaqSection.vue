@@ -10,7 +10,7 @@
       <BaseHeading 
         :level="3" 
         :as="'h2'"
-        class="w-full text-black-90"
+        class="w-full text-black-90 mb-16"
       >
         {{ title }}
       </BaseHeading>
