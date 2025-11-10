@@ -35,7 +35,7 @@ module.exports = {
         'h2': ['100px', { lineHeight: '0.95', fontWeight: '500' }],   // 95% line-height
         'h3': ['64px', { lineHeight: '1', fontWeight: '500' }],       // 100% line-height
         'h4': ['46px', { lineHeight: '1', fontWeight: '500' }],       // 100% line-height
-        'h5': ['28px', { lineHeight: '1.3', fontWeight: '500' }],     // 130% line-height
+        'h5': ['28px', { lineHeight: '1.2', fontWeight: '500' }],     // 120% line-height
         'p1': ['20px', { lineHeight: '1.4', fontWeight: '400' }],     // 140% line-height
         'p2': ['16px', { lineHeight: '1.6', fontWeight: '400' }],     // 160% line-height
         'p3': ['14px', { lineHeight: '1.8', fontWeight: '400' }],     // 180% line-height

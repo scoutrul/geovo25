@@ -1,29 +1,37 @@
 <template>
   <div id="app" class="min-h-screen">
-    <!-- FAQ Секция -->
-    <FaqSection
-      :title="mockData.faq.title"
-      :faq-items="mockData.faq.items"
-    />
     
     <!-- How We Work Секция -->
     <HowWeWorkSection
-      :title="mockData.howWeWork.title"
-      :items="mockData.howWeWork.items"
+    :title="mockData.howWeWork.title"
+    :items="mockData.howWeWork.items"
     />
     
     <!-- Expertise Секция -->
     <ExpertiseSection
-      :title="mockData.expertise.title"
-      :subtitle="mockData.expertise.subtitle"
-      :cards="mockData.expertise.items"
+    :title="mockData.expertise.title"
+    :subtitle="mockData.expertise.subtitle"
+    :cards="mockData.expertise.items"
+    />
+    
+    <!-- Cases Секция -->
+    <CasesSection
+    :title="mockData.cases.title"
+    :subtitle="mockData.cases.subtitle"
+    :cases="mockData.cases.items"
     />
     
     <!-- Reviews Секция -->
     <ReviewsSection
-      :title="mockData.reviews.title"
-      :subtitle="mockData.reviews.subtitle"
-      :reviews="mockData.reviews.items"
+    :title="mockData.reviews.title"
+    :subtitle="mockData.reviews.subtitle"
+    :reviews="mockData.reviews.items"
+    />
+    
+    <!-- FAQ Секция -->
+    <FaqSection
+      :title="mockData.faq.title"
+      :faq-items="mockData.faq.items"
     />
     
     <!-- Benefits Секция -->
@@ -41,6 +49,7 @@
 import FaqSection from './components/sections/FaqSection.vue'
 import HowWeWorkSection from './components/sections/HowWeWorkSection.vue'
 import ExpertiseSection from './components/sections/ExpertiseSection.vue'
+import CasesSection from './components/sections/CasesSection.vue'
 import ReviewsSection from './components/sections/ReviewsSection.vue'
 import BenefitsSection from './components/sections/BenefitsSection.vue'
 
@@ -151,6 +160,32 @@ const mockData = {
         title: 'Аналитик',
         description: 'Анализ метрик, гипотез на чистом кофеине',
         items: ['Анализ рынка', 'Конкретные цели', 'A/B тесты']
+      }
+    ]
+  },
+  cases: {
+    title: 'Кейсы',
+    subtitle: 'Некоторые из моих историй, которые точно не оставят равнодушным',
+    items: [
+      {
+        title: 'AG1',
+        description: 'Раскрою секрет успеха в Sports Nutririon по подписке',
+        image: ''
+      },
+      {
+        title: 'AdGuard Wallet',
+        description: 'Как защитить свои криптоактивы c помощью передовых подходов в Fintech',
+        image: ''
+      },
+      {
+        title: '4Real',
+        description: 'iGaming, который действительно вовлекает',
+        image: ''
+      },
+      {
+        title: 'Legaline',
+        description: 'eCommerce площадка в сфере Legal Law',
+        image: ''
       }
     ]
   },
