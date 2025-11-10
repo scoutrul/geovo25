@@ -1,6 +1,6 @@
 <template>
   <component :is="as" :class="containerClasses">
-    <div class="flex flex-col items-start w-full max-w-[1048px] mx-auto">
+    <div class="flex flex-col items-start w-full max-w-[1048px] xl:max-w-[1592px] mx-auto" :style="{ maxWidth: maxWidth }">
       <slot />
     </div>
   </component>
@@ -22,6 +22,10 @@ const props = defineProps({
   as: {
     type: String,
     default: 'div'
+  },
+  maxWidth: {
+    type: String,
+    default: 'full'
   }
 })
 

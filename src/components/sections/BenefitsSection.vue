@@ -1,6 +1,5 @@
 <template>
-  <BaseContainer :as="'section'" :max-width="'full'" :bg="'bg-black-90'" class="relative">
-
+  <BaseContainer :as="'section'" :max-width="'1052px'" :bg="'bg-black-90'" class="relative">
     <DecorativeLine :pin-count="0" class="hidden lg:block !absolute top-0 left-1/2 transform -translate-x-1/2"
       :style="{ top: gtXl ? '314px' : ltLg ? '405px' : '345px' }" />
 
@@ -17,11 +16,7 @@
         <DecorativeLine :pin-count="benefits.length + 1" :hide-line="gtLg" class="hidden sm:block" />
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 w-full">
-          <BenefitCard 
-            v-for="(benefit, index) in benefits" 
-            :key="index" 
-            :text="benefit.text"
-          />
+          <BenefitCard v-for="(benefit, index) in benefits" :key="index" :text="benefit.text" />
         </div>
       </div>
 
