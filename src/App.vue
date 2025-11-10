@@ -2,21 +2,21 @@
   <div id="app" class="min-h-screen">
     <!-- FAQ Секция -->
     <FaqSection
-      title="Частые вопросы"
-      :faq-items="mockData.faq"
+      :title="mockData.faq.title"
+      :faq-items="mockData.faq.items"
     />
     
     <!-- How We Work Секция -->
     <HowWeWorkSection
-      title="Как мы будем работать"
-      :items="mockData.howWeWork"
+      :title="mockData.howWeWork.title"
+      :items="mockData.howWeWork.items"
     />
     
     <!-- Expertise Секция -->
     <ExpertiseSection
-      title="Команда в одном эксперте"
-      subtitle="Получите не просто дизайнера, а партнера, который заботится о бизнесе и совмещает функции целой команды"
-      :cards="mockData.expertise"
+      :title="mockData.expertise.title"
+      :subtitle="mockData.expertise.subtitle"
+      :cards="mockData.expertise.items"
     />
     
     <!-- Benefits Секция -->
@@ -38,71 +38,9 @@ import BenefitsSection from './components/sections/BenefitsSection.vue'
 
 // Моковые данные для всех секций
 const mockData = {
-  howWeWork: [
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/172c286c-d8df-4dd2-81be-65b365566a20',
-      title: 'Старт',
-      description: 'Разберу проблемы, вижн и цели. Проведу анализ и сформирую роадмап'
-    },
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/409b671b-8afd-448f-974d-b671c0a33526',
-      title: 'Задачи',
-      description: 'Заведу, отприоритизирую и актуализирую задачи и статусы в JIRA/Notion/Slack'
-    },
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/ff852c15-8d92-4e8a-af41-75fc883343b7',
-      title: 'Скорость',
-      description: 'В разы быстрее, чем у обычного дизайнера. Использую AI, горячие клавиши и инструменты автоматизации'
-    },
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/ba81415a-31c0-4d40-b62f-566842ae126c',
-      title: 'Передача',
-      description: 'Тщательно проработаю макеты с edge cases, подготовлю анимации, ассеты и гайды в Figma/Notion'
-    },
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/c73852da-566d-415e-8bf9-4c977bd309bc',
-      title: 'Автономность',
-      description: 'Самостоятельно организую работу, найм и закрою задачи не отвлекая ресурсы команды'
-    },
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/51ac48f3-55e9-42b5-9dda-e986b42dd7f7',
-      title: 'Кругозор',
-      description: 'Запущу целые продукты как в качестве единственного дизайнера-визионера, так и в составе сложных команд'
-    },
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/a8b6b7b8-c255-49cc-a3d9-b270cdce76d2',
-      title: 'Системность',
-      description: 'Предоставлю решения от иконок и графики до дизайн-систем и готовых к разработке продуктов'
-    },
-    {
-      icon: 'https://www.figma.com/api/mcp/asset/475a404e-9148-44bb-a747-b7c16f6989d8',
-      title: 'Сопровождение',
-      description: 'Тщательно проконтролирую разработку и доведу до идеального результата'
-    }
-  ],
-  expertise: [
-    {
-      title: 'Дизайнер',
-      description: 'Создаю удобный и красивый продукт',
-      items: ['Maкеты в Figma', 'Документация в Notion', 'Сопровождение разработки']
-    },
-    {
-      title: 'Дизайн-лид',
-      description: 'Выстраиваю процесс и стандарты качества',
-      items: ['Дизайн-ревью', 'Менторство и развитие', 'Найм и онбординг']
-    },
-    {
-      title: 'Продакт',
-      description: 'Связь аналитики, продажи и маркетинга',
-      items: ['Задачи в JIRA', 'Оценка и приоритезация', 'Фичи и роадмап']
-    },
-    {
-      title: 'Аналитик',
-      description: 'Анализ метрик, гипотез на чистом кофеине',
-      items: ['Анализ рынка', 'Конкретные цели', 'A/B тесты']
-    }
-  ],
-  faq: [
+  faq: {
+    title: 'Частые вопросы',
+    items: [
     {
       question: 'Сколько стоит работа с тобой?',
       answer: 'Всё зависит от масштаба задачи и потребностей. Я работаю по часам, с оплатой за объем или full-time контракт: полная гибкость и прозрачность. Если речь про UX-аудит, редизайн или полное проектирование продукта, я предложу диапазон после короткого звонка. Моя цель — чтобы вы понимали бюджет заранее, без сюрпризов и скрытых доплат'
@@ -135,7 +73,79 @@ const mockData = {
       question: 'Берешься за стартапы или за крупные компании?',
       answer: 'Большой опыт и с теми, и с другими. Главное — чтобы был внятный продукт и цели, к которым дизайн может реально помочь прийти.\nВ стартапах я часто помогаю выстроить дизайн и процесс с нуля, в зрелых компаниях — оптимизирую и развиваю'
     }
-  ],
+    ]
+  },
+  howWeWork: {
+    title: 'Как мы будем работать',
+    items: [
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/172c286c-d8df-4dd2-81be-65b365566a20',
+        title: 'Старт',
+        description: 'Разберу проблемы, вижн и цели. Проведу анализ и сформирую роадмап'
+      },
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/409b671b-8afd-448f-974d-b671c0a33526',
+        title: 'Задачи',
+        description: 'Заведу, отприоритизирую и актуализирую задачи и статусы в JIRA/Notion/Slack'
+      },
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/ff852c15-8d92-4e8a-af41-75fc883343b7',
+        title: 'Скорость',
+        description: 'В разы быстрее, чем у обычного дизайнера. Использую AI, горячие клавиши и инструменты автоматизации'
+      },
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/ba81415a-31c0-4d40-b62f-566842ae126c',
+        title: 'Передача',
+        description: 'Тщательно проработаю макеты с edge cases, подготовлю анимации, ассеты и гайды в Figma/Notion'
+      },
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/c73852da-566d-415e-8bf9-4c977bd309bc',
+        title: 'Автономность',
+        description: 'Самостоятельно организую работу, найм и закрою задачи не отвлекая ресурсы команды'
+      },
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/51ac48f3-55e9-42b5-9dda-e986b42dd7f7',
+        title: 'Кругозор',
+        description: 'Запущу целые продукты как в качестве единственного дизайнера-визионера, так и в составе сложных команд'
+      },
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/a8b6b7b8-c255-49cc-a3d9-b270cdce76d2',
+        title: 'Системность',
+        description: 'Предоставлю решения от иконок и графики до дизайн-систем и готовых к разработке продуктов'
+      },
+      {
+        icon: 'https://www.figma.com/api/mcp/asset/475a404e-9148-44bb-a747-b7c16f6989d8',
+        title: 'Сопровождение',
+        description: 'Тщательно проконтролирую разработку и доведу до идеального результата'
+      }
+    ]
+  },
+  expertise: {
+    title: 'Команда в одном эксперте',
+    subtitle: 'Получите не просто дизайнера, а партнера, который заботится о бизнесе и совмещает функции целой команды',
+    items: [
+      {
+        title: 'Дизайнер',
+        description: 'Создаю удобный и красивый продукт',
+        items: ['Maкеты в Figma', 'Документация в Notion', 'Сопровождение разработки']
+      },
+      {
+        title: 'Дизайн-лид',
+        description: 'Выстраиваю процесс и стандарты качества',
+        items: ['Дизайн-ревью', 'Менторство и развитие', 'Найм и онбординг']
+      },
+      {
+        title: 'Продакт',
+        description: 'Связь аналитики, продажи и маркетинга',
+        items: ['Задачи в JIRA', 'Оценка и приоритезация', 'Фичи и роадмап']
+      },
+      {
+        title: 'Аналитик',
+        description: 'Анализ метрик, гипотез на чистом кофеине',
+        items: ['Анализ рынка', 'Конкретные цели', 'A/B тесты']
+      }
+    ]
+  },
   benefits: {
     title: 'Что нас ждет впереди',
     items: [
