@@ -5,10 +5,9 @@
       isLast ? '' : 'border-b'
     ]"
   >
-    <!-- Заголовок вопроса (кликабельный) -->
     <button
       type="button"
-      class="w-full text-left px-0 lg:px-8 py-4 rounded-2xl cursor-pointer"
+      class="w-full text-left px-0 py-4 rounded-2xl cursor-pointer"
       @click="handleToggle"
     >
       <BaseText 
@@ -20,18 +19,17 @@
       </BaseText>
     </button>
     
-    <!-- Ответ (раскрывающийся с GSAP анимацией) -->
     <div 
       ref="answerRef"
       class="overflow-hidden"
       style="height: 0; opacity: 0;"
     >
-      <div ref="contentRef" class="px-0 lg:px-8 pt-2 pb-4">
+      <div ref="contentRef" class="px-0 pt-2 pb-4">
         <BaseText 
           :as="'div'"
           size="p2"
-          class="text-black-10 whitespace-pre-wrap"
-          v-html="answer"
+          class="text-black-10"
+          v-html="formattedAnswer"
         />
       </div>
     </div>
@@ -39,7 +37,7 @@
 </template>
 
 <script setup>
-import { ref, watch, nextTick, onMounted } from 'vue'
+import { ref, watch, nextTick, onMounted, computed } from 'vue'
 import { gsap } from 'gsap'
 import { useResizeObserver } from '@vueuse/core'
 import { BaseText } from '../base'
@@ -65,6 +63,11 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['toggle'])
+
+// Преобразуем \n в <br> для корректного отображения переносов строк
+const formattedAnswer = computed(() => {
+  return props.answer.replace(/\n/g, '<br>')
+})
 
 const { isDesktop, width } = useBreakpoints()
 
@@ -143,6 +146,5 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* GSAP контролирует анимацию, поэтому CSS transitions не нужны */
 </style>
 
