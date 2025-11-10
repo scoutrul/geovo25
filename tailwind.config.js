@@ -13,6 +13,9 @@ module.exports = {
           hover: '#4fa61d',
           active: '#3b870e',
         },
+        secondary: {
+          DEFAULT: '#e2ff83',
+        },
         black: {
           10: '#303030',       // Текст ответов FAQ
           50: '#5c5c5c',       // Серый вторичный текст
