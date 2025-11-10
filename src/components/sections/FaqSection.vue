@@ -3,7 +3,7 @@
     :as="'section'"
     :padding="true" 
     :vertical-padding="true"
-    :max-width="'full'"
+     :max-width="'1052px'"
     :bg="'bg-white-90'"
   >
 
@@ -17,6 +17,7 @@
 
       <div class="flex flex-col items-start w-full">
         <AccordionItem
+          class="px-0 sm:px-8"
           v-for="(item, index) in faqItems"
           :key="index"
           :question="item.question"

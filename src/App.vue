@@ -19,6 +19,13 @@
       :cards="mockData.expertise.items"
     />
     
+    <!-- Reviews Секция -->
+    <ReviewsSection
+      :title="mockData.reviews.title"
+      :subtitle="mockData.reviews.subtitle"
+      :reviews="mockData.reviews.items"
+    />
+    
     <!-- Benefits Секция -->
     <BenefitsSection
       :title="mockData.benefits.title"
@@ -34,6 +41,7 @@
 import FaqSection from './components/sections/FaqSection.vue'
 import HowWeWorkSection from './components/sections/HowWeWorkSection.vue'
 import ExpertiseSection from './components/sections/ExpertiseSection.vue'
+import ReviewsSection from './components/sections/ReviewsSection.vue'
 import BenefitsSection from './components/sections/BenefitsSection.vue'
 
 // Моковые данные для всех секций
@@ -143,6 +151,32 @@ const mockData = {
         title: 'Аналитик',
         description: 'Анализ метрик, гипотез на чистом кофеине',
         items: ['Анализ рынка', 'Конкретные цели', 'A/B тесты']
+      }
+    ]
+  },
+  reviews: {
+    title: 'Самые теплые слова',
+    subtitle: 'Я дорожу репутацией коллег и бизнеса, поэтому вы всегда можете быть уверены в нашем сотрудничестве',
+    items: [
+      {
+        text: 'У нас теперь просто потрясающая дизайн-система',
+        author: 'Ник Боус, дизайн-директор AG1',
+        image: ''
+      },
+      {
+        text: 'Впервые вижу такую скорость запуска продуктов',
+        author: 'Игорь Лукьянов, CEO AdGuard',
+        image: ''
+      },
+      {
+        text: 'Лучший дизайнер, с которым довелось работать',
+        author: 'Мухаммед Гафаров, CEO Futurebox',
+        image: ''
+      },
+      {
+        text: 'Привет, Егор! Спасибо за отличный дизайн для Legaline',
+        author: 'Дмитрий Грин, партнер Legaline',
+        image: ''
       }
     ]
   },

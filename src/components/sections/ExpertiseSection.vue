@@ -16,23 +16,21 @@
     </div>
 
     <!-- Адаптивная сетка карточек -->
-    <div
-      class="flex w-full sm:grid flex-row sm:flex-col overflow-auto sm:overflow-visible gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4 pl-4 pr-4 ml-[-16px] mr-[-16px] min-w-[calc(100vw)] sm:min-w-[auto] sm:pl-0 sm:pr-0 sm:ml-0 sm:mr-0"
-    >
+    <AdaptiveGrid>
       <ExpertiseCard
-        class="min-w-[212px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px]"
         v-for="(card, index) in cards"
         :key="index"
+        class="min-w-[212px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px]"
         :title="card.title"
         :description="card.description"
         :items="card.items"
       />
-    </div>
+    </AdaptiveGrid>
   </BaseContainer>
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText } from "../base";
+import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "../base";
 import ExpertiseCard from "../ui/ExpertiseCard.vue";
 import { useBreakpoints } from "../../composables/useBreakpoints.js";
 
