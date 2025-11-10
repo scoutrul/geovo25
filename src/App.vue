@@ -1,5 +1,17 @@
 <template>
   <div id="app" class="min-h-screen">
+    <!-- Hero секция -->
+    <HeroSection
+      :title="mockData.hero.title"
+      :subtitle="mockData.hero.subtitle"
+      :highlight-text="mockData.hero.highlightText"
+      :highlight-avatars="mockData.hero.highlightAvatars"
+      :button-text="mockData.hero.buttonText"
+      :stats="mockData.hero.stats"
+      :gallery="mockData.hero.gallery"
+      @cta-click="handleHeroCtaClick"
+    />
+
     <!-- How We Work Секция -->
     <HowWeWorkSection
       :title="mockData.howWeWork.title"
@@ -61,6 +73,7 @@
 
 <script setup>
 import FaqSection from "./components/sections/FaqSection.vue";
+import HeroSection from "./components/sections/HeroSection.vue";
 import HowWeWorkSection from "./components/sections/HowWeWorkSection.vue";
 import ExpertiseSection from "./components/sections/ExpertiseSection.vue";
 import CasesSection from "./components/sections/CasesSection.vue";
@@ -87,8 +100,31 @@ import iconCollaboration from "./assets/icons/tools/collaboration.svg";
 import iconSelfOrganization from "./assets/icons/tools/self-organization.svg";
 import iconTransparency from "./assets/icons/tools/transparency.svg";
 
+// Аватары Hero
+import avatar1 from "./assets/avatars/avatar-1.png";
+import avatar2 from "./assets/avatars/avatar-2.png";
+import avatar3 from "./assets/avatars/avatar-3.png";
+
 // Моковые данные для всех секций
 const mockData = {
+  hero: {
+    title: "Привет, это Егор.",
+    subtitle: "Я помог десяткам топовых команд повысить прибыль за счет дизайна",
+    highlightText: "32+ млн со всего мира ценят мой UX",
+    highlightAvatars: [
+      { src: avatar1, alt: "Лицо пользователя 1" },
+      { src: avatar2, alt: "Лицо пользователя 2" },
+      { src: avatar3, alt: "Лицо пользователя 3" },
+    ],
+    buttonText: "Познакомиться",
+    stats: [
+      { value: "30+", description: "запущенных проектов — от MVP до масштабных редизайнов" },
+      { value: "7+", description: "лет в продуктовых командах из множества индустрий" },
+      { value: "3", description: "дня на первый продукт или фичу" },
+      { value: "+12.6%", description: "к доходу — средний эффект от улучшений дизайна" },
+    ],
+    gallery: [{ src: avatar1 }, { src: avatar2 }, { src: avatar3 }],
+  },
   faq: {
     title: "Частые вопросы",
     items: [
@@ -350,6 +386,10 @@ const mockData = {
 
 const handleCtaClick = () => {
   console.log("CTA clicked");
+};
+
+const handleHeroCtaClick = () => {
+  console.log("Hero CTA clicked");
 };
 
 const handleFigmaClick = () => {
