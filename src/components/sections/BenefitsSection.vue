@@ -2,7 +2,7 @@
   <BaseContainer :as="'section'" :max-width="'full'" :bg="'bg-black-90'" class="relative">
 
     <DecorativeLine :pin-count="0" class="hidden lg:block !absolute top-0 left-1/2 transform -translate-x-1/2"
-      :style="{ top: ltXl ? '405px' : '342px' }" />
+      :style="{ top: gtXl ? '314px' : ltLg ? '405px' : '345px' }" />
 
     <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start w-full">
 
@@ -10,15 +10,18 @@
         <!-- Заголовок секции -->
         <BaseHeading :level="4" :as="'h2'"
           class="w-full text-white-90 text-[46px] leading-[1.2] sm:text-[64px] sm:leading-none mb-[90px]"
-          :style="{ height: gtXl ? '92px' : '188px' }">
+          :style="{ maxWidth: ltXl ? '430px' : 'inherit' }">
           {{ title }}
         </BaseHeading>
 
         <DecorativeLine :pin-count="benefits.length + 1" :hide-line="gtLg" class="hidden sm:block" />
-        <!-- Контейнер с карточками преимуществ -->
-        <div class="flex flex-wrap sm:flex-nowrap gap-11 w-full">
-          <BenefitCard v-for="(benefit, index) in benefits" :key="index" :text="benefit.text"
-            class="w-[140px] sm:w-full sm:flex-1" />
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 w-full">
+          <BenefitCard 
+            v-for="(benefit, index) in benefits" 
+            :key="index" 
+            :text="benefit.text"
+          />
         </div>
       </div>
 
@@ -43,7 +46,7 @@ import BenefitCard from '../ui/BenefitCard.vue'
 import DecorativeLine from '../ui/DecorativeLine.vue'
 import { useBreakpoints } from '../../composables/useBreakpoints.js'
 
-const { gtLg, gtXl, ltXl } = useBreakpoints()
+const { gtLg, gtXl, ltXl, ltLg } = useBreakpoints()
 
 const props = defineProps({
   title: {
