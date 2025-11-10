@@ -36,6 +36,7 @@
 <script setup>
 import BaseContentCard from '../base/BaseContentCard.vue'
 import { BaseText } from '../base'
+import checkmark from '../../assets/icons/checkmark.svg'
 
 defineProps({
   title: {
@@ -52,7 +53,7 @@ defineProps({
   },
   checkmarkIcon: {
     type: String,
-    default: 'https://www.figma.com/api/mcp/asset/3440a596-7c9c-49d6-b559-c97791eaf2e2'
+    default: checkmark
   }
 })
 </script>

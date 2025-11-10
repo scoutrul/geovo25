@@ -40,18 +40,7 @@
         <div
           class="absolute inset-0 bg-primary rounded-[32px] flex items-center justify-center"
         >
-          <svg
-            width="102"
-            height="101"
-            viewBox="0 0 102 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M25.8413 50.1182H39.4572L50.726 61.2892L62.0544 50.1564H102L50.7112 101L0 50.7291L51.1733 0V13.4977L13.6159 50.7291L50.7112 87.5023L78.7562 59.7007H66.0179L50.6964 74.7576L25.8413 50.1182Z"
-              fill="white"
-            />
-          </svg>
+          <img :src="logoMark" alt="Logo" width="102" height="101" />
         </div>
       </div>
 
@@ -69,18 +58,7 @@
         <div
           class="absolute inset-0 bg-primary rounded-[32px] flex items-center justify-center"
         >
-          <svg
-            width="102"
-            height="101"
-            viewBox="0 0 102 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M25.8413 50.1182H39.4572L50.726 61.2892L62.0544 50.1564H102L50.7112 101L0 50.7291L51.1733 0V13.4977L13.6159 50.7291L50.7112 87.5023L78.7562 59.7007H66.0179L50.6964 74.7576L25.8413 50.1182Z"
-              fill="white"
-            />
-          </svg>
+          <img :src="logoMark" alt="Logo" width="102" height="101" />
         </div>
       </div>
 
@@ -117,34 +95,7 @@
     <div class="flex flex-col gap-8 pt-16 xl:pt-32 border-t border-black-90/5 max-w-[944px] lg:max-w-[780px] m-auto" >
       <!-- Двухколоночный контент -->
       <!-- Figma icon -->
-      <svg
-      width="54"
-      height="80"
-      viewBox="0 0 54 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      >
-      <path
-          d="M13.3334 80.0009C20.6935 80.0009 26.6669 74.0275 26.6669 66.6675V53.334H13.3334C5.97338 53.334 0 59.3074 0 66.6675C0 74.0275 5.97338 80.0009 13.3334 80.0009Z"
-          fill="#161616"
-      />
-      <path
-          d="M0 40.0014C0 32.6414 5.97338 26.668 13.3334 26.668H26.6669V53.3349H13.3334C5.97338 53.3349 0 47.3615 0 40.0014Z"
-          fill="#161616"
-      />
-      <path
-          d="M0 13.3335C0 5.97339 5.97338 0 13.3334 0H26.6669V26.6669H13.3334C5.97338 26.6669 0 20.6935 0 13.3335Z"
-          fill="#161616"
-      />
-      <path
-          d="M26.666 0H39.9995C47.3595 0 53.3329 5.97339 53.3329 13.3335C53.3329 20.6935 47.3595 26.6669 39.9995 26.6669H26.666V0Z"
-          fill="#161616"
-      />
-      <path
-          d="M53.3329 40.0014C53.3329 47.3615 47.3595 53.3349 39.9995 53.3349C32.6394 53.3349 26.666 47.3615 26.666 40.0014C26.666 32.6414 32.6394 26.668 39.9995 26.668C47.3595 26.668 53.3329 32.6414 53.3329 40.0014Z"
-          fill="#161616"
-      />
-      </svg>
+      <img :src="figmaIcon" alt="Figma" width="54" height="80" />
       <div :class="['flex gap-8']">
         <!-- Колонка 1: Figma icon + текст -->
         <div class="flex-1 flex flex-col gap-8">
@@ -181,6 +132,8 @@ import { BaseContainer, BaseHeading, BaseText, BaseButton } from "../base";
 import OpportunityCard from "../ui/OpportunityCard.vue";
 import { useBreakpoints } from "../../composables/useBreakpoints.js";
 import { computed } from "vue";
+import logoMark from "../../assets/icons/logo-mark.svg";
+import figmaIcon from "../../assets/icons/figma.svg";
 
 const { gtLg, gtXl } = useBreakpoints();
 

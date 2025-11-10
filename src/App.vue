@@ -61,6 +61,16 @@ import OpportunitiesSection from "./components/sections/OpportunitiesSection.vue
 import ReviewsSection from "./components/sections/ReviewsSection.vue";
 import BenefitsSection from "./components/sections/BenefitsSection.vue";
 
+// Иконки How We Work (локальные SVG)
+import iconStart from "./assets/icons/howwework/start.svg";
+import iconTasks from "./assets/icons/howwework/tasks.svg";
+import iconSpeed from "./assets/icons/howwework/speed.svg";
+import iconTransfer from "./assets/icons/howwework/transfer.svg";
+import iconAutonomy from "./assets/icons/howwework/autonomy.svg";
+import iconOutlook from "./assets/icons/howwework/outlook.svg";
+import iconSystem from "./assets/icons/howwework/system.svg";
+import iconSupport from "./assets/icons/howwework/support.svg";
+
 // Моковые данные для всех секций
 const mockData = {
   faq: {
@@ -112,49 +122,49 @@ const mockData = {
     title: "Как мы будем работать",
     items: [
       {
-        icon: "https://www.figma.com/api/mcp/asset/172c286c-d8df-4dd2-81be-65b365566a20",
+        icon: iconStart,
         title: "Старт",
         description:
           "Разберу проблемы, вижн и цели. Проведу анализ и сформирую роадмап",
       },
       {
-        icon: "https://www.figma.com/api/mcp/asset/409b671b-8afd-448f-974d-b671c0a33526",
+        icon: iconTasks,
         title: "Задачи",
         description:
           "Заведу, отприоритизирую и актуализирую задачи и статусы в JIRA/Notion/Slack",
       },
       {
-        icon: "https://www.figma.com/api/mcp/asset/ff852c15-8d92-4e8a-af41-75fc883343b7",
+        icon: iconSpeed,
         title: "Скорость",
         description:
           "В разы быстрее, чем у обычного дизайнера. Использую AI, горячие клавиши и инструменты автоматизации",
       },
       {
-        icon: "https://www.figma.com/api/mcp/asset/ba81415a-31c0-4d40-b62f-566842ae126c",
+        icon: iconTransfer,
         title: "Передача",
         description:
           "Тщательно проработаю макеты с edge cases, подготовлю анимации, ассеты и гайды в Figma/Notion",
       },
       {
-        icon: "https://www.figma.com/api/mcp/asset/c73852da-566d-415e-8bf9-4c977bd309bc",
+        icon: iconAutonomy,
         title: "Автономность",
         description:
           "Самостоятельно организую работу, найм и закрою задачи не отвлекая ресурсы команды",
       },
       {
-        icon: "https://www.figma.com/api/mcp/asset/51ac48f3-55e9-42b5-9dda-e986b42dd7f7",
+        icon: iconOutlook,
         title: "Кругозор",
         description:
           "Запущу целые продукты как в качестве единственного дизайнера-визионера, так и в составе сложных команд",
       },
       {
-        icon: "https://www.figma.com/api/mcp/asset/a8b6b7b8-c255-49cc-a3d9-b270cdce76d2",
+        icon: iconSystem,
         title: "Системность",
         description:
           "Предоставлю решения от иконок и графики до дизайн-систем и готовых к разработке продуктов",
       },
       {
-        icon: "https://www.figma.com/api/mcp/asset/475a404e-9148-44bb-a747-b7c16f6989d8",
+        icon: iconSupport,
         title: "Сопровождение",
         description:
           "Тщательно проконтролирую разработку и доведу до идеального результата",
