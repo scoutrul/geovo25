@@ -6,6 +6,13 @@
       :items="mockData.howWeWork.items"
     />
 
+    <!-- Tools (Dark) -->
+    <ToolsSection
+      :title="mockData.tools.title"
+      :content="mockData.tools.content"
+      :items="mockData.tools.items"
+    />
+
     <!-- Expertise Секция -->
     <ExpertiseSection
       :title="mockData.expertise.title"
@@ -60,6 +67,7 @@ import CasesSection from "./components/sections/CasesSection.vue";
 import OpportunitiesSection from "./components/sections/OpportunitiesSection.vue";
 import ReviewsSection from "./components/sections/ReviewsSection.vue";
 import BenefitsSection from "./components/sections/BenefitsSection.vue";
+import ToolsSection from "./components/sections/ToolsSection.vue";
 
 // Иконки How We Work (локальные SVG)
 import iconStart from "./assets/icons/howwework/start.svg";
@@ -70,6 +78,14 @@ import iconAutonomy from "./assets/icons/howwework/autonomy.svg";
 import iconOutlook from "./assets/icons/howwework/outlook.svg";
 import iconSystem from "./assets/icons/howwework/system.svg";
 import iconSupport from "./assets/icons/howwework/support.svg";
+
+// Иконки секции "Результат, а не процесс"
+import iconExperienceStartups from "./assets/icons/tools/experience-startups.svg";
+import iconExperienceIndustries from "./assets/icons/tools/experience-industries.svg";
+import iconExperiencePlatforms from "./assets/icons/tools/experience-platforms.svg";
+import iconCollaboration from "./assets/icons/tools/collaboration.svg";
+import iconSelfOrganization from "./assets/icons/tools/self-organization.svg";
+import iconTransparency from "./assets/icons/tools/transparency.svg";
 
 // Моковые данные для всех секций
 const mockData = {
@@ -228,6 +244,24 @@ const mockData = {
         image: "",
       },
     ],
+  },
+  tools: {
+    title: "Результат, а не процесс",
+    content: {
+      question: "Как я работаю?",
+      columns: [
+        "Моя философия – это работа win-win-win, где все выигрывают от нашего сотрудничества: прибыль бизнеса повышается, клиенты довольны",
+        "Ну а я получаю не только справедливое вознаграждение, основанное на результатах работы, но и расту вместе с командой"
+      ]
+    },
+    items: [
+      { icon: iconExperienceStartups, text: "Опыт от стартапов до экосистем крупных компаний" },
+      { icon: iconExperienceIndustries, text: "Опыт во множестве индустрий: FinTech, eCommerce, iGaming, AI, Cloud Services" },
+      { icon: iconExperiencePlatforms, text: "Большой опыт со всеми платформами: Web/mobile, iOS, Android" },
+      { icon: iconCollaboration, text: "Работаю напрямую с командой разработки и PM" },
+      { icon: iconSelfOrganization, text: "Самостоятельно организую всю работу от анализа до сдачи релиза" },
+      { icon: iconTransparency, text: "Формирую сроки, цели и KPI, чтобы сотрудничество было прозрачным" },
+    ]
   },
   opportunities: {
     title: "Какие возможности вы получите",
