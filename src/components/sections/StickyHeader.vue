@@ -116,7 +116,7 @@ const logoSizeClasses = computed(() => {
 // Классы для цвета лого (через фильтр)
 const logoColorClass = computed(() => {
   return isDark.value
-    ? "brightness-0 " // Белый лого для темной темы
+    ? "brightness-0 invert" // Белый лого для темной темы
     : "opacity-90 invert"; // Черный лого для светлой темы
 });
 

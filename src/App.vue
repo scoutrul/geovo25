@@ -10,10 +10,12 @@
       @cta-click="handleCtaClick"
       @nav-click="handleNavClick"
       @language-change="handleLanguageChange"
+      :theme="headerTheme"
     />
 
     <!-- Hero секция -->
     <HeroSection
+      ref="heroSectionRef"
       :title="mockData.hero.title"
       :subtitle="mockData.hero.subtitle"
       :highlight-text="mockData.hero.highlightText"
@@ -27,6 +29,7 @@
 
     <!-- Tools (Dark) -->
     <ToolsSection
+      ref="toolsSectionRef"
       :title="mockData.tools.title"
       :content="mockData.tools.content"
       :items="mockData.tools.items"
@@ -34,6 +37,7 @@
 
     <!-- Cases Секция -->
     <CasesSection
+      ref="casesSectionRef"
       :title="mockData.cases.title"
       :subtitle="mockData.cases.subtitle"
       :cases="mockData.cases.items"
@@ -41,12 +45,14 @@
 
     <!-- How We Work Секция -->
     <HowWeWorkSection
+      ref="howWeWorkSectionRef"
       :title="mockData.howWeWork.title"
       :items="mockData.howWeWork.items"
     />
 
     <!-- Comparison Секция -->
     <ComparisonSection
+      ref="comparisonSectionRef"
       :title="mockData.comparison.title"
       :attributes="mockData.comparison.attributes"
       :columns="mockData.comparison.columns"
@@ -54,6 +60,7 @@
 
     <!-- Expertise Секция -->
     <ExpertiseSection
+      ref="expertiseSectionRef"
       :title="mockData.expertise.title"
       :subtitle="mockData.expertise.subtitle"
       :cards="mockData.expertise.items"
@@ -61,6 +68,7 @@
 
     <!-- Opportunities Секция -->
     <OpportunitiesSection
+      ref="opportunitiesSectionRef"
       :title="mockData.opportunities.title"
       :subtitle="mockData.opportunities.subtitle"
       :opportunities="mockData.opportunities.items"
@@ -72,16 +80,22 @@
 
     <!-- Reviews Секция -->
     <ReviewsSection
+      ref="reviewsSectionRef"
       :title="mockData.reviews.title"
       :subtitle="mockData.reviews.subtitle"
       :reviews="mockData.reviews.items"
     />
 
     <!-- FAQ Секция -->
-    <FaqSection :title="mockData.faq.title" :faq-items="mockData.faq.items" />
+    <FaqSection
+      ref="faqSectionRef"
+      :title="mockData.faq.title"
+      :faq-items="mockData.faq.items"
+    />
 
     <!-- Benefits Секция -->
     <BenefitsSection
+      ref="benefitsSectionRef"
       :title="mockData.benefits.title"
       :benefits="mockData.benefits.items"
       :cta-text="mockData.benefits.ctaText"
@@ -92,7 +106,9 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from "vue";
+import { ref, reactive, onMounted, onUnmounted, nextTick } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FaqSection from "./components/sections/FaqSection.vue";
 import HeroSection from "./components/sections/HeroSection.vue";
 import HowWeWorkSection from "./components/sections/HowWeWorkSection.vue";
@@ -104,6 +120,9 @@ import BenefitsSection from "./components/sections/BenefitsSection.vue";
 import ToolsSection from "./components/sections/ToolsSection.vue";
 import ComparisonSection from "./components/sections/ComparisonSection.vue";
 import StickyHeader from "./components/sections/StickyHeader.vue";
+
+// Регистрируем плагин ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 // Иконки How We Work (локальные SVG)
 import iconStart from "./assets/icons/howwework/start.svg";
@@ -509,17 +528,121 @@ const handleFigmaClick = () => {
 // Состояние скролла для хедера
 const isScrolled = ref(false);
 
+// Тема хедера (по умолчанию светлая, так как первая секция Hero темная)
+const headerTheme = ref("light");
+
+// Refs для секций
+const heroSectionRef = ref(null);
+const toolsSectionRef = ref(null);
+const casesSectionRef = ref(null);
+const howWeWorkSectionRef = ref(null);
+const comparisonSectionRef = ref(null);
+const expertiseSectionRef = ref(null);
+const opportunitiesSectionRef = ref(null);
+const reviewsSectionRef = ref(null);
+const faqSectionRef = ref(null);
+const benefitsSectionRef = ref(null);
+
+// Определение темы секции (темная = 'dark', светлая = 'light')
+// Header должен быть противоположным теме секции
+const sectionThemes = {
+  hero: "dark", // bg-black-90 -> Header должен быть light
+  tools: "dark", // bg-black-90 -> Header должен быть light
+  cases: "light", // bg-white-90 -> Header должен быть dark
+  howWeWork: "light", // bg-white-90 -> Header должен быть dark
+  comparison: "light", // bg-white-90 -> Header должен быть dark
+  expertise: "light", // bg-white-90 -> Header должен быть dark
+  opportunities: "light", // bg-white-90 -> Header должен быть dark
+  reviews: "light", // bg-white-90 -> Header должен быть dark
+  faq: "light", // bg-white-90 -> Header должен быть dark
+  benefits: "dark", // bg-black-90 -> Header должен быть light
+};
+
 // Отслеживание скролла
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 20;
 };
 
-onMounted(() => {
+// Инициализация ScrollTrigger для отслеживания секций
+const initSectionThemeTracking = () => {
+  const sections = [
+    { ref: heroSectionRef, key: "hero" },
+    { ref: toolsSectionRef, key: "tools" },
+    { ref: casesSectionRef, key: "cases" },
+    { ref: howWeWorkSectionRef, key: "howWeWork" },
+    { ref: comparisonSectionRef, key: "comparison" },
+    { ref: expertiseSectionRef, key: "expertise" },
+    { ref: opportunitiesSectionRef, key: "opportunities" },
+    { ref: reviewsSectionRef, key: "reviews" },
+    { ref: faqSectionRef, key: "faq" },
+    { ref: benefitsSectionRef, key: "benefits" },
+  ];
+
+  sections.forEach(({ ref, key }) => {
+    if (!ref.value) {
+      console.warn(`Section ref for ${key} is not available`);
+      return;
+    }
+
+    // Находим корневой элемент секции (BaseContainer)
+    // В Vue 3 компонент имеет $el для корневого элемента
+    const sectionElement = ref.value.$el;
+    
+    if (!sectionElement) {
+      console.warn(`Section element for ${key} is not found`);
+      return;
+    }
+
+    ScrollTrigger.create({
+      trigger: sectionElement,
+      start: "top top", // Когда верх секции касается верха экрана
+      end: "bottom top", // Когда низ секции касается верха экрана
+      onEnter: () => {
+        // Секция входит в верх экрана
+        const sectionTheme = sectionThemes[key];
+        // Header должен быть противоположным теме секции
+        headerTheme.value = sectionTheme === "dark" ? "light" : "dark";
+      },
+      onEnterBack: () => {
+        // Скроллим назад, секция снова входит в верх экрана
+        const sectionTheme = sectionThemes[key];
+        headerTheme.value = sectionTheme === "dark" ? "light" : "dark";
+      },
+      onLeave: () => {
+        // Секция покидает верх экрана (скроллим вниз)
+        // Не меняем тему, так как следующая секция уже активирована
+      },
+      onLeaveBack: () => {
+        // Секция покидает верх экрана (скроллим вверх)
+        // Не меняем тему, так как предыдущая секция уже активирована
+      },
+    });
+  });
+};
+
+onMounted(async () => {
   window.addEventListener("scroll", handleScroll);
+
+  // Ждем, пока все секции будут отрендерены
+  // Используем двойной nextTick для гарантии, что все DOM элементы готовы
+  await nextTick();
+  await nextTick();
+
+  // Инициализируем отслеживание тем секций
+  initSectionThemeTracking();
+
+  // Устанавливаем начальную тему на основе первой секции (Hero)
+  // Hero темная, поэтому Header должен быть светлым
+  headerTheme.value = sectionThemes.hero === "dark" ? "light" : "dark";
+
+  // Обновляем ScrollTrigger после инициализации
+  ScrollTrigger.refresh();
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
+  // Очищаем все ScrollTrigger инстансы
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 });
 
 const handleNavClick = (item) => {
