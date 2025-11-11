@@ -601,12 +601,12 @@ const initSectionThemeTracking = () => {
         // Секция входит в верх экрана
         const sectionTheme = sectionThemes[key];
         // Header должен быть противоположным теме секции
-        headerTheme.value = sectionTheme === "dark" ? "light" : "dark";
+        headerTheme.value = sectionTheme === "light" ? "light" : "dark";
       },
       onEnterBack: () => {
         // Скроллим назад, секция снова входит в верх экрана
         const sectionTheme = sectionThemes[key];
-        headerTheme.value = sectionTheme === "dark" ? "light" : "dark";
+        headerTheme.value = sectionTheme === "light" ? "light" : "dark";
       },
       onLeave: () => {
         // Секция покидает верх экрана (скроллим вниз)
