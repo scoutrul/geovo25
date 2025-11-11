@@ -30,7 +30,7 @@ const props = defineProps({
 })
 
 const containerClasses = computed(() => {
-  const baseClasses = 'w-full px-4 py-16 md:py-32 xl:py-40 xl:py-40 overflow-hidden'
+  const baseClasses = 'w-full px-4 py-16 md:px-10 lg:px-16 xl:py-40 xl:py-40 overflow-hidden'
   
   // Фон
   const bgClasses = props.bg || ''

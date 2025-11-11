@@ -1,67 +1,46 @@
 <template>
-  <div class="w-full">
-    <div
-      class="comparison-grid w-full grid gap-x-6 xl:gap-x-8 items-start"
-      :style="gridStyle"
-    >
-      <!-- Лейблы слева -->
-      <div class="flex flex-col items-start justify-center">
-        <div class="h-16 opacity-0" />
-        <BaseText
-          v-for="attribute in attributes"
-          :key="attribute"
-          size="p1"
-          class="h-16 flex items-center text-black-90 md:text-h5"
-        >
-          {{ attribute }}
-        </BaseText>
-      </div>
+  <div class="comparison-grid w-full grid gap-x-6 xl:gap-x-8 items-start" :style="gridStyle">
+    <!-- Лейблы слева -->
+    <div class="flex flex-col items-start justify-center">
+      <div class="h-16 opacity-0" />
+      <BaseText v-for="attribute in attributes" :key="attribute" size="p1"
+        class="h-16 flex items-center text-black-90 md:text-h5">
+        {{ attribute }}
+      </BaseText>
+    </div>
 
-      <div
-        v-for="column in columns"
-        :key="column.title"
-        :style="{maxWidth: '260px'}"
-      >
-        <div
-        v-if="column.highlight"
-          class="bg-white-100 rounded-[16px] shadow-[0_8px_24px_0_rgba(0,0,0,0.02)]"
-        >
-          <div class="h-16 px-6 flex items-center rounded-[16px]">
-            <BaseText size="p1" class="text-black-90 md:text-h5">
-              {{ column.title }}
-            </BaseText>
-          </div>
-          <div
-            v-for="(text, idx) in column.items"
-            :key="`${column.title}-${idx}`"
-            class="h-16 px-6 flex items-center gap-2"
-          >
-            <span class="text-[#1CB166] text-[16px] leading-[16px]">✓</span>
-            <BaseText size="p2" class="text-black-90">
-              {{ text }}
-            </BaseText>
-          </div>
+    <div v-for="column in columns" :key="column.title" :style="{ maxWidth: '260px' }">
+      <div v-if="column.highlight" class="bg-white-100 rounded-[16px] shadow-[0_8px_24px_0_rgba(0,0,0,0.02)]">
+        <div class="h-16 px-6 flex items-center rounded-[16px]">
+          <BaseText size="p1" class="text-black-90 md:text-h5">
+            {{ column.title }}
+          </BaseText>
         </div>
-        <div v-else>
-          <div class="h-16 px-6 flex items-center">
-            <BaseText size="p1" class="text-black-90 md:text-h5">
-              {{ column.title }}
-            </BaseText>
-          </div>
-          <div
-            v-for="(text, idx) in column.items"
-            :key="`${column.title}-${idx}`"
-            class="h-16 px-6 flex items-center gap-2"
-          >
-            <span class="w-4 h-4 text-[16px] leading-[16px] text-black-50">×</span>
-            <BaseText size="p2" class="text-black-50">
-              {{ text }}
-            </BaseText>
-          </div>
+        <div v-for="(text, idx) in column.items" :key="`${column.title}-${idx}`"
+          class="h-16 px-6 flex items-center gap-2">
+          <span class="text-[#1CB166] text-[16px] leading-[16px]">✓</span>
+          <BaseText size="p2" class="text-black-90">
+            {{ text }}
+          </BaseText>
+        </div>
+      </div>
+      <div v-else>
+        <div class="h-16 px-6 flex items-center">
+          <BaseText size="p1" class="text-black-90 md:text-h5">
+            {{ column.title }}
+          </BaseText>
+        </div>
+        <div v-for="(text, idx) in column.items" :key="`${column.title}-${idx}`"
+          class="h-16 px-6 flex items-center gap-2">
+          <span class="w-4 h-4 text-[16px] leading-[16px] text-black-50">×</span>
+          <BaseText size="p2" class="text-black-50">
+            {{ text }}
+          </BaseText>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -103,7 +82,6 @@ const gridStyle = computed(() => {
 @media (max-width: 767px) {
   .comparison-grid {
     grid-template-columns: var(--comparison-mobile-template);
-    overflow-x: auto;
     padding-bottom: 8px;
   }
 }

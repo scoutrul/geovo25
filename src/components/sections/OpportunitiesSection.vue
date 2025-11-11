@@ -78,7 +78,7 @@
             
             <!-- Mobile/Tablet: horizontal scroll -->
             <template v-else>
-                <div class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4">
+                <div class="flex gap-4 overflow-x-auto pb-4 md:px-10 -mx-4 md:-mx-10 lg:-mx-16 px-4">
                     <OpportunityCard
                     v-for="(opportunity, index) in opportunities"
                     :key="index"
@@ -176,7 +176,6 @@ defineEmits(["figma-click"]);
 // Высота центрального блока по брейкпоинтам
 const flowHeightClass = computed(() => {
   if (gtLg.value) {
-    // LG (1024) макет: 758px, XL (1280+) макет: 782px
     return gtXl.value ? "h-[782px]" : "h-[758px]";
   }
   return "py-16";

@@ -1,12 +1,7 @@
 <template>
   <BaseContainer :as="'section'" :bg="'bg-white-90'">
-    <!-- Заголовок и подзаголовок -->
     <div class="flex flex-col gap-4 mb-16 xl:mb-24">
-      <BaseHeading
-        :level="gtLg ? 3 : 4"
-        :as="gtLg ? 'h2' : 'h3'"
-        class="w-full text-black-90"
-      >
+      <BaseHeading :level="gtLg ? 3 : 4" :as="gtLg ? 'h2' : 'h3'" class="w-full text-black-90">
         {{ title }}
       </BaseHeading>
 
@@ -15,16 +10,10 @@
       </BaseText>
     </div>
 
-    <!-- Адаптивная сетка карточек -->
-    <AdaptiveGrid>
-      <ExpertiseCard
-        v-for="(card, index) in cards"
-        :key="index"
-        class="min-w-[212px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px]"
-        :title="card.title"
-        :description="card.description"
-        :items="card.items"
-      />
+    <AdaptiveGrid is-cards>
+      <ExpertiseCard v-for="(card, index) in cards" :key="index"
+        class="min-w-[212px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px] flex-1"
+        :title="card.title" :description="card.description" :items="card.items" />
     </AdaptiveGrid>
   </BaseContainer>
 </template>
@@ -43,7 +32,7 @@ defineProps({
   },
   subtitle: {
     type: String,
-    default:"",
+    default: "",
   },
   cards: {
     type: Array,

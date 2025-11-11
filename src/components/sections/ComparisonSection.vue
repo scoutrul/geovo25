@@ -1,22 +1,18 @@
 <template>
   <BaseContainer :as="'section'" :bg="'bg-white-90'">
-    <BaseHeading 
-      :level="gtLg ? 3 : 4" 
-      :as="gtLg ? 'h3' : 'h4'" 
-      class="w-full text-black-90 mb-16 xl:mb-24"
-      :class="gtXl ? 'text-center' : 'text-left'"
-    >
+    <BaseHeading :level="gtLg ? 3 : 4" :as="gtLg ? 'h3' : 'h4'" class="w-full text-black-90 mb-16 xl:mb-24"
+      :class="gtXl ? 'text-center' : 'text-left'">
       {{ title }}
     </BaseHeading>
 
-    <div class="w-full">
+    <AdaptiveGrid class="!grid-cols-1">
       <ComparisonTable :attributes="attributes" :columns="columns" />
-    </div>
+    </AdaptiveGrid>
   </BaseContainer>
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading } from '../base'
+import { BaseContainer, BaseHeading, AdaptiveGrid } from '../base'
 import { useBreakpoints } from '../../composables/useBreakpoints.js'
 import ComparisonTable from '../ui/ComparisonTable.vue'
 
@@ -25,7 +21,7 @@ const { gtLg, gtXl } = useBreakpoints()
 defineProps({
   title: {
     type: String,
-    default: 'Больше, чем просто дизайн',
+    default: '',
   },
   attributes: {
     type: Array,

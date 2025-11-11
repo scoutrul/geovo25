@@ -20,8 +20,6 @@
         </div>
       </div>
 
-      <!-- CTA блок -->
-      <!-- Мобильная: внизу на всю ширину, Планшет+: справа фиксированная ширина -->
       <div class="flex flex-col gap-6 items-start w-full sm:w-[300px] xl:w-[max-content] sm:py-4 sm:self-stretch">
         <BaseText size="p3" class="text-black-50">
           {{ ctaText }}
