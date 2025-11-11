@@ -12,17 +12,25 @@
       @cta-click="handleHeroCtaClick"
     />
 
-    <!-- How We Work Секция -->
-    <HowWeWorkSection
-      :title="mockData.howWeWork.title"
-      :items="mockData.howWeWork.items"
-    />
-
     <!-- Tools (Dark) -->
     <ToolsSection
       :title="mockData.tools.title"
       :content="mockData.tools.content"
       :items="mockData.tools.items"
+    />
+
+    
+    <!-- Cases Секция -->
+    <CasesSection
+      :title="mockData.cases.title"
+      :subtitle="mockData.cases.subtitle"
+      :cases="mockData.cases.items"
+    />
+    
+    <!-- How We Work Секция -->
+    <HowWeWorkSection
+      :title="mockData.howWeWork.title"
+      :items="mockData.howWeWork.items"
     />
 
     <!-- Expertise Секция -->
@@ -32,12 +40,6 @@
       :cards="mockData.expertise.items"
     />
 
-    <!-- Cases Секция -->
-    <CasesSection
-      :title="mockData.cases.title"
-      :subtitle="mockData.cases.subtitle"
-      :cases="mockData.cases.items"
-    />
 
     <!-- Opportunities Секция -->
     <OpportunitiesSection

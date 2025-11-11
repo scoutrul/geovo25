@@ -1,7 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-  <circle cx="16" cy="16" r="12" stroke="#161616" stroke-width="2"/>
-  <path d="M10 18C10 18 12 20 16 20C20 20 22 18 22 18" stroke="#161616" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="13" cy="14" r="1.5" fill="#161616"/>
-  <circle cx="19" cy="14" r="1.5" fill="#161616"/>
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Icon" d="M22.4286 21L29.5714 13.8571L22.4286 6.71429M8.14286 6.71429L1 13.8571L8.14286 21M18.1429 1L12.4286 26.7143" stroke="var(--stroke-0, #161616)" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-
