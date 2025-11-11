@@ -1,9 +1,7 @@
 <template>
   <BaseContainer 
     :as="'section'"
-    :padding="true" 
-    :vertical-padding="true"
-     :max-width="'1052px'"
+    :maxWidth="'1052px'"
     :bg="'bg-white-90'"
   >
 
