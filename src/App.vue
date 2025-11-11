@@ -1,5 +1,17 @@
 <template>
   <div id="app" class="min-h-screen">
+    <!-- Sticky Header -->
+    <StickyHeader
+      :slogan="mockData.header.slogan"
+      :navigation-items="mockData.header.navigationItems"
+      :languages="mockData.header.languages"
+      :current-language="mockData.header.currentLanguage"
+      :scrolled="isScrolled"
+      @cta-click="handleCtaClick"
+      @nav-click="handleNavClick"
+      @language-change="handleLanguageChange"
+    />
+
     <!-- Hero секция -->
     <HeroSection
       :title="mockData.hero.title"
@@ -10,6 +22,7 @@
       :stats="mockData.hero.stats"
       :gallery="mockData.hero.gallery"
       @cta-click="handleHeroCtaClick"
+      class="pt-[128px] md:pt-[160px] lg:pt-[192px]"
     />
 
     <!-- Tools (Dark) -->
@@ -19,14 +32,13 @@
       :items="mockData.tools.items"
     />
 
-    
     <!-- Cases Секция -->
     <CasesSection
       :title="mockData.cases.title"
       :subtitle="mockData.cases.subtitle"
       :cases="mockData.cases.items"
     />
-    
+
     <!-- How We Work Секция -->
     <HowWeWorkSection
       :title="mockData.howWeWork.title"
@@ -46,7 +58,6 @@
       :subtitle="mockData.expertise.subtitle"
       :cards="mockData.expertise.items"
     />
-
 
     <!-- Opportunities Секция -->
     <OpportunitiesSection
@@ -81,6 +92,7 @@
 </template>
 
 <script setup>
+import { ref, reactive, onMounted, onUnmounted } from "vue";
 import FaqSection from "./components/sections/FaqSection.vue";
 import HeroSection from "./components/sections/HeroSection.vue";
 import HowWeWorkSection from "./components/sections/HowWeWorkSection.vue";
@@ -91,6 +103,7 @@ import ReviewsSection from "./components/sections/ReviewsSection.vue";
 import BenefitsSection from "./components/sections/BenefitsSection.vue";
 import ToolsSection from "./components/sections/ToolsSection.vue";
 import ComparisonSection from "./components/sections/ComparisonSection.vue";
+import StickyHeader from "./components/sections/StickyHeader.vue";
 
 // Иконки How We Work (локальные SVG)
 import iconStart from "./assets/icons/howwework/start.svg";
@@ -116,10 +129,20 @@ import avatar2 from "./assets/avatars/ava-2.png";
 import avatar3 from "./assets/avatars/ava-3.png";
 
 // Моковые данные для всех секций
-const mockData = {
+const mockData = reactive({
+  header: {
+    slogan: "Растем вместе",
+    navigationItems: ["Смотреть кейсы", "Скачать CV"],
+    languages: [
+      { code: "en", label: "English" },
+      { code: "ru", label: "Русский" },
+    ],
+    currentLanguage: "ru",
+  },
   hero: {
     title: "Привет, это Егор.",
-    subtitle: "Я помог десяткам топовых команд повысить прибыль за счет дизайна",
+    subtitle:
+      "Я помог десяткам топовых команд повысить прибыль за счет дизайна",
     highlightText: "32+ млн со всего мира ценят мой UX",
     highlightAvatars: [
       { src: avatar1, alt: "Лицо пользователя 1" },
@@ -128,10 +151,19 @@ const mockData = {
     ],
     buttonText: "Познакомиться",
     stats: [
-      { value: "30+", description: "запущенных проектов — от MVP до масштабных редизайнов" },
-      { value: "7+", description: "лет в продуктовых командах из множества индустрий" },
+      {
+        value: "30+",
+        description: "запущенных проектов — от MVP до масштабных редизайнов",
+      },
+      {
+        value: "7+",
+        description: "лет в продуктовых командах из множества индустрий",
+      },
       { value: "3", description: "дня на первый продукт или фичу" },
-      { value: "+12.6%", description: "к доходу — средний эффект от улучшений дизайна" },
+      {
+        value: "+12.6%",
+        description: "к доходу — средний эффект от улучшений дизайна",
+      },
     ],
     gallery: [{ src: avatar1 }, { src: avatar2 }, { src: avatar3 }],
   },
@@ -344,17 +376,35 @@ const mockData = {
       question: "Как я работаю?",
       columns: [
         "Моя философия – это работа win-win-win, где все выигрывают от нашего сотрудничества: прибыль бизнеса повышается, клиенты довольны",
-        "Ну а я получаю не только справедливое вознаграждение, основанное на результатах работы, но и расту вместе с командой"
-      ]
+        "Ну а я получаю не только справедливое вознаграждение, основанное на результатах работы, но и расту вместе с командой",
+      ],
     },
     items: [
-      { icon: iconExperienceStartups, text: "Опыт от стартапов до экосистем крупных компаний" },
-      { icon: iconExperienceIndustries, text: "Опыт во множестве индустрий: FinTech, eCommerce, iGaming, AI, Cloud Services" },
-      { icon: iconExperiencePlatforms, text: "Большой опыт со всеми платформами: Web/mobile, iOS, Android" },
-      { icon: iconCollaboration, text: "Работаю напрямую с командой разработки и PM" },
-      { icon: iconSelfOrganization, text: "Самостоятельно организую всю работу от анализа до сдачи релиза" },
-      { icon: iconTransparency, text: "Формирую сроки, цели и KPI, чтобы сотрудничество было прозрачным" },
-    ]
+      {
+        icon: iconExperienceStartups,
+        text: "Опыт от стартапов до экосистем крупных компаний",
+      },
+      {
+        icon: iconExperienceIndustries,
+        text: "Опыт во множестве индустрий: FinTech, eCommerce, iGaming, AI, Cloud Services",
+      },
+      {
+        icon: iconExperiencePlatforms,
+        text: "Большой опыт со всеми платформами: Web/mobile, iOS, Android",
+      },
+      {
+        icon: iconCollaboration,
+        text: "Работаю напрямую с командой разработки и PM",
+      },
+      {
+        icon: iconSelfOrganization,
+        text: "Самостоятельно организую всю работу от анализа до сдачи релиза",
+      },
+      {
+        icon: iconTransparency,
+        text: "Формирую сроки, цели и KPI, чтобы сотрудничество было прозрачным",
+      },
+    ],
   },
   opportunities: {
     title: "Какие возможности вы получите",
@@ -439,7 +489,7 @@ const mockData = {
     ctaText: "Готовы перейти на новый уровень?",
     ctaButtonText: "Познакомиться",
   },
-};
+});
 
 const handleCtaClick = () => {
   console.log("CTA clicked");
@@ -454,5 +504,30 @@ const handleFigmaClick = () => {
     "https://www.figma.com/design/IYufH6FFbWEplvqjKOB6Gf/geovo",
     "_blank"
   );
+};
+
+// Состояние скролла для хедера
+const isScrolled = ref(false);
+
+// Отслеживание скролла
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 20;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+
+const handleNavClick = (item) => {
+  console.log("Nav clicked:", item);
+};
+
+const handleLanguageChange = (code) => {
+  console.log("Language changed to:", code);
+  mockData.header.currentLanguage = code;
 };
 </script>

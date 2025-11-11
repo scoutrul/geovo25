@@ -27,6 +27,7 @@ module.exports = {
           80: '#dedede',       // White-80
           90: '#f6f6f5',       // Светлый фон/текст
           100: '#ffffff',      // Чисто белый
+          '90-alpha': '#ffffffcc', // White-90 с прозрачностью 80%
         },
       },
       fontFamily: {

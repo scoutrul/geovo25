@@ -46,7 +46,7 @@ const props = defineProps({
 const emit = defineEmits(['click'])
 
 const buttonClasses = computed(() => {
-  const baseClasses = 'inline-flex items-center justify-center gap-2 font-sans transition-all duration-200 '
+  const baseClasses = 'inline-flex items-center justify-center gap-2 font-sans transition-all duration-200 overflow-hidden whitespace-nowrap'
   
   // Варианты (из дизайн-системы Figma)
   const variantClasses = {
