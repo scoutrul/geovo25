@@ -33,6 +33,13 @@
       :items="mockData.howWeWork.items"
     />
 
+    <!-- Comparison Секция -->
+    <ComparisonSection
+      :title="mockData.comparison.title"
+      :attributes="mockData.comparison.attributes"
+      :columns="mockData.comparison.columns"
+    />
+
     <!-- Expertise Секция -->
     <ExpertiseSection
       :title="mockData.expertise.title"
@@ -83,6 +90,7 @@ import OpportunitiesSection from "./components/sections/OpportunitiesSection.vue
 import ReviewsSection from "./components/sections/ReviewsSection.vue";
 import BenefitsSection from "./components/sections/BenefitsSection.vue";
 import ToolsSection from "./components/sections/ToolsSection.vue";
+import ComparisonSection from "./components/sections/ComparisonSection.vue";
 
 // Иконки How We Work (локальные SVG)
 import iconStart from "./assets/icons/howwework/start.svg";
@@ -103,9 +111,9 @@ import iconSelfOrganization from "./assets/icons/tools/self-organization.svg";
 import iconTransparency from "./assets/icons/tools/transparency.svg";
 
 // Аватары Hero
-import avatar1 from "./assets/avatars/avatar-1.png";
-import avatar2 from "./assets/avatars/avatar-2.png";
-import avatar3 from "./assets/avatars/avatar-3.png";
+import avatar1 from "./assets/avatars/ava-1.png";
+import avatar2 from "./assets/avatars/ava-2.png";
+import avatar3 from "./assets/avatars/ava-3.png";
 
 // Моковые данные для всех секций
 const mockData = {
@@ -222,6 +230,53 @@ const mockData = {
         title: "Сопровождение",
         description:
           "Тщательно проконтролирую разработку и доведу до идеального результата",
+      },
+    ],
+  },
+  comparison: {
+    title: "Больше, чем просто дизайн",
+    attributes: [
+      "Роли",
+      "Стоимость",
+      "Налоги",
+      "Старт",
+      "Гибкость",
+      "Вовлеченность",
+    ],
+    columns: [
+      {
+        title: "Со мной",
+        highlight: true,
+        items: [
+          "Дизайнер, лид, аналитик",
+          "Ниже 4 специалистов",
+          "Оплачиваю сам",
+          "В тот же день",
+          "Гибкая занятость",
+          "In-house, но без найма",
+        ],
+      },
+      {
+        title: "Штатный дизайнер",
+        items: [
+          "Только дизайнер",
+          "Высокая, только 1 роль",
+          "Высокие",
+          "1–3 месяца",
+          "Невозможно",
+          "In-house",
+        ],
+      },
+      {
+        title: "Фриланс",
+        items: [
+          "Только дизайнер",
+          "Разовая, дороже за час",
+          "Не всегда",
+          "1–2 недели",
+          "Не всегда",
+          "Ограниченная",
+        ],
       },
     ],
   },

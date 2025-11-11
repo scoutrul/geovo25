@@ -1,0 +1,41 @@
+<template>
+  <BaseContainer :as="'section'" :bg="'bg-white-90'">
+    <BaseHeading 
+      :level="gtLg ? 3 : 4" 
+      :as="gtLg ? 'h3' : 'h4'" 
+      class="w-full text-black-90 mb-16 xl:mb-24"
+      :class="gtXl ? 'text-center' : 'text-left'"
+    >
+      {{ title }}
+    </BaseHeading>
+
+    <div class="w-full">
+      <ComparisonTable :attributes="attributes" :columns="columns" />
+    </div>
+  </BaseContainer>
+</template>
+
+<script setup>
+import { BaseContainer, BaseHeading } from '../base'
+import { useBreakpoints } from '../../composables/useBreakpoints.js'
+import ComparisonTable from '../ui/ComparisonTable.vue'
+
+const { gtLg, gtXl } = useBreakpoints()
+
+defineProps({
+  title: {
+    type: String,
+    default: 'Больше, чем просто дизайн',
+  },
+  attributes: {
+    type: Array,
+    required: true,
+  },
+  columns: {
+    type: Array,
+    required: true,
+  },
+})
+</script>
+
+

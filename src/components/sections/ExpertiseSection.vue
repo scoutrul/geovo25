@@ -39,12 +39,11 @@ const { gtLg } = useBreakpoints();
 defineProps({
   title: {
     type: String,
-    default: "Команда в одном эксперте",
+    default: "",
   },
   subtitle: {
     type: String,
-    default:
-      "Получите не просто дизайнера, а партнера, который заботится о бизнесе и совмещает функции целой команды",
+    default:"",
   },
   cards: {
     type: Array,

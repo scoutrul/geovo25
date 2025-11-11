@@ -47,11 +47,11 @@ const { gtLg } = useBreakpoints()
 defineProps({
   title: {
     type: String,
-    default: 'Кейсы'
+    default: ''
   },
   subtitle: {
     type: String,
-    default: 'Некоторые из моих историй, которые точно не оставят равнодушным'
+    default: ''
   },
   cases: {
     type: Array,

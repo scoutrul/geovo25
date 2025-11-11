@@ -80,7 +80,7 @@ const { gtLg, gtXl, gtMd, ltLg } = useBreakpoints()
 defineProps({
   title: {
     type: String,
-    default: 'Результат, а не процесс'
+    default: ''
   },
   content: {
     type: Object,
