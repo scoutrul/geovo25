@@ -22,7 +22,7 @@
       </div>
 
       <!-- Галерея -->
-      <div class="flex flex-col gap-8 xl:row-span-2">
+      <div class="flex flex-col gap-8 xl:row-span-2 overflow-hidden xl:max-h-[1012px] md:max-h-[600px] rounded-[20px]">
         <GalleryPlaceholder :items="galleryItems" />
       </div>
 
@@ -73,7 +73,8 @@ const props = defineProps({
   }
 })
 
-const galleryItems = computed(() => (gtXl.value ? props.gallery.slice(0, props.gallery.length) : props.gallery.slice(0, 1)))
+// Передаем все элементы галереи - карусель сама управляет отображением
+const galleryItems = computed(() => props.gallery)
 
 defineEmits(['cta-click'])
 </script>

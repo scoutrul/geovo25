@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 
 /**
@@ -71,6 +71,15 @@ export function useBreakpoints() {
     return 'xs'
   })
   
+  // Ключ для принудительного перерендера при изменении размера экрана
+  const resizeKey = ref(0)
+  const bpChanged = ref(0)
+  
+  // Отслеживаем изменения размера и обновляем ключ для перерендера
+  watch([isMobile, isTablet, isDesktop], () => {
+    bpChanged.value++
+  })
+  
   return {
     // Размеры окна
     width,
@@ -112,7 +121,11 @@ export function useBreakpoints() {
     // Мета-данные
     deviceType,
     currentBreakpoint,
-    breakpoints
+    breakpoints,
+    
+    // Хук для перерендера при изменении размера экрана
+    resizeKey,
+    bpChanged
   }
 }
 
