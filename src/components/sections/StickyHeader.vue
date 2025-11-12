@@ -10,7 +10,7 @@
       :class="containerClasses"
     >
 
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-6 xl:min-w-[322px]" >
         <div class="flex items-center shrink-0" :class="logoSizeClasses">
           <img
           :src="logoMark"
