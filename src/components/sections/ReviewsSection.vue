@@ -14,7 +14,7 @@
     <!-- Адаптивная сетка карточек -->
     <AdaptiveGrid is-cards>
       <ReviewCard v-for="(review, index) in reviews" :key="index"
-        class="min-w-[260px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px] flex-1"
+        class="min-w-[260px] sm:min-w-[auto] box-content sm:box-border flex-1"
         :text="review.text" :author="review.author" :image="review.image" />
     </AdaptiveGrid>
   </BaseContainer>

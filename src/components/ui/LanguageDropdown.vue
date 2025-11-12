@@ -4,7 +4,7 @@
     <BaseButton
       variant="tertiary"
       size="md"
-      class="transition-colors"
+      class="transition-colors min-w-[136px]"
       :class="buttonThemeClasses"
       @click="toggleDropdown"
     >
@@ -14,7 +14,7 @@
         class="w-5 h-5"
         :class="iconColorClass"
       />
-      <span>{{ currentLanguage }}</span>
+      <span :class="textColorClass">{{ currentLanguage }}</span>
     </BaseButton>
 
     <!-- Дропдаун панель -->
@@ -66,10 +66,7 @@ const props = defineProps({
   },
   languages: {
     type: Array,
-    default: () => [
-      { code: 'en', label: 'English' },
-      { code: 'ru', label: 'Русский' }
-    ]
+    default: () => [],
   },
   modelValue: {
     type: String,

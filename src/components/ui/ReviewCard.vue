@@ -1,19 +1,10 @@
 <template>
-  <BaseContentCard
-    :title="text"
-    :description="author"
-    :footer-min-height="true"
-  >
+  <BaseContentCard :title="text" :description="author" :footer-min-height="true">
     <!-- Картинка в сером блоке со сдвигом и overflow в footer -->
-    <template #footer>
+    <template #footer v-if="image && image !== ''">
       <div class="flex-1 pl-6 md:pl-8 pb-0 pr-0">
         <div class="bg-white-80 rounded-tl-2xl h-full w-full overflow-hidden min-h-[170px]">
-          <img 
-            v-if="image && image !== ''"
-            :src="image" 
-            :alt="author" 
-            class="w-full h-full object-cover"
-          />
+          <img :src="image" :alt="author" class="w-full h-full object-cover" />
         </div>
       </div>
     </template>
