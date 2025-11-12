@@ -529,7 +529,7 @@ const handleFigmaClick = () => {
 const isScrolled = ref(false);
 
 // Тема хедера (по умолчанию светлая, так как первая секция Hero темная)
-const headerTheme = ref("light");
+const headerTheme = ref("dark");
 
 // Refs для секций
 const heroSectionRef = ref(null);
@@ -601,12 +601,12 @@ const initSectionThemeTracking = () => {
         // Секция входит в верх экрана
         const sectionTheme = sectionThemes[key];
         // Header должен быть противоположным теме секции
-        headerTheme.value = sectionTheme === "light" ? "light" : "dark";
+        headerTheme.value = sectionTheme === "dark" ? "dark" : "light";
       },
       onEnterBack: () => {
         // Скроллим назад, секция снова входит в верх экрана
         const sectionTheme = sectionThemes[key];
-        headerTheme.value = sectionTheme === "light" ? "light" : "dark";
+        headerTheme.value = sectionTheme === "dark" ? "dark" : "light";
       },
       onLeave: () => {
         // Секция покидает верх экрана (скроллим вниз)
@@ -633,7 +633,7 @@ onMounted(async () => {
 
   // Устанавливаем начальную тему на основе первой секции (Hero)
   // Hero темная, поэтому Header должен быть светлым
-  headerTheme.value = sectionThemes.hero === "dark" ? "light" : "dark";
+  headerTheme.value = sectionThemes.hero === "dark" ? "dark" : "light";
 
   // Обновляем ScrollTrigger после инициализации
   ScrollTrigger.refresh();

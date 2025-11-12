@@ -22,7 +22,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'primary',
-    validator: (value) => ['primary', 'secondary', 'outline', 'ghost'].includes(value)
+    validator: (value) => ['primary', 'secondary', 'outline', 'ghost', 'tertiary'].includes(value)
   },
   size: {
     type: String,
@@ -51,16 +51,19 @@ const buttonClasses = computed(() => {
   // Варианты (из дизайн-системы Figma)
   const variantClasses = {
     // Primary: зеленая кнопка
-    primary: 'bg-primary text-white-100 hover:bg-primary-hover active:bg-primary-active focus:ring-primary',
+    primary: 'bg-primary text-white-100 hover:bg-primary-hover active:bg-primary-active focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary',
     
     // Secondary: кнопка с border
-    secondary: 'border border-black-70 text-black-90 hover:bg-white-100 active:bg-white-80 focus:ring-black-70',
+    secondary: 'border border-black-70 text-black-90 hover:bg-white-100 active:bg-white-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-black-70',
     
     // Outline: обводка primary
-    outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white-100 focus:ring-primary',
+    outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary',
     
     // Ghost: прозрачная
-    ghost: 'text-primary hover:bg-primary/10 focus:ring-primary'
+    ghost: 'text-primary hover:bg-primary/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary',
+
+    // Tertiary: текстовая кнопка из шапки
+    tertiary: 'bg-transparent text-white-100 hover:bg-white-100/10 active:bg-white-100/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white-90 disabled:text-white-80 disabled:bg-transparent disabled:hover:bg-transparent'
   }
   
   // Размеры
@@ -72,7 +75,9 @@ const buttonClasses = computed(() => {
   
   // Состояние disabled
   const disabledClasses = props.disabled || props.loading 
-    ? 'opacity-50 cursor-not-allowed' 
+    ? props.variant === 'tertiary'
+      ? 'cursor-not-allowed opacity-60'
+      : 'opacity-50 cursor-not-allowed'
     : 'cursor-pointer'
   
   return [

@@ -9,27 +9,26 @@
       class="w-full backdrop-blur-[20px] rounded-lg md:rounded-xl transition-all duration-200 flex items-center justify-between md:justify-start gap-6 p-3 md:px-6 md:gap-10"
       :class="containerClasses"
     >
-      <!-- Лого -->
-      <div class="flex items-center shrink-0" :class="logoSizeClasses">
-        <img
+
+      <div class="flex items-center gap-6">
+        <div class="flex items-center shrink-0" :class="logoSizeClasses">
+          <img
           :src="logoMark"
           alt="Logo"
           class="w-full h-full object-contain"
           :class="logoColorClass"
         />
       </div>
-
-      <!-- Слоган (скрыт на мобильном и планшете) -->
-      <div class="hidden sm:flex items-center gap-6 mr-auto">
+      
+      <div class="hidden xl:flex items-center gap-6">
         <p class="text-p2 whitespace-nowrap" :class="sloganColorClass">
           {{ slogan }}
         </p>
       </div>
-
-      <!-- Навигация (скрыта на мобильном) -->
+    </div>
+      
       <nav
-        class="hidden md:flex xl:flex-1 xl:justify-center gap-6 mr-auto"
-        :class="navClasses"
+        class="hidden md:flex xl:flex-1 justify-center gap-6 mr-auto "
       >
         <a
           v-for="(item, index) in navigationItems"
@@ -43,19 +42,20 @@
         </a>
       </nav>
 
-      <!-- Язык (скрыт на мобильном) -->
-      <div class="hidden lg:block">
-        <LanguageDropdown
+      <div class="flex items-center gap-6">
+        <div class="hidden lg:block">
+          <LanguageDropdown
           :theme="theme"
           :languages="languages"
           :model-value="currentLanguage"
           @update:model-value="handleLanguageChange"
-        />
+          />
+        </div>
+        <!-- CTA -->
+        <BaseButton variant="primary" size="md" @click="$emit('cta-click')">
+          Познакомиться
+        </BaseButton>
       </div>
-      <!-- CTA -->
-      <BaseButton variant="primary" size="md" @click="$emit('cta-click')">
-        Познакомиться
-      </BaseButton>
     </div>
   </BaseContainer>
 </template>
@@ -127,10 +127,6 @@ const sloganColorClass = computed(() => {
     : "text-black-50"; // #5c5c5c для светлой темы
 });
 
-// Классы для навигации
-const navClasses = computed(() => {
-  return "lg:flex-1 lg:justify-end";
-});
 
 // Классы для ссылок навигации
 const navLinkColorClass = computed(() => {

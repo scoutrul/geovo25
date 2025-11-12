@@ -1,9 +1,11 @@
 <template>
   <div class="relative" ref="dropdownRef">
     <!-- Кнопка триггера -->
-    <button 
-      class="flex items-center gap-2 h-12 px-6 py-2 text-p2 hover:text-primary transition-colors"
-      :class="buttonColorClass"
+    <BaseButton
+      variant="tertiary"
+      size="md"
+      class="transition-colors"
+      :class="buttonThemeClasses"
       @click="toggleDropdown"
     >
       <img 
@@ -13,7 +15,7 @@
         :class="iconColorClass"
       />
       <span>{{ currentLanguage }}</span>
-    </button>
+    </BaseButton>
 
     <!-- Дропдаун панель -->
     <Transition
@@ -52,6 +54,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import BaseButton from '../base/BaseButton.vue'
 import translateIcon from '../../assets/icons/translate.svg'
 import checkIcon from '../../assets/icons/check.svg'
 
@@ -87,11 +90,11 @@ const currentLanguage = computed(() => {
   return lang ? lang.label : props.languages[0].label
 })
 
-// Классы для кнопки
-const buttonColorClass = computed(() => {
+// Классы для кнопки (состояния по дизайн-системе)
+const buttonThemeClasses = computed(() => {
   return isDark.value
-    ? 'text-white-100'
-    : 'text-black-90'
+    ? 'text-white-100 disabled:!text-white-80'
+    : 'text-black-90 hover:!bg-black-90/5 active:!bg-black-90/10 focus-visible:!outline-black-70 disabled:!text-black-70'
 })
 
 // Классы для иконки translate
