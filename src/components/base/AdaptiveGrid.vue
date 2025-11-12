@@ -1,5 +1,5 @@
 <template>
-  <div :class="gridClasses">
+  <div :class="gridClasses" class="min-w-[100vw] md:min-w-[auto]">
     <slot />
   </div>
 </template>
