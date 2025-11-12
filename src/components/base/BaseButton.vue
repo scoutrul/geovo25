@@ -51,7 +51,7 @@ const buttonClasses = computed(() => {
     primary: 'bg-primary text-white-100 hover:bg-primary-hover active:bg-primary-active  ',
 
     // Secondary: кнопка с border
-    secondary: 'border border-black-70 text-black-90 hover:bg-white-100 hover:border-white-100 active:bg-white-80 hover:border-white-80 ',
+    secondary: 'border border-black-70 text-black-90 hover:bg-white-100 hover:border-white-100 active:bg-white-80 active:border-white-80 ',
 
     // Outline: обводка primary
     outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white-100  ',
