@@ -8,10 +8,21 @@
       <div :class="aspectClass" />
 
       <img
-        v-if="item?.src"
+        v-if="item?.src && !isVideo(item)"
         :src="item.src"
         :alt="item?.alt || `gallery-image-${index}`"
         class="absolute inset-0 h-full w-full object-cover"
+      />
+
+      <video
+        v-if="item?.src && isVideo(item)"
+        :src="item.src"
+        :alt="item?.alt || `gallery-video-${index}`"
+        class="absolute inset-0 h-full w-full object-cover"
+        autoplay
+        loop
+        muted
+        playsinline
       />
 
       <div :class="['pointer-events-none absolute inset-0', gradientClass]" />
@@ -65,6 +76,19 @@ const gradientClass = computed(() => {
       return 'bg-gradient-to-r from-transparent via-black-90/60 to-black-90'
   }
 })
+
+const isVideo = (item) => {
+  if (!item?.src) return false
+  
+  // Если явно указан тип
+  if (item.type === 'video') return true
+  if (item.type === 'image') return false
+  
+  // Определяем по расширению файла
+  const src = String(item.src)
+  const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
+  return videoExtensions.some(ext => src.toLowerCase().includes(ext))
+}
 </script>
 
 

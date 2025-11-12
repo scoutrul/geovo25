@@ -147,6 +147,11 @@ import avatar1 from "./assets/avatars/ava-1.png";
 import avatar2 from "./assets/avatars/ava-2.png";
 import avatar3 from "./assets/avatars/ava-3.png";
 
+import video1 from "./assets/videos/vid-1.mp4";
+import video2 from "./assets/videos/vid-2.mp4";
+import video3 from "./assets/videos/vid-3.mp4";
+import video4 from "./assets/videos/vid-4.mp4";
+
 // Моковые данные для всех секций
 const mockData = reactive({
   header: {
@@ -184,7 +189,7 @@ const mockData = reactive({
         description: "к доходу — средний эффект от улучшений дизайна",
       },
     ],
-    gallery: [{ src: avatar1 }, { src: avatar2 }, { src: avatar3 }],
+    gallery: [{ src: video1 }, { src: video2 }, { src: video3 }, { src: video4 }],
   },
   faq: {
     title: "Частые вопросы",

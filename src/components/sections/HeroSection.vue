@@ -73,7 +73,7 @@ const props = defineProps({
   }
 })
 
-const galleryItems = computed(() => (gtXl.value ? props.gallery.slice(0, 3) : props.gallery.slice(0, 1)))
+const galleryItems = computed(() => (gtXl.value ? props.gallery.slice(0, props.gallery.length) : props.gallery.slice(0, 1)))
 
 defineEmits(['cta-click'])
 </script>
