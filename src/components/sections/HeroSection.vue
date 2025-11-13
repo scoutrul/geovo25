@@ -1,5 +1,5 @@
 <template>
-  <BaseContainer :as="'section'" :bg="'bg-black-90'">
+  <BaseContainer :as="'section'" bg="black">
     <div class="grid gap-10 md:gap-20 xl:gap-0 xl:gap-x-20 xl:grid-cols-2 xl:items-start">
       <!-- Текст и аватары -->
       <div class="flex w-full flex-col gap-8">

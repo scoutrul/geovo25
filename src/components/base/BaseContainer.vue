@@ -14,9 +14,8 @@ const props = defineProps({
     type: String,
     default: '',
     validator: (value) => {
-      // Разрешаем пустую строку или любой Tailwind bg-* класс
       if (value === '') return true
-      return value.startsWith('bg-')
+      return ['white', 'black'].includes(value)
     }
   },
   as: {
@@ -32,8 +31,13 @@ const props = defineProps({
 const containerClasses = computed(() => {
   const baseClasses = 'w-full px-4 py-16 md:px-10 lg:px-16 xl:py-40 xl:py-40 overflow-hidden'
   
-  // Фон
-  const bgClasses = props.bg || ''
+  // Фон: маппинг простых ключей на классы Tailwind
+  let bgClasses = ''
+  if (props.bg === 'white') {
+    bgClasses = 'bg-white-90'
+  } else if (props.bg === 'black') {
+    bgClasses = 'bg-black-90'
+  }
   
   return [
     baseClasses,

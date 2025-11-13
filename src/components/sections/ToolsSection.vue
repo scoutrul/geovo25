@@ -1,5 +1,5 @@
 <template>
-  <BaseContainer :as="'section'" :bg="'bg-black-90'">
+  <BaseContainer :as="'section'" bg="black">
     <div class="w-full flex flex-col gap-10 xl:gap-16">
       <BaseHeading
         :level="gtLg ? 3 : 4"

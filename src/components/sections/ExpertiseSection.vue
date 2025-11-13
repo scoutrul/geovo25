@@ -1,5 +1,5 @@
 <template>
-  <BaseContainer :as="'section'" :bg="'bg-white-90'">
+  <BaseContainer :as="'section'" bg="white">
     <div class="flex flex-col gap-4 mb-16 xl:mb-24">
       <BaseHeading :level="gtLg ? 3 : 4" :as="gtLg ? 'h2' : 'h3'" class="w-full text-black-90">
         {{ title }}

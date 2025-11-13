@@ -1,5 +1,5 @@
 <template>
-  <BaseContainer :as="'section'" :bg="'bg-white-90'">
+  <BaseContainer :as="'section'" bg="white">
     <!-- Заголовок и подзаголовок -->
     <div class="flex flex-col gap-4 mb-16 xl:mb-24">
       <BaseHeading

@@ -1,7 +1,7 @@
 <template>
   <BaseContainer 
     :as="'section'"
-    :bg="'bg-white-90'"
+    bg="white"
   >
     <!-- Заголовок -->
     <BaseHeading 

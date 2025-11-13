@@ -2,7 +2,7 @@
   <BaseContainer 
     :as="'section'"
     :maxWidth="'1052px'"
-    :bg="'bg-white-90'"
+    bg="white"
   >
 
       <BaseHeading 
