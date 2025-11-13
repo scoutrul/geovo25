@@ -66,7 +66,7 @@ const gridStyle = computed(() => {
   }
 
   return {
-    '--comparison-desktop-template': `minmax(172px, 215px) repeat(${columnsLength}, minmax(220px, 1fr))`,
+    '--comparison-desktop-template': `215px repeat(${columnsLength}, minmax(220px, 1fr))`,
     '--comparison-mobile-template': `172px repeat(${columnsLength}, 240px)`,
     maxWidth: 'max-content',
     margin: 'auto'

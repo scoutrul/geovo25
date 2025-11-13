@@ -1,7 +1,7 @@
 <template>
   <BaseContainer :as="'section'" :max-width="'1052px'" :bg="'bg-black-90'" class="relative">
     <DecorativeLine :pin-count="0" class="hidden lg:block !absolute top-0 left-1/2 transform -translate-x-1/2"
-      :style="{ top: gtXl ? '314px' : ltLg ? '405px' : '345px' }" />
+      :style="{ top: gtXl ? '314px' : ltLg ? '405px' : '282px' }" />
 
     <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start w-full">
 
