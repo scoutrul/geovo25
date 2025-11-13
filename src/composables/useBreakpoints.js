@@ -71,15 +71,7 @@ export function useBreakpoints() {
     return 'xs'
   })
   
-  // Ключ для принудительного перерендера при изменении размера экрана
-  const resizeKey = ref(0)
-  const bpChanged = ref(0)
-  
-  // Отслеживаем изменения размера и обновляем ключ для перерендера
-  watch([isMobile, isTablet, isDesktop], () => {
-    bpChanged.value++
-  })
-  
+
   return {
     // Размеры окна
     width,
@@ -122,10 +114,6 @@ export function useBreakpoints() {
     deviceType,
     currentBreakpoint,
     breakpoints,
-    
-    // Хук для перерендера при изменении размера экрана
-    resizeKey,
-    bpChanged
   }
 }
 

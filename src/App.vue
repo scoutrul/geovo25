@@ -22,7 +22,7 @@
       :highlight-avatars="mockData.hero.highlightAvatars"
       :button-text="mockData.hero.buttonText"
       :stats="mockData.hero.stats"
-      :gallery="mockData.hero.gallery"
+      :gallery="isMobile ? mockData.hero.galleryMobile : mockData.hero.gallery"
       @cta-click="handleHeroCtaClick"
       class="pt-[128px] md:pt-[160px] lg:pt-[192px]"
     />
@@ -121,8 +121,7 @@ import ToolsSection from "./components/sections/ToolsSection.vue";
 import ComparisonSection from "./components/sections/ComparisonSection.vue";
 import StickyHeader from "./components/sections/StickyHeader.vue";
 
-// Регистрируем плагин ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+import { useBreakpoints } from "./composables/useBreakpoints.js";
 
 // Иконки How We Work (локальные SVG)
 import iconStart from "./assets/icons/howwework/start.svg";
@@ -151,6 +150,15 @@ import video1 from "./assets/videos/vid-1.mp4";
 import video2 from "./assets/videos/vid-2.mp4";
 import video3 from "./assets/videos/vid-3.mp4";
 import video4 from "./assets/videos/vid-4.mp4";
+
+import videoMobile1 from "./assets/videos/vid-1-m.mp4";
+import videoMobile2 from "./assets/videos/vid-2-m.mp4";
+import videoMobile3 from "./assets/videos/vid-3-m.mp4";
+
+const { isMobile } = useBreakpoints();
+
+// Регистрируем плагин ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 // Моковые данные для всех секций
 const mockData = reactive({
@@ -190,6 +198,7 @@ const mockData = reactive({
       },
     ],
     gallery: [{ src: video1 }, { src: video2 }, { src: video3 }, { src: video4 }],
+    galleryMobile: [{ src: videoMobile1 }, { src: videoMobile2 }, { src: videoMobile3 }],
   },
   faq: {
     title: "Частые вопросы",

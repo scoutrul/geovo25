@@ -1,10 +1,8 @@
 <template>
   <div 
     ref="carouselWrapperRef" 
-    :key="bpChanged"
-    :class="wrapperClass"
   >
-    <div ref="carouselContainerRef" :class="containerClass">
+  <div ref="carouselContainerRef" :key="currentBreakpoint" class="flex flex-row xl:flex-col">
       <!-- Дублируем элементы для бесконечной карусели -->
       <div 
         v-for="(item, index) in duplicatedItems" 
@@ -13,22 +11,26 @@
       >
         <div :class="aspectClass" />
 
-        <img 
-          v-if="item?.src && !isVideo(item)" 
-          :src="item.src" 
-          :alt="item?.alt || `gallery-image-${index}`"
-          class="absolute inset-0 h-full w-full object-cover" 
-        />
+        <!-- Лоадер плейсхолдер -->
+        <div 
+          v-if="!isVideoLoaded(index)"
+          class="absolute inset-0 bg-black-80 flex items-center justify-center"
+        >
+          <div class="w-12 h-12 border-4 border-white-50 border-t-transparent rounded-full animate-spin"></div>
+        </div>
 
         <video 
-          v-if="item?.src && isVideo(item)" 
+          v-if="item?.src" 
           :src="item.src" 
           :alt="item?.alt || `gallery-video-${index}`"
-          class="absolute inset-0 h-full w-full object-cover" 
+          class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300" 
+          :class="{ 'opacity-0': !isVideoLoaded(index), 'opacity-100': isVideoLoaded(index) }"
           autoplay 
           loop 
           muted
-          playsinline 
+          playsinline
+          @loadeddata="handleVideoLoaded(index)"
+          @loadstart="handleVideoLoadStart(index)"
         />
 
         <div :class="['pointer-events-none absolute inset-0', gradientClass]" />
@@ -49,7 +51,7 @@ import {
 import { gsap } from "gsap";
 import { useBreakpoints } from "../../composables/useBreakpoints.js";
 
-const { gtXl, bpChanged, deviceType } = useBreakpoints();
+const { gtXl, currentBreakpoint, deviceType } = useBreakpoints();
 
 const props = defineProps({
   items: {
@@ -61,33 +63,28 @@ const props = defineProps({
 const carouselWrapperRef = ref(null);
 const carouselContainerRef = ref(null);
 let animation = null;
-let currentStep = null;
+
+// Отслеживание состояния загрузки видео
+const videoLoadedStates = ref(new Map());
+
+// Проверка, загружено ли видео
+const isVideoLoaded = (index) => {
+  return videoLoadedStates.value.get(index) === true;
+};
+
+// Обработчик начала загрузки
+const handleVideoLoadStart = (index) => {
+  videoLoadedStates.value.set(index, false);
+};
+
+// Обработчик завершения загрузки
+const handleVideoLoaded = (index) => {
+  videoLoadedStates.value.set(index, true);
+};
 
 // Дублируем элементы для бесконечной карусели (3 копии)
 const duplicatedItems = computed(() => {
   return [...props.items, ...props.items, ...props.items];
-});
-
-// Классы для обертки
-const wrapperClass = computed(() => {
-  if (gtXl.value) {
-    // Вертикальная карусель на десктопе - показываем 4 элемента
-    return "overflow-hidden";
-  } else {
-    // Горизонтальная карусель на мобильном/планшете - показываем 1 элемент
-    return "overflow-hidden";
-  }
-});
-
-// Классы для контейнера
-const containerClass = computed(() => {
-  if (gtXl.value) {
-    // Вертикальная карусель
-    return "flex flex-col";
-  } else {
-    // Горизонтальная карусель
-    return "flex flex-row";
-  }
 });
 
 const aspectClass = computed(() => {
@@ -118,19 +115,6 @@ const gradientClass = computed(() => {
   }
 });
 
-const isVideo = (item) => {
-  if (!item?.src) return false;
-
-  // Если явно указан тип
-  if (item.type === "video") return true;
-  if (item.type === "image") return false;
-
-  // Определяем по расширению файла
-  const src = String(item.src);
-  const videoExtensions = [".mp4", ".webm", ".ogg", ".mov", ".avi", ".mkv"];
-  return videoExtensions.some((ext) => src.toLowerCase().includes(ext));
-};
-
 // Инициализация анимации карусели
 const initCarousel = async () => {
   if (
@@ -141,14 +125,13 @@ const initCarousel = async () => {
     return;
   }
 
+  // Сбрасываем состояние загрузки видео при переинициализации
+  videoLoadedStates.value.clear();
+
   // Убиваем предыдущие анимации, если есть
   if (animation) {
     animation.kill();
     animation = null;
-  }
-  if (currentStep) {
-    currentStep.kill();
-    currentStep = null;
   }
 
   await nextTick();
@@ -178,33 +161,17 @@ const initCarousel = async () => {
     // Смещаем так, чтобы показывались элементы с индекса itemCount (начало второй копии)
     gsap.set(container, { y: -totalSize });
 
-    // Функция для одного цикла анимации
-    const animateStep = () => {
-      const currentY = gsap.getProperty(container, "y");
-      const newY = currentY - itemSize;
-
-      // Если дошли до конца второй копии, сбрасываем на начало второй копии (бесшовный переход)
-      if (Math.abs(currentY) >= totalSize * 2) {
+    // Непрерывная анимация - двигаемся от начала второй копии до конца второй копии
+    animation = gsap.to(container, {
+      y: -totalSize * 2,
+      duration: itemCount * 10, // 3 секунды на элемент для плавного движения
+      ease: "none", // Линейная анимация для постоянной скорости
+      repeat: -1, // Бесконечное повторение
+      onRepeat: () => {
+        // При каждом повторении сбрасываем позицию на начало второй копии (бесшовный переход)
         gsap.set(container, { y: -totalSize });
-        // Продолжаем анимацию
-        currentStep = gsap.delayedCall(2, animateStep);
-        return;
-      }
-
-      // Анимация: перемещаем на один элемент
-      currentStep = gsap.to(container, {
-        y: newY,
-        duration: 0.8,
-        ease: "power2.inOut",
-        onComplete: () => {
-          // Пауза 2 секунды, затем следующий шаг
-          currentStep = gsap.delayedCall(2, animateStep);
-        },
-      });
-    };
-
-    // Начинаем анимацию после небольшой задержки
-    animation = gsap.delayedCall(0.1, animateStep);
+      },
+    });
   } else {
     // Горизонтальная карусель на мобильном/планшете - показываем 1 элемент
     const itemWidth = wrapper.offsetWidth;
@@ -220,33 +187,16 @@ const initCarousel = async () => {
     // Устанавливаем начальную позицию (начинаем с первого элемента второй копии)
     gsap.set(container, { x: -totalSize });
 
-    // Функция для одного цикла анимации
-    const animateStep = () => {
-      const currentX = gsap.getProperty(container, "x");
-      const newX = currentX - itemSize;
-
-      // Если дошли до конца второй копии, сбрасываем на начало второй копии (бесшовный переход)
-      if (Math.abs(currentX) >= totalSize * 2) {
+    // Непрерывная анимация - двигаемся от начала второй копии до конца второй копии
+    animation = gsap.to(container, {
+      x: -totalSize * 2,
+      duration: itemCount * 10, 
+      ease: "none", 
+      repeat: -1, 
+      onRepeat: () => {
         gsap.set(container, { x: -totalSize });
-        // Продолжаем анимацию
-        currentStep = gsap.delayedCall(2, animateStep);
-        return;
-      }
-
-      // Анимация: перемещаем на один элемент
-      currentStep = gsap.to(container, {
-        x: newX,
-        duration: 0.8,
-        ease: "power2.inOut",
-        onComplete: () => {
-          // Пауза 2 секунды, затем следующий шаг
-          currentStep = gsap.delayedCall(2, animateStep);
-        },
-      });
-    };
-
-    // Начинаем анимацию после небольшой задержки
-    animation = gsap.delayedCall(0.1, animateStep);
+      },
+    });
   }
 };
 
@@ -256,21 +206,16 @@ onMounted(() => {
 
 // Переинициализируем карусель при изменении breakpoint
 watch(
-  [bpChanged, gtXl, deviceType],
+  [currentBreakpoint],
   () => {
     initCarousel();
-  },
-  { flush: "post" }
+  }
 );
 
 onBeforeUnmount(() => {
   if (animation) {
     animation.kill();
     animation = null;
-  }
-  if (currentStep) {
-    currentStep.kill();
-    currentStep = null;
   }
 });
 </script>
