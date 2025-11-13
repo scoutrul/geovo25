@@ -11,6 +11,7 @@
       @nav-click="handleNavClick"
       @language-change="handleLanguageChange"
       :theme="headerTheme"
+      :button-text="mockData.hero.buttonText"
     />
 
     <!-- Hero секция -->
@@ -23,7 +24,7 @@
       :button-text="mockData.hero.buttonText"
       :stats="mockData.hero.stats"
       :gallery="isMobile ? mockData.hero.galleryMobile : mockData.hero.gallery"
-      @cta-click="handleHeroCtaClick"
+      @cta-click="handleCtaClick"
       class="pt-[128px] md:pt-[160px] lg:pt-[192px] xl:pb-0"
     />
 
@@ -526,12 +527,9 @@ const mockData = reactive({
 });
 
 const handleCtaClick = () => {
-  console.log("CTA clicked");
+  window.open("http://t.me/meisdigital", "_blank");
 };
 
-const handleHeroCtaClick = () => {
-  console.log("Hero CTA clicked");
-};
 
 const handleFigmaClick = () => {
   window.open(

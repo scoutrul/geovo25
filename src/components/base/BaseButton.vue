@@ -24,7 +24,7 @@ const props = defineProps({
   size: {
     type: String,
     default: 'md',
-    validator: (value) => ['sm', 'md', 'lg'].includes(value)
+    validator: (value) => ['sm', 'md', 'lg', 'wide'].includes(value)
   },
   disabled: {
     type: Boolean,
@@ -33,10 +33,6 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
-  },
-  type: {
-    type: String,
-    default: 'button'
   }
 })
 
@@ -67,7 +63,8 @@ const buttonClasses = computed(() => {
   const sizeClasses = {
     sm: 'h-10 px-4 py-2 text-sm rounded-button',
     md: 'h-12 px-6 py-2 text-p2 rounded-button',
-    lg: 'h-14 px-8 py-3 text-p1 rounded-button'
+    lg: 'h-14 px-8 py-3 text-p1 rounded-button',
+    wide: 'h-12 w-full px-6 py-2 text-p2 rounded-button'
   }
 
   // Состояние disabled

@@ -52,9 +52,7 @@
           />
         </div>
         <!-- CTA -->
-        <BaseButton variant="primary" size="md" @click="$emit('cta-click')">
-          Познакомиться
-        </BaseButton>
+        <ContactButton @click="$emit('cta-click')" :default-text="buttonText" />
       </div>
     </div>
   </BaseContainer>
@@ -63,7 +61,7 @@
 <script setup>
 import { computed } from "vue";
 import BaseContainer from "../base/BaseContainer.vue";
-import BaseButton from "../base/BaseButton.vue";
+import ContactButton from "../ui/ContactButton.vue";
 import LanguageDropdown from "../ui/LanguageDropdown.vue";
 import logoMark from "../../assets/icons/logo-mark.svg";
 
@@ -92,6 +90,10 @@ const props = defineProps({
   currentLanguage: {
     type: String,
     default: "ru",
+  },
+  buttonText: {
+    type: String,
+    default: "",
   },
 });
 

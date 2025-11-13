@@ -1,0 +1,53 @@
+<template>
+  <BaseButton 
+    variant="primary" 
+
+    :disabled="disabled"
+    :loading="loading"
+    @click="handleClick"
+    class="w-full sm:w-fit"
+  >
+    <!-- Слот для иконки -->
+    <slot name="icon">
+      <img 
+        src="@/assets/icons/send.svg" 
+        alt="Send" 
+        class="w-5 h-5"
+      />
+    </slot>
+    <slot>{{ defaultText }}</slot>
+  </BaseButton>
+</template>
+
+<script setup>
+import BaseButton from '../base/BaseButton.vue'
+import { useBreakpoints } from '../../composables/useBreakpoints.js'
+
+const { isMobile } = useBreakpoints()
+
+const props = defineProps({
+  size: {
+    type: String,
+    default: 'md',
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  },
+  defaultText: {
+    type: String,
+    default: ''
+  },
+})
+
+const emit = defineEmits(['click'])
+
+const handleClick = (event) => {
+  emit('click', event)
+}
+</script>
+

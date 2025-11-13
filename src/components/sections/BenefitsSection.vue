@@ -20,23 +20,24 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-6 items-start w-full sm:w-[300px] xl:w-[max-content] sm:py-4 sm:self-stretch">
+      <div class="flex flex-col gap-6 items-start w-full xl:w-[max-content] sm:py-4 sm:self-stretch">
         <BaseText size="p3" class="text-black-50">
           {{ ctaText }}
         </BaseText>
 
-        <BaseButton variant="primary" size="md" @click="handleCtaClick">
+        <ContactButton @click="handleCtaClick">
           {{ ctaButtonText }}
-        </BaseButton>
+        </ContactButton>
       </div>
     </div>
   </BaseContainer>
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, BaseButton } from '../base'
+import { BaseContainer, BaseHeading, BaseText } from '../base'
 import BenefitCard from '../ui/BenefitCard.vue'
 import DecorativeLine from '../ui/DecorativeLine.vue'
+import ContactButton from '../ui/ContactButton.vue'
 import { useBreakpoints } from '../../composables/useBreakpoints.js'
 
 const { gtLg, gtXl, ltXl, ltLg } = useBreakpoints()

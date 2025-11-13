@@ -16,9 +16,9 @@
           </BaseText>
         </div>
 
-        <BaseButton variant="primary" size="md" class="w-max" @click="$emit('cta-click')">
+        <ContactButton @click="$emit('cta-click')">
           {{ buttonText }}
-        </BaseButton>
+        </ContactButton>
         <HeroStats :stats="stats" v-if="gtXl" class="mt-20"/>
       </div>
 
@@ -35,9 +35,10 @@
 <script setup>
 import HeroStats from '../ui/HeroStats.vue'
 import { computed } from 'vue'
-import { BaseContainer, BaseHeading, BaseText, BaseButton } from '../base'
+import { BaseContainer, BaseHeading, BaseText } from '../base'
 import GalleryPlaceholder from '../ui/GalleryPlaceholder.vue'
 import AvatarStack from '../ui/AvatarStack.vue'
+import ContactButton from '../ui/ContactButton.vue'
 import { useBreakpoints } from '../../composables/useBreakpoints.js'
 
 const { gtXl } = useBreakpoints()
