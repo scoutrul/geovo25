@@ -1,7 +1,5 @@
 <template>
-  <div 
-    class="bg-white-100 rounded-2xl overflow-hidden flex flex-col gap-4 h-full"
-  >
+  <BaseCard class="gap-4">
     <!-- Текстовый контейнер -->
     <div 
       class="flex flex-col gap-2 sm:gap-4 p-6 sm:p-8 h-[166px]"
@@ -48,11 +46,11 @@
         />
       </div>
     </div>
-  </div>
+  </BaseCard>
 </template>
 
 <script setup>
-import { BaseHeading, BaseText } from '../base'
+import { BaseCard, BaseHeading, BaseText } from '../base'
 import { useBreakpoints } from '../../composables/useBreakpoints.js'
 
 const { gtLg } = useBreakpoints()

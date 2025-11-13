@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-6 w-full">
+  <BaseCard variant="transparent" class="gap-6 w-full">
     <BaseText 
       :as="'p'" 
       size="p2" 
@@ -7,11 +7,11 @@
     >
       {{ text }}
     </BaseText>
-  </div>
+  </BaseCard>
 </template>
 
 <script setup>
-import { BaseText } from '../base'
+import { BaseCard, BaseText } from '../base'
 
 defineProps({
   text: {

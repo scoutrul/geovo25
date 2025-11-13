@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-6 w-full">
+  <BaseCard class="gap-6 w-full rounded-none" variant="transparent">
     <!-- Иконка -->
     <div v-if="icon" class="w-8 h-8 shrink-0">
       <img :src="icon" :alt="title" class="w-full h-full object-contain" />
@@ -23,11 +23,11 @@
         {{ description }}
       </BaseText>
     </div>
-  </div>
+  </BaseCard>
 </template>
 
 <script setup>
-import { BaseText } from '../base'
+import { BaseCard, BaseText } from '../base'
 
 defineProps({
   icon: {
