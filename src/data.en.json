@@ -13,9 +13,9 @@
     "subtitle": "I've helped dozens of top teams increase profits through design",
     "highlightText": "32+ million worldwide value my UX",
     "highlightAvatars": [
-      { "src": "./assets/avatars/ava-1.png", "alt": "User face 1" },
-      { "src": "./assets/avatars/ava-2.png", "alt": "User face 2" },
-      { "src": "./assets/avatars/ava-3.png", "alt": "User face 3" }
+      { "src": "/assets/avatars/ava-1.png", "alt": "User face 1" },
+      { "src": "/assets/avatars/ava-2.png", "alt": "User face 2" },
+      { "src": "/assets/avatars/ava-3.png", "alt": "User face 3" }
     ],
     "buttonText": "Get to know me",
     "stats": [
@@ -37,15 +37,15 @@
       }
     ],
     "gallery": [
-      { "src": "./assets/videos/vid-1.mp4" },
-      { "src": "./assets/videos/vid-2.mp4" },
-      { "src": "./assets/videos/vid-3.mp4" },
-      { "src": "./assets/videos/vid-4.mp4" }
+      { "src": "/assets/videos/vid-1.mp4" },
+      { "src": "/assets/videos/vid-2.mp4" },
+      { "src": "/assets/videos/vid-3.mp4" },
+      { "src": "/assets/videos/vid-4.mp4" }
     ],
     "galleryMobile": [
-      { "src": "./assets/videos/vid-1-m.mp4" },
-      { "src": "./assets/videos/vid-2-m.mp4" },
-      { "src": "./assets/videos/vid-3-m.mp4" }
+      { "src": "/assets/videos/vid-1-m.mp4" },
+      { "src": "/assets/videos/vid-2-m.mp4" },
+      { "src": "/assets/videos/vid-3-m.mp4" }
     ]
   },
   "faq": {
@@ -89,42 +89,42 @@
     "title": "How we will work",
     "items": [
       {
-        "icon": "./assets/icons/howwework/start.svg",
+        "icon": "/assets/icons/howwework/start.svg",
         "title": "Start",
         "description": "I'll analyze problems, vision and goals. I'll conduct analysis and create a roadmap"
       },
       {
-        "icon": "./assets/icons/howwework/tasks.svg",
+        "icon": "/assets/icons/howwework/tasks.svg",
         "title": "Tasks",
         "description": "I'll create, prioritize and update tasks and statuses in JIRA/Notion/Slack"
       },
       {
-        "icon": "./assets/icons/howwework/speed.svg",
+        "icon": "/assets/icons/howwework/speed.svg",
         "title": "Speed",
         "description": "Much faster than a regular designer. I use AI, hotkeys and automation tools"
       },
       {
-        "icon": "./assets/icons/howwework/transfer.svg",
+        "icon": "/assets/icons/howwework/transfer.svg",
         "title": "Handoff",
         "description": "I'll thoroughly work through layouts with edge cases, prepare animations, assets and guides in Figma/Notion"
       },
       {
-        "icon": "./assets/icons/howwework/autonomy.svg",
+        "icon": "/assets/icons/howwework/autonomy.svg",
         "title": "Autonomy",
         "description": "I independently organize work, hiring and close tasks without distracting team resources"
       },
       {
-        "icon": "./assets/icons/howwework/outlook.svg",
+        "icon": "/assets/icons/howwework/outlook.svg",
         "title": "Vision",
         "description": "I'll launch entire products both as the sole designer-visionary and as part of complex teams"
       },
       {
-        "icon": "./assets/icons/howwework/system.svg",
+        "icon": "/assets/icons/howwework/system.svg",
         "title": "Systematic approach",
         "description": "I'll provide solutions from icons and graphics to design systems and products ready for development"
       },
       {
-        "icon": "./assets/icons/howwework/support.svg",
+        "icon": "/assets/icons/howwework/support.svg",
         "title": "Support",
         "description": "I'll thoroughly control development and bring it to perfect result"
       }
@@ -256,27 +256,27 @@
     },
     "items": [
       {
-        "icon": "./assets/icons/tools/experience-startups.svg",
+        "icon": "/assets/icons/tools/experience-startups.svg",
         "text": "Experience from startups to ecosystems of large companies"
       },
       {
-        "icon": "./assets/icons/tools/experience-industries.svg",
+        "icon": "/assets/icons/tools/experience-industries.svg",
         "text": "Experience in many industries: FinTech, eCommerce, iGaming, AI, Cloud Services"
       },
       {
-        "icon": "./assets/icons/tools/experience-platforms.svg",
+        "icon": "/assets/icons/tools/experience-platforms.svg",
         "text": "Extensive experience with all platforms: Web/mobile, iOS, Android"
       },
       {
-        "icon": "./assets/icons/tools/collaboration.svg",
+        "icon": "/assets/icons/tools/collaboration.svg",
         "text": "I work directly with the development team and PM"
       },
       {
-        "icon": "./assets/icons/tools/self-organization.svg",
+        "icon": "/assets/icons/tools/self-organization.svg",
         "text": "I independently organize all work from analysis to release delivery"
       },
       {
-        "icon": "./assets/icons/tools/transparency.svg",
+        "icon": "/assets/icons/tools/transparency.svg",
         "text": "I form deadlines, goals and KPIs so that cooperation is transparent"
       }
     ]

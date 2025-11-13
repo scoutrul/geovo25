@@ -63,7 +63,7 @@ import { computed } from "vue";
 import BaseContainer from "../base/BaseContainer.vue";
 import ContactButton from "../ui/ContactButton.vue";
 import LanguageDropdown from "../ui/LanguageDropdown.vue";
-import logoMark from "../../assets/icons/logo-mark.svg";
+const logoMark = "/assets/icons/logo-mark.svg";
 
 const props = defineProps({
   slogan: {

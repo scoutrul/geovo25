@@ -55,8 +55,8 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import BaseButton from '../base/BaseButton.vue'
-import translateIcon from '../../assets/icons/translate.svg'
-import checkIcon from '../../assets/icons/check.svg'
+const translateIcon = '/assets/icons/translate.svg'
+const checkIcon = '/assets/icons/check.svg'
 
 const props = defineProps({
   theme: {

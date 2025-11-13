@@ -2,8 +2,7 @@ import { reactive } from "vue";
 
 /**
  * Функция для преобразования путей к медиа файлам
- * В Vite для статических ресурсов из src/assets нужно использовать
- * правильный путь. Для путей из JSON используем new URL для правильной обработки.
+ * Файлы из public доступны по абсолютным путям, начиная с /
  * @param {string} path - Путь к медиа файлу
  * @returns {string} - Обработанный путь
  */
@@ -18,44 +17,24 @@ function resolveAssetPath(path) {
     return path;
   }
   
-  // В Vite для путей к ресурсам из src/assets нужно использовать
-  // правильный путь. Для путей из JSON используем new URL с базовым путем к src
-  // Это создаст правильный URL, который Vite сможет обработать
-  try {
-    // Убираем начальные ./ если есть
-    let cleanPath = path.startsWith("./") ? path.slice(2) : path;
-    
-    // Получаем базовый URL для src директории
-    // import.meta.url указывает на текущий файл (composables/useMediaPaths.js)
-    // Нужно подняться на уровень выше к src
-    const currentFileUrl = new URL(import.meta.url);
-    const srcBaseUrl = new URL("../", currentFileUrl);
-    const assetUrl = new URL(cleanPath, srcBaseUrl);
-    
-    // В dev режиме new URL создает file:// URL, который нужно преобразовать
-    // В production Vite обработает пути автоматически
-    if (assetUrl.protocol === "file:") {
-      // Извлекаем путь из file:// URL и преобразуем в путь для Vite
-      let filePath = assetUrl.pathname;
-      
-      // На Windows пути могут начинаться с /C:/, нужно это учесть
-      // Находим позицию /src/ в пути
-      const srcIndex = filePath.indexOf("/src/");
-      if (srcIndex !== -1) {
-        // Возвращаем путь начиная с /src/
-        // Vite обработает этот путь правильно в dev режиме
-        return filePath.substring(srcIndex);
-      }
-    }
-    
-    // Возвращаем href, который будет правильным URL для Vite
-    return assetUrl.href;
-  } catch (error) {
-    // Если не получилось, возвращаем исходный путь
-    // Vite может обработать его автоматически в шаблонах
-    console.warn("Failed to resolve asset path:", path, error);
+  // Если путь начинается с /, значит это уже абсолютный путь из public
+  // Просто возвращаем его как есть
+  if (path.startsWith("/")) {
     return path;
   }
+  
+  // Если путь начинается с ./assets/, преобразуем в /assets/
+  if (path.startsWith("./assets/")) {
+    return path.replace("./", "/");
+  }
+  
+  // Если путь начинается с assets/, добавляем /
+  if (path.startsWith("assets/")) {
+    return `/${path}`;
+  }
+  
+  // В остальных случаях возвращаем как есть
+  return path;
 }
 
 /**

@@ -9,7 +9,7 @@
     <!-- Слот для иконки -->
     <slot name="icon">
       <img 
-        src="@/assets/icons/send.svg" 
+        src="/assets/icons/send.svg" 
         alt="Send" 
         class="w-5 h-5"
       />
@@ -20,9 +20,6 @@
 
 <script setup>
 import BaseButton from '../base/BaseButton.vue'
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
-
-const { isMobile } = useBreakpoints()
 
 const props = defineProps({
   size: {

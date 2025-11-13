@@ -132,8 +132,8 @@ import { BaseContainer, BaseHeading, BaseText, BaseButton } from "../base";
 import OpportunityCard from "../ui/OpportunityCard.vue";
 import { useBreakpoints } from "../../composables/useBreakpoints.js";
 import { computed } from "vue";
-import logoMark from "../../assets/icons/logo-mark.svg";
-import figmaIcon from "../../assets/icons/figma.svg";
+const logoMark = "/assets/icons/logo-mark.svg";
+const figmaIcon = "/assets/icons/figma.svg";
 
 const { gtLg, gtXl } = useBreakpoints();
 

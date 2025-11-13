@@ -36,7 +36,7 @@
 <script setup>
 import BaseContentCard from '../base/BaseContentCard.vue'
 import { BaseText } from '../base'
-import checkmark from '../../assets/icons/checkmark.svg'
+const checkmark = '/assets/icons/checkmark.svg'
 
 defineProps({
   title: {
