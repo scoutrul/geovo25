@@ -1,39 +1,26 @@
 <template>
-  <div 
-    ref="carouselWrapperRef" 
-  >
-  <div ref="carouselContainerRef" :key="currentBreakpoint" class="flex flex-row xl:flex-col">
-      <!-- Дублируем элементы для бесконечной карусели -->
-      <div 
-        v-for="(item, index) in duplicatedItems" 
-        :key="`carousel-item-${index}`" 
-        class="carousel-item  rounded-[20px] overflow-hidden inset-0"
-      >
-        <div :class="aspectClass" />
+  <div class="flex flex-col gap-8 xl:row-span-2 overflow-hidden relative
+  xl:max-h-[fit-content] md:max-h-[600px] rounded-[20px] 
+  -mx-8 md:-mx-20 lg:-mx-24 xl:-mx-0 xl:mt-[-10rem] px-4 xl:px-0 over-fade">
+    <div ref="carouselWrapperRef" class="px-4" :key="currentBreakpoint" >
+      <div ref="carouselContainerRef" class="flex flex-row xl:flex-col">
+        <!-- Дублируем элементы для бесконечной карусели -->
+        <div v-for="(item, index) in duplicatedItems" :key="`carousel-item-${index}`"
+          class="carousel-item  rounded-[20px] overflow-hidden inset-0">
+          <div :class="aspectClass" />
 
-        <!-- Лоадер плейсхолдер -->
-        <div 
-          v-if="!isVideoLoaded(index)"
-          class="absolute inset-0 bg-black-80 flex items-center justify-center"
-        >
-          <div class="w-12 h-12 border-4 border-white-50 border-t-transparent rounded-full animate-spin"></div>
+          <!-- Лоадер плейсхолдер -->
+          <div v-if="!isVideoLoaded(index)" class="absolute inset-0 bg-black-80 flex items-center justify-center">
+            <div class="w-12 h-12 border-4 border-white-50 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+
+          <video v-if="item?.src" :src="item.src" :alt="item?.alt || `gallery-video-${index}`"
+            class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+            :class="{ 'opacity-0': !isVideoLoaded(index), 'opacity-100': isVideoLoaded(index) }" autoplay loop muted
+            playsinline @loadeddata="handleVideoLoaded(index)" @loadstart="handleVideoLoadStart(index)" />
+
+          <div :class="['pointer-events-none absolute inset-0', gradientClass]" />
         </div>
-
-        <video 
-          v-if="item?.src" 
-          :src="item.src" 
-          :alt="item?.alt || `gallery-video-${index}`"
-          class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300" 
-          :class="{ 'opacity-0': !isVideoLoaded(index), 'opacity-100': isVideoLoaded(index) }"
-          autoplay 
-          loop 
-          muted
-          playsinline
-          @loadeddata="handleVideoLoaded(index)"
-          @loadstart="handleVideoLoadStart(index)"
-        />
-
-        <div :class="['pointer-events-none absolute inset-0', gradientClass]" />
       </div>
     </div>
   </div>
@@ -154,7 +141,7 @@ const initCarousel = async () => {
     const totalSize = itemSize * itemCount;
 
     // Высота видимой области = 4 элемента
-    const visibleHeight = itemSize * 4 - gap; // 4 элемента минус один gap
+    const visibleHeight = itemSize * 3 - gap; // 4 элемента минус один gap
     gsap.set(wrapper, { height: visibleHeight });
 
     // Устанавливаем начальную позицию (начинаем с первого элемента второй копии)
@@ -190,9 +177,9 @@ const initCarousel = async () => {
     // Непрерывная анимация - двигаемся от начала второй копии до конца второй копии
     animation = gsap.to(container, {
       x: -totalSize * 2,
-      duration: itemCount * 10, 
-      ease: "none", 
-      repeat: -1, 
+      duration: itemCount * 10,
+      ease: "none",
+      repeat: -1,
       onRepeat: () => {
         gsap.set(container, { x: -totalSize });
       },
@@ -226,4 +213,14 @@ onBeforeUnmount(() => {
 
   @apply mr-6 last:mr-0 flex-shrink-0;
 }
-</style>  
+
+.over-fade::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  @apply bg-gradient-to-b from-transparent to-black-90;
+}
+</style>

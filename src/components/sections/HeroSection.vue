@@ -1,8 +1,8 @@
 <template>
   <BaseContainer :as="'section'" :bg="'bg-black-90'">
-    <div class="grid gap-10 md:gap-20 xl:grid-cols-2 xl:items-start">
+    <div class="grid gap-10 md:gap-20 xl:gap-0 xl:gap-x-20 xl:grid-cols-2 xl:items-start">
       <!-- Текст и аватары -->
-      <div class="flex w-full flex-col gap-8 xl:max-w-[720px]">
+      <div class="flex w-full flex-col gap-8">
         <BaseHeading :level="gtXl ? 3 : 5" :as="'h1'" class="text-white-100">
           <span class="block">{{ title }}</span>
           <span class="block">{{ subtitle }}</span>
@@ -19,15 +19,15 @@
         <BaseButton variant="primary" size="md" class="w-max" @click="$emit('cta-click')">
           {{ buttonText }}
         </BaseButton>
+        <HeroStats :stats="stats" v-if="gtXl" class="mt-20"/>
       </div>
+
 
       <!-- Галерея -->
-      <div class="flex flex-col gap-8 xl:row-span-2 overflow-hidden xl:max-h-[1012px] md:max-h-[600px] rounded-[20px]">
-        <GalleryPlaceholder :items="galleryItems" />
-      </div>
+      <GalleryPlaceholder :items="galleryItems" />
 
       <!-- Статистика -->
-      <HeroStats :stats="stats" />
+      <HeroStats :stats="stats" v-if="!gtXl"/>
     </div>
   </BaseContainer>
 </template>

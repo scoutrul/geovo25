@@ -24,7 +24,7 @@
       :stats="mockData.hero.stats"
       :gallery="isMobile ? mockData.hero.galleryMobile : mockData.hero.gallery"
       @cta-click="handleHeroCtaClick"
-      class="pt-[128px] md:pt-[160px] lg:pt-[192px]"
+      class="pt-[128px] md:pt-[160px] lg:pt-[192px] xl:pb-0"
     />
 
     <!-- Tools (Dark) -->
@@ -33,6 +33,7 @@
       :title="mockData.tools.title"
       :content="mockData.tools.content"
       :items="mockData.tools.items"
+
     />
 
     <!-- Cases Секция -->
