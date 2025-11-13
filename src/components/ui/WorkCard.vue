@@ -18,7 +18,7 @@
       <BaseText 
         :as="'p'" 
         size="p2" 
-        class="text-black-50 whitespace-pre-wrap"
+        class="text-black-50"
       >
         {{ description }}
       </BaseText>

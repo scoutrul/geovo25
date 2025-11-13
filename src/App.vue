@@ -50,6 +50,14 @@
       :items="mockData.howWeWork.items"
     />
 
+    <!-- Expertise Секция -->
+    <ExpertiseSection
+    ref="expertiseSectionRef"
+    :title="mockData.expertise.title"
+    :subtitle="mockData.expertise.subtitle"
+    :cards="mockData.expertise.items"
+    />
+    
     <!-- Comparison Секция -->
     <ComparisonSection
       ref="comparisonSectionRef"
@@ -57,15 +65,7 @@
       :attributes="mockData.comparison.attributes"
       :columns="mockData.comparison.columns"
     />
-
-    <!-- Expertise Секция -->
-    <ExpertiseSection
-      ref="expertiseSectionRef"
-      :title="mockData.expertise.title"
-      :subtitle="mockData.expertise.subtitle"
-      :cards="mockData.expertise.items"
-    />
-
+    
     <!-- Opportunities Секция -->
     <OpportunitiesSection
       ref="opportunitiesSectionRef"

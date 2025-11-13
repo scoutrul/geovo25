@@ -5,7 +5,6 @@
         :level="gtLg ? 3 : 4"
         :as="gtLg ? 'h3' : 'h4'"
         class="w-full text-white-90"
-        :class="gtXl ? 'text-center' : 'text-left'"
       >
         {{ title }}
       </BaseHeading>

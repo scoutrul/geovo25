@@ -103,7 +103,7 @@
           <BaseText
             :as="'p'"
             size="p1"
-            class="text-black-90 whitespace-pre-wrap"
+            class="text-black-90"
           >
             {{ footerText1 }}
           </BaseText>

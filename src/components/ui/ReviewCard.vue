@@ -1,5 +1,5 @@
 <template>
-  <BaseContentCard :title="text" :description="author" :footer-min-height="true">
+  <BaseContentCard :title="text" :description="author" :footer-min-height="false">
     <!-- Картинка в сером блоке со сдвигом и overflow в footer -->
     <template #footer v-if="image && image !== ''">
       <div class="flex-1 pl-6 md:pl-8 pb-0 pr-0">
