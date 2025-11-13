@@ -1,7 +1,6 @@
 <template>
   <BaseButton 
     variant="primary" 
-
     :disabled="disabled"
     :loading="loading"
     @click="handleClick"

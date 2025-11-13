@@ -5,7 +5,7 @@
 
     <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start w-full">
 
-      <div class="flex flex-col items-start w-full sm:flex-1">
+      <div class="flex flex-col items-start flex-0">
         <!-- Заголовок секции -->
         <BaseHeading :level="4" :as="'h2'"
           class="w-full text-white-90 text-[46px] leading-[1.2] sm:text-[64px] sm:leading-none mb-[90px]"
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-6 items-start w-full xl:w-[max-content] sm:py-4 sm:self-stretch">
+      <div class="flex flex-col gap-6 items-start w-full xl:w-[max-content] sm:py-4 sm:self-stretch min-w-[240px] sm:min-w-auto shrink-1">
         <BaseText size="p3" class="text-black-50">
           {{ ctaText }}
         </BaseText>

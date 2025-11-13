@@ -108,7 +108,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted, nextTick } from "vue";
+import { ref } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FaqSection from "./components/sections/FaqSection.vue";
@@ -124,48 +124,36 @@ import ComparisonSection from "./components/sections/ComparisonSection.vue";
 import StickyHeader from "./components/sections/StickyHeader.vue";
 
 import { useBreakpoints } from "./composables/useBreakpoints.js";
-import data from "./data.json";
+import { useSectionThemeTracking } from "./composables/useSectionThemeTracking.js";
+import { useMediaPaths } from "./composables/useMediaPaths.js";
+
+import dataRu from "./data.ru.json";
+import dataEn from "./data.en.json";
 
 const { isMobile } = useBreakpoints();
 
 // Регистрируем плагин ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Функция для преобразования путей к медиа
-const resolveAssetPath = (path) => {
-  if (!path) return path;
-  // Если путь уже является URL или начинается с http/https, возвращаем как есть
-  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
-    return path;
-  }
-  // Используем new URL для правильной обработки путей в Vite
-  try {
-    return new URL(path, import.meta.url).href;
-  } catch {
-    return path;
-  }
+// Функция для загрузки данных в зависимости от языка
+const loadDataByLanguage = (lang) => {
+  return lang === "en" ? dataEn : dataRu;
 };
 
-// Преобразуем пути к медиа в данных
-const processMediaPaths = (obj) => {
-  if (Array.isArray(obj)) {
-    return obj.map(item => processMediaPaths(item));
-  } else if (obj && typeof obj === 'object') {
-    const processed = {};
-    for (const [key, value] of Object.entries(obj)) {
-      if (key === 'src' || key === 'icon' || key === 'image') {
-        processed[key] = resolveAssetPath(value);
-      } else {
-        processed[key] = processMediaPaths(value);
-      }
-    }
-    return processed;
-  }
-  return obj;
-};
+// Инициализируем данные с русским языком по умолчанию
+const initialData = loadDataByLanguage("ru");
+const mockData = ref(useMediaPaths(initialData));
 
-// Данные для всех секций
-const mockData = reactive(processMediaPaths(data));
+// Текущий язык (берем из данных)
+const currentLanguage = ref(mockData.value.header.currentLanguage);
+
+// Функция для обновления данных при смене языка
+const updateDataByLanguage = (lang) => {
+  const newData = loadDataByLanguage(lang);
+  const processedData = useMediaPaths(newData);
+  // Обновляем все свойства mockData, используя Object.assign для правильной работы с реактивностью
+  Object.assign(mockData.value, processedData);
+};
 
 const handleCtaClick = () => {
   window.open("http://t.me/meisdigital", "_blank");
@@ -179,12 +167,6 @@ const handleFigmaClick = () => {
   );
 };
 
-// Состояние скролла для хедера
-const isScrolled = ref(false);
-
-// Тема хедера (по умолчанию светлая, так как первая секция Hero темная)
-const headerTheme = ref("dark");
-
 // Refs для секций
 const heroSectionRef = ref(null);
 const toolsSectionRef = ref(null);
@@ -197,106 +179,18 @@ const reviewsSectionRef = ref(null);
 const faqSectionRef = ref(null);
 const benefitsSectionRef = ref(null);
 
-// Определение темы секции (темная = 'dark', светлая = 'light')
-// Header должен быть противоположным теме секции
-const sectionThemes = {
-  hero: "dark", // bg-black-90 -> Header должен быть light
-  tools: "dark", // bg-black-90 -> Header должен быть light
-  cases: "light", // bg-white-90 -> Header должен быть dark
-  howWeWork: "light", // bg-white-90 -> Header должен быть dark
-  comparison: "light", // bg-white-90 -> Header должен быть dark
-  expertise: "light", // bg-white-90 -> Header должен быть dark
-  opportunities: "light", // bg-white-90 -> Header должен быть dark
-  reviews: "light", // bg-white-90 -> Header должен быть dark
-  faq: "light", // bg-white-90 -> Header должен быть dark
-  benefits: "dark", // bg-black-90 -> Header должен быть light
-};
-
-// Отслеживание скролла
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20;
-};
-
-// Инициализация ScrollTrigger для отслеживания секций
-const initSectionThemeTracking = () => {
-  const sections = [
-    { ref: heroSectionRef, key: "hero" },
-    { ref: toolsSectionRef, key: "tools" },
-    { ref: casesSectionRef, key: "cases" },
-    { ref: howWeWorkSectionRef, key: "howWeWork" },
-    { ref: comparisonSectionRef, key: "comparison" },
-    { ref: expertiseSectionRef, key: "expertise" },
-    { ref: opportunitiesSectionRef, key: "opportunities" },
-    { ref: reviewsSectionRef, key: "reviews" },
-    { ref: faqSectionRef, key: "faq" },
-    { ref: benefitsSectionRef, key: "benefits" },
-  ];
-
-  sections.forEach(({ ref, key }) => {
-    if (!ref.value) {
-      console.warn(`Section ref for ${key} is not available`);
-      return;
-    }
-
-    // Находим корневой элемент секции (BaseContainer)
-    // В Vue 3 компонент имеет $el для корневого элемента
-    const sectionElement = ref.value.$el;
-    
-    if (!sectionElement) {
-      console.warn(`Section element for ${key} is not found`);
-      return;
-    }
-
-    ScrollTrigger.create({
-      trigger: sectionElement,
-      start: "top top", // Когда верх секции касается верха экрана
-      end: "bottom top", // Когда низ секции касается верха экрана
-      onEnter: () => {
-        // Секция входит в верх экрана
-        const sectionTheme = sectionThemes[key];
-        // Header должен быть противоположным теме секции
-        headerTheme.value = sectionTheme === "dark" ? "dark" : "light";
-      },
-      onEnterBack: () => {
-        // Скроллим назад, секция снова входит в верх экрана
-        const sectionTheme = sectionThemes[key];
-        headerTheme.value = sectionTheme === "dark" ? "dark" : "light";
-      },
-      onLeave: () => {
-        // Секция покидает верх экрана (скроллим вниз)
-        // Не меняем тему, так как следующая секция уже активирована
-      },
-      onLeaveBack: () => {
-        // Секция покидает верх экрана (скроллим вверх)
-        // Не меняем тему, так как предыдущая секция уже активирована
-      },
-    });
-  });
-};
-
-onMounted(async () => {
-  window.addEventListener("scroll", handleScroll);
-
-  // Ждем, пока все секции будут отрендерены
-  // Используем двойной nextTick для гарантии, что все DOM элементы готовы
-  await nextTick();
-  await nextTick();
-
-  // Инициализируем отслеживание тем секций
-  initSectionThemeTracking();
-
-  // Устанавливаем начальную тему на основе первой секции (Hero)
-  // Hero темная, поэтому Header должен быть светлым
-  headerTheme.value = sectionThemes.hero === "dark" ? "dark" : "light";
-
-  // Обновляем ScrollTrigger после инициализации
-  ScrollTrigger.refresh();
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-  // Очищаем все ScrollTrigger инстансы
-  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+// Используем композбл для отслеживания тем секций
+const { isScrolled, headerTheme } = useSectionThemeTracking({
+  heroSectionRef,
+  toolsSectionRef,
+  casesSectionRef,
+  howWeWorkSectionRef,
+  comparisonSectionRef,
+  expertiseSectionRef,
+  opportunitiesSectionRef,
+  reviewsSectionRef,
+  faqSectionRef,
+  benefitsSectionRef,
 });
 
 const handleNavClick = (item) => {
@@ -305,6 +199,7 @@ const handleNavClick = (item) => {
 
 const handleLanguageChange = (code) => {
   console.log("Language changed to:", code);
-  mockData.header.currentLanguage = code;
+  currentLanguage.value = code;
+  updateDataByLanguage(code);
 };
 </script>
