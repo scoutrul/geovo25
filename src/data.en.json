@@ -211,11 +211,7 @@
       {
         "title": "Analyst",
         "description": "Analysis of metrics, hypotheses on pure caffeine",
-        "items": [
-          "Market analysis",
-          "Specific goals",
-          "A/B tests"
-        ]
+        "items": ["Market analysis", "Specific goals", "A/B tests"]
       }
     ]
   },
@@ -224,22 +220,25 @@
     "subtitle": "Some of my stories that definitely won't leave you indifferent",
     "items": [
       {
+        "slug": "ag1",
         "title": "AG1",
         "description": "I'll reveal the secret of success in Sports Nutrition by subscription",
         "image": "/assets/images/case-bg-1-05.jpg"
-
       },
       {
+        "slug": "adguard-wallet",
         "title": "AdGuard Wallet",
         "description": "How to protect your crypto assets using advanced approaches in Fintech",
         "image": "/assets/images/case-bg-2-05.jpg"
       },
       {
+        "slug": "4real",
         "title": "4Real",
         "description": "iGaming that really engages",
         "image": ""
       },
       {
+        "slug": "legaline",
         "title": "Legaline",
         "description": "eCommerce platform in Legal Law",
         "image": ""
@@ -344,7 +343,9 @@
   "benefits": {
     "title": "What awaits us ahead",
     "items": [
-      { "text": "We'll launch a product in 1–3 months without stopping current work" },
+      {
+        "text": "We'll launch a product in 1–3 months without stopping current work"
+      },
       {
         "text": "We'll create from scratch or redesign interfaces with improved metrics"
       },
@@ -357,4 +358,3 @@
     "ctaButtonText": "Get to know me"
   }
 }
-

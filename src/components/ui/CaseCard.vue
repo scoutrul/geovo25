@@ -1,21 +1,23 @@
 <template>
-  <BaseCard class="case-card">
+  <BaseCard
+    class="case-card"
+    :class="{ 'case-card--active': active }"
+    @click="handleClick"
+  >
     <!-- Текстовый контейнер -->
-    <header 
-      class="case-card__header"
-    >
-      <BaseHeading 
-        :level="gtLg ? 5 : null" 
+    <header class="case-card__header">
+      <BaseHeading
+        :level="gtLg ? 5 : null"
         :as="'h3'"
         :size="gtLg ? null : 'p1'"
         class="text-black-90"
       >
         {{ title }}
       </BaseHeading>
-      
-      <BaseText 
-        :as="'p'" 
-        size="p2" 
+
+      <BaseText
+        :as="'p'"
+        size="p2"
         class="text-black-50 min-h-[52px] text-description transition-all duration-300 ease-out"
       >
         {{ description }}
@@ -23,10 +25,13 @@
     </header>
 
     <!-- Контейнер изображения -->
-    <div class="case-card__media" :class="{ 'case-card__media-surface': !image }">
-      <img 
+    <div
+      class="case-card__media"
+      :class="{ 'case-card__media-surface': !image }"
+    >
+      <img
         v-if="image"
-        :src="image" 
+        :src="image"
         :alt="title"
         class="case-card__image"
         loading="lazy"
@@ -36,31 +41,46 @@
 </template>
 
 <script setup>
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
-import { BaseCard, BaseHeading, BaseText } from '../base'
+import { useRouter } from "vue-router";
+import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseCard, BaseHeading, BaseText } from "../base";
 
-const { gtLg } = useBreakpoints()
+const router = useRouter();
+const { gtLg } = useBreakpoints();
 
-defineProps({
+const props = defineProps({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
-    default: ''
+    default: "",
+  },
+  slug: {
+    type: String,
+    default: "",
+  },
+  active: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const handleClick = () => {
+  if (props.slug) {
+    router.push(`/cases/${props.slug}`);
   }
-})
+};
 </script>
 
 <style scoped>
-
 .case-card {
-  @apply gap-4 transition-all duration-300 ease-out;
+  @apply gap-4 transition-all duration-300 ease-out cursor-pointer;
 }
 
 .case-card__header {
@@ -78,24 +98,23 @@ defineProps({
 .case-card__image {
   @apply w-full h-full object-cover;
   @apply transition-transform duration-300 ease-out;
-  /* transform: translateY(16px); */
 }
 
 .case-card:hover {
-  cursor: pointer;
   gap: 0;
 }
 
-.case-card:hover .case-card__image {
-  transform: translateY(0);
+.case-card--active:hover {
+  gap: 1rem;
+  cursor: default;
 }
 
 .case-card:hover .text-description {
   @apply text-black-90;
 }
 
+.case-card--active,
 .case-card:active {
   @apply bg-white-80;
 }
-
 </style>

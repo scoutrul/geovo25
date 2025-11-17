@@ -8,7 +8,7 @@
   >
     <!-- Слот для иконки -->
     <slot name="icon">
-      <img src="/assets/icons/send.svg" alt="Send" class="w-5 h-5" />
+      <img src="/assets/icons/send.svg" alt="Send message" class="w-5 h-5" />
     </slot>
     <slot>{{ defaultText }}</slot>
   </BaseButton>

@@ -18,16 +18,14 @@
 
     <!-- Адаптивная сетка карточек -->
     <AdaptiveGrid is-cards as="ul" role="list">
-      <li
-        v-for="(caseItem, index) in cases"
-        :key="index"
-        class="list-none"
-      >
+      <li v-for="(caseItem, index) in cases" :key="index" class="list-none">
         <CaseCard
           class="min-w-[260px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px] flex-1"
           :title="caseItem.title"
           :description="caseItem.description"
           :image="caseItem.image"
+          :slug="caseItem.slug"
+          :active="activeCase === caseItem.slug"
         />
       </li>
     </AdaptiveGrid>
@@ -35,35 +33,39 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from '../base'
-import CaseCard from '../ui/CaseCard.vue'
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
+import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "../base";
+import CaseCard from "../ui/CaseCard.vue";
+import { useBreakpoints } from "../../composables/useBreakpoints.js";
 
-const { gtLg } = useBreakpoints()
+const { gtLg } = useBreakpoints();
 
 defineProps({
   title: {
     type: String,
-    default: ''
+    default: "",
   },
   subtitle: {
     type: String,
-    default: ''
+    default: "",
   },
   cases: {
     type: Array,
     required: true,
     validator: (cases) => {
-      return cases.every(caseItem =>
-        typeof caseItem.title === 'string' &&
-        typeof caseItem.description === 'string'
-      )
-    }
+      return cases.every(
+        (caseItem) =>
+          typeof caseItem.title === "string" &&
+          typeof caseItem.description === "string"
+      );
+    },
   },
   headingId: {
     type: String,
-    default: ''
-  }
-})
+    default: "",
+  },
+  activeCase: {
+    type: String,
+    default: "",
+  },
+});
 </script>
-
