@@ -1,22 +1,13 @@
 <template>
-  <BaseCard class="gap-4">
+  <BaseCard class="case-card">
     <!-- Текстовый контейнер -->
-    <div 
-      class="flex flex-col gap-2 sm:gap-4 p-6 sm:p-8 h-[166px]"
+    <header 
+      class="case-card__header"
     >
-      <!-- Заголовок карточки: H5 на desktop, P1 regular на mobile -->
-      <BaseText 
-        v-if="!gtLg"
-        :as="'h3'" 
-        size="p1" 
-        class="text-black-90"
-      >
-        {{ title }}
-      </BaseText>
       <BaseHeading 
-        v-else
-        :level="5" 
+        :level="gtLg ? 5 : null" 
         :as="'h3'"
+        :size="gtLg ? null : 'p1'"
         class="text-black-90"
       >
         {{ title }}
@@ -25,33 +16,28 @@
       <BaseText 
         :as="'p'" 
         size="p2" 
-        class="text-black-50 min-h-[52px]"
+        class="text-black-50 min-h-[52px] text-description transition-all duration-300 ease-out"
       >
         {{ description }}
       </BaseText>
-    </div>
+    </header>
 
     <!-- Контейнер изображения -->
-    <div 
-      class="flex-1 pl-6 sm:pl-8 overflow-hidden rounded-bl-2xl rounded-tl-2xl"
-    >
-      <div 
-        class="bg-white-80 w-full h-full rounded-tl-2xl flex items-center justify-center"
-      >
-        <img 
-          v-if="image"
-          :src="image" 
-          :alt="title"
-          class="w-full h-full object-cover rounded-tl-2xl"
-        />
-      </div>
+    <div class="case-card__media" :class="{ 'case-card__media-surface': !image }">
+      <img 
+        v-if="image"
+        :src="image" 
+        :alt="title"
+        class="case-card__image"
+        loading="lazy"
+      />
     </div>
   </BaseCard>
 </template>
 
 <script setup>
-import { BaseCard, BaseHeading, BaseText } from '../base'
 import { useBreakpoints } from '../../composables/useBreakpoints.js'
+import { BaseCard, BaseHeading, BaseText } from '../base'
 
 const { gtLg } = useBreakpoints()
 
@@ -71,3 +57,45 @@ defineProps({
 })
 </script>
 
+<style scoped>
+
+.case-card {
+  @apply gap-4 transition-all duration-300 ease-out;
+}
+
+.case-card__header {
+  @apply flex flex-col gap-2 sm:gap-4 p-6 sm:p-8 h-[166px];
+}
+
+.case-card__media {
+  @apply w-full h-full flex items-center justify-center overflow-hidden;
+}
+
+.case-card__media-surface {
+  @apply bg-black-70;
+}
+
+.case-card__image {
+  @apply w-full h-full object-cover;
+  @apply transition-transform duration-300 ease-out;
+  /* transform: translateY(16px); */
+}
+
+.case-card:hover {
+  cursor: pointer;
+  gap: 0;
+}
+
+.case-card:hover .case-card__image {
+  transform: translateY(0);
+}
+
+.case-card:hover .text-description {
+  @apply text-black-90;
+}
+
+.case-card:active {
+  @apply bg-white-80;
+}
+
+</style>
