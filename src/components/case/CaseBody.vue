@@ -64,11 +64,11 @@
 </template>
 
 <script setup>
-import { BaseHeading } from "../base";
-import CaseContentBlock from "../case/CaseContentBlock.vue";
-import CaseTestimonial from "../case/CaseTestimonial.vue";
-import CaseSummary from "./CaseSummary.vue";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseHeading } from "@/components/base/index.js";
+import CaseContentBlock from "@/components/case/CaseContentBlock.vue";
+import CaseTestimonial from "@/components/case/CaseTestimonial.vue";
+import CaseSummary from "@/components/case/CaseSummary.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg, gtXl } = useBreakpoints();
 

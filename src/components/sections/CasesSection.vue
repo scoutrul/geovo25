@@ -33,9 +33,9 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "../base";
-import CaseCard from "../ui/CaseCard.vue";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "@/components/base";
+import CaseCard from "@/components/ui/CaseCard.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg } = useBreakpoints();
 

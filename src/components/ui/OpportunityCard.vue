@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { BaseText } from "../base";
+import { BaseText } from "@/components/base";
 
 defineProps({
   category: {

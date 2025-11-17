@@ -1,0 +1,32 @@
+{
+  "title": "Кейсы",
+  "subtitle": "Некоторые из моих историй, которые точно не оставят равнодушным",
+  "items": [
+    {
+      "slug": "ag1",
+      "title": "AG1",
+      "description": "Раскрою секрет успеха в Sports Nutririon по подписке",
+      "image": "/assets/images/case-bg-1-05.jpg"
+    },
+    {
+      "slug": "adguard-wallet",
+      "title": "AdGuard Wallet",
+      "description": "Как защитить свои криптоактивы c помощью передовых подходов в Fintech",
+      "image": ""
+    },
+    {
+      "slug": "4real",
+      "title": "4Real",
+      "description": "iGaming, который действительно вовлекает",
+      "image": "/assets/images/case-bg-3-05.jpg"
+    },
+    {
+      "slug": "legaline",
+      "title": "Legaline",
+      "description": "eCommerce площадка в сфере Legal Law",
+      "image": ""
+    }
+  ]
+}
+
+

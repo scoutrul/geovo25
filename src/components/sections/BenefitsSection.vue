@@ -57,11 +57,11 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText } from "../base";
-import BenefitCard from "../ui/BenefitCard.vue";
-import DecorativeLine from "../ui/DecorativeLine.vue";
-import ContactButton from "../ui/ContactButton.vue";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseContainer, BaseHeading, BaseText } from "@/components/base";
+import BenefitCard from "@/components/ui/BenefitCard.vue";
+import DecorativeLine from "@/components/ui/DecorativeLine.vue";
+import ContactButton from "@/components/ui/ContactButton.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg, gtXl, ltXl, ltLg } = useBreakpoints();
 

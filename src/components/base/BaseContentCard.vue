@@ -35,8 +35,8 @@
 
 <script setup>
 import { computed, useSlots } from "vue";
-import { BaseCard, BaseText } from "../base";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseCard, BaseText } from "@/components/base";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtMd } = useBreakpoints();
 const slots = useSlots();

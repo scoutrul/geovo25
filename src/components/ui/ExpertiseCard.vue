@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
-import BaseContentCard from "../base/BaseContentCard.vue";
-import { BaseText } from "../base";
+import BaseContentCard from "@/components/base/BaseContentCard.vue";
+import { BaseText } from "@/components/base";
 const checkmark = "/assets/icons/checkmark.svg";
 
 defineProps({

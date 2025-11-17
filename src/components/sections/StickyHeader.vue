@@ -10,7 +10,11 @@
       :class="containerClasses"
     >
       <div class="flex items-center gap-6 xl:min-w-[322px]">
-        <div class="flex items-center shrink-0" :class="logoSizeClasses">
+        <div
+          class="flex items-center shrink-0 cursor-pointer"
+          :class="logoSizeClasses"
+          @click="goToHome"
+        >
           <img
             :src="logoMark"
             alt="Logo"
@@ -65,11 +69,14 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import BaseContainer from "../base/BaseContainer.vue";
-import ContactButton from "../ui/ContactButton.vue";
-import LanguageDropdown from "../ui/LanguageDropdown.vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
+import BaseContainer from "@/components/base/BaseContainer.vue";
+import ContactButton from "@/components/ui/ContactButton.vue";
+import LanguageDropdown from "@/components/ui/LanguageDropdown.vue";
 const logoMark = "/assets/icons/logo-mark.svg";
+
+const router = useRouter();
 
 const props = defineProps({
   slogan: {
@@ -79,10 +86,6 @@ const props = defineProps({
   navigationItems: {
     type: Array,
     default: () => [],
-  },
-  scrolled: {
-    type: Boolean,
-    default: false,
   },
   theme: {
     type: String,
@@ -104,6 +107,26 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["cta-click", "nav-click", "language-change"]);
+
+// Внутреннее состояние для отслеживания скролла
+const isScrolled = ref(false);
+
+// Обработчик скролла
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50;
+};
+
+// Добавляем слушатель при монтировании
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  // Проверяем начальное положение
+  handleScroll();
+});
+
+// Удаляем слушатель при размонтировании
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 
 const isDark = computed(() => props.theme === "dark");
 
@@ -143,8 +166,13 @@ const handleLanguageChange = (code) => {
   emit("language-change", code);
 };
 
+// Переход на главную страницу
+const goToHome = () => {
+  router.push({ name: "Home" });
+};
+
 // Классы для хедера
 const headerClasses = computed(() => {
-  return props.scrolled ? "shadow-sm" : "";
+  return isScrolled.value ? "shadow-sm" : "";
 });
 </script>

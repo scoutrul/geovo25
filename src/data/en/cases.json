@@ -1,0 +1,32 @@
+{
+  "title": "Cases",
+  "subtitle": "Some of my stories that definitely won't leave you indifferent",
+  "items": [
+    {
+      "slug": "ag1",
+      "title": "AG1",
+      "description": "I'll reveal the secret of success in Sports Nutrition by subscription",
+      "image": "/assets/images/case-bg-1-05.jpg"
+    },
+    {
+      "slug": "adguard-wallet",
+      "title": "AdGuard Wallet",
+      "description": "How to protect your crypto assets using advanced approaches in Fintech",
+      "image": ""
+    },
+    {
+      "slug": "4real",
+      "title": "4Real",
+      "description": "iGaming that really engages",
+      "image": "/assets/images/case-bg-3-05.jpg"
+    },
+    {
+      "slug": "legaline",
+      "title": "Legaline",
+      "description": "eCommerce platform in Legal Law",
+      "image": ""
+    }
+  ]
+}
+
+

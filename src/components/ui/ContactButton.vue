@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import BaseButton from "../base/BaseButton.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 
 const props = defineProps({
   size: {

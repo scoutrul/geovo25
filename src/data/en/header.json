@@ -1,0 +1,11 @@
+{
+  "slogan": "Growing together",
+  "navigationItems": ["View cases", "Download CV"],
+  "languages": [
+    { "code": "en", "label": "English" },
+    { "code": "ru", "label": "Русский" }
+  ],
+  "currentLanguage": "en"
+}
+
+

@@ -74,8 +74,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { BaseContainer, BaseHeading, BaseText } from "../base";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseContainer, BaseHeading, BaseText } from "@/components/base";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg, gtXl, gtMd, ltLg } = useBreakpoints();
 

@@ -1,0 +1,10 @@
+{
+  "slogan": "Растем вместе",
+  "navigationItems": ["Смотреть кейсы", "Скачать CV"],
+  "languages": [
+    { "code": "en", "label": "English" },
+    { "code": "ru", "label": "Русский" }
+  ],
+  "currentLanguage": "ru"
+}
+

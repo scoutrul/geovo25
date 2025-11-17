@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import BaseContentCard from "../base/BaseContentCard.vue";
+import BaseContentCard from "@/components/base/BaseContentCard.vue";
 
 defineProps({
   text: {

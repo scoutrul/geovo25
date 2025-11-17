@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
-import { BaseCard, BaseHeading, BaseText } from "../base";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
+import { BaseCard, BaseHeading, BaseText } from "@/components/base";
 
 const { gtLg } = useBreakpoints();
 

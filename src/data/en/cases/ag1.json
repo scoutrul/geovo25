@@ -1,0 +1,117 @@
+{
+  "id": "ag1",
+  "slug": "ag1",
+  "hero": {
+    "title": "AG1: How to increase average check in Health Nutrition by subscription",
+    "stats": [
+      {
+        "value": "+18.2%",
+        "description": "to average check on repeat purchase"
+      },
+      { "value": "+6.2%", "description": "LTV" }
+    ]
+  },
+  "meta": {
+    "items": [
+      { "value": "Athletic Greens", "label": "partner" },
+      { "value": "Portland, USA", "label": "location" },
+      { "value": "Senior Product Designer, UX/UI", "label": "roles" },
+      {
+        "value": "Brand and website update, advertising landing page builder, personal account on Shopify, CRM, admin panel for order management, 3 design systems",
+        "label": "what I did"
+      },
+      {
+        "value": "Shopify, Figma, Design systems, Autolayouts, Tokens, Variables, iOS guidelines, Animations, A/B testing, Edge cases",
+        "label": "stack"
+      }
+    ]
+  },
+  "overview": {
+    "title": "Product",
+    "sections": [
+      {
+        "text": "AG1 is a daily nutrient complex in subscription format. A person receives a set once a month that covers basic needs for vitamins, minerals and adaptogens. No complex schemes: one product, simple ritual and stable result"
+      },
+      {
+        "text": "Subscription is the heart of business. To make it work better, it's important to conveniently change order, subscription settings, control deliveries and understand benefits. My task is to simplify these processes, make funnel and interface effective, and along with this increase average check and LTV"
+      }
+    ]
+  },
+  "body": {
+    "sections": [
+      {
+        "title": "Problem",
+        "blocks": [
+          {
+            "type": "text-image",
+            "text": "AG1 was growing, but faced a typical problem of subscription services: users rarely changed plan, didn't buy additional products and almost didn't interact with personal account.\n\nReasons were simple: necessary functions were deeply hidden, benefits between plans were unclear, and interface didn't help make decision. As a result, average check for repeat purchase remained noticeably below expected.",
+            "image": ""
+          }
+        ]
+      },
+      {
+        "title": "Task",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Main tasks I took on:\nIncrease average check on repeat purchase (goal — +18.2%).\nIncrease LTV (goal — +6.2%).\nSimplify subscription management path.\nDo all this carefully, without aggressive pressure on user."
+          }
+        ]
+      },
+      {
+        "title": "Action",
+        "blocks": [
+          {
+            "type": "subsection",
+            "subtitle": "Understood how people behave in product",
+            "text": "Analyzed clicks, scrolls, scenarios. Found out where users slow down, what they don't find and which options they ignore.",
+            "image": ""
+          },
+          {
+            "type": "subsection",
+            "subtitle": "Rebuilt subscription page structure",
+            "text": "Made plan options and additional products more noticeable. Highlighted savings and choice logic.\nReduced number of steps, made process visually clearer.",
+            "image": ""
+          },
+          {
+            "type": "subsection",
+            "subtitle": "Added soft and honest upsell",
+            "text": "Not \"buy more!\", but calm hints:\n— show benefits when choosing 2 packs instead of 1;\n— offer travel-packs as additional product;\n— explain difference between options.\nHints appeared only where they really helped user make decision.",
+            "image": ""
+          },
+          {
+            "type": "subsection",
+            "subtitle": "Updated personal account and admin panel",
+            "text": "Simplified scenarios for changing delivery date, number of packages, order composition.\nMade product cards and modal windows clearer.",
+            "image": ""
+          },
+          {
+            "type": "subsection",
+            "subtitle": "Tested hypotheses",
+            "text": "Launched A/B tests, collected data, refined text hints, buttons and visual accents."
+          }
+        ]
+      },
+      {
+        "title": "Result",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "+18.2% to average check on repeat purchase.\n+6.2% to LTV thanks to improved subscription work.\nPeople became more active in changing plan and adding products.\nFewer questions to support — interface became simpler and clearer.\nPersonal account came alive: activity increased approximately 1.7 times."
+          },
+          {
+            "type": "testimonial",
+            "quote": "We now have an amazing design system",
+            "author": "Nick Bouse, Design Director AG1"
+          }
+        ]
+      }
+    ]
+  },
+  "nextCase": {
+    "slug": "adguard-wallet",
+    "title": "AdGuard Wallet"
+  }
+}
+
+

@@ -17,9 +17,9 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, AdaptiveGrid } from "../base";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
-import ComparisonTable from "../ui/ComparisonTable.vue";
+import { BaseContainer, BaseHeading, AdaptiveGrid } from "@/components/base";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
+import ComparisonTable from "@/components/ui/ComparisonTable.vue";
 
 const { gtLg, gtXl } = useBreakpoints();
 

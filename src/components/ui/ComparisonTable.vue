@@ -66,7 +66,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { BaseText } from "../base";
+import { BaseText } from "@/components/base";
 
 const props = defineProps({
   attributes: {

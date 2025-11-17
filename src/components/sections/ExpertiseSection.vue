@@ -29,9 +29,9 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "../base";
-import ExpertiseCard from "../ui/ExpertiseCard.vue";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "@/components/base";
+import ExpertiseCard from "@/components/ui/ExpertiseCard.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg } = useBreakpoints();
 

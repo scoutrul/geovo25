@@ -1,0 +1,63 @@
+{
+  "id": "legaline",
+  "slug": "legaline",
+  "hero": {
+    "title": "Legaline: eCommerce площадка в сфере Legal Law",
+    "stats": [
+      { "value": "TBD", "description": "метрика 1" },
+      { "value": "TBD", "description": "метрика 2" }
+    ]
+  },
+  "meta": {
+    "items": [
+      { "value": "Legaline", "label": "партнер" },
+      { "value": "TBD", "label": "локация" },
+      { "value": "TBD", "label": "роли" },
+      { "value": "TBD", "label": "что я сделал" },
+      { "value": "TBD", "label": "стек" }
+    ]
+  },
+  "overview": {
+    "title": "Продукт",
+    "sections": [
+      { "text": "Описание продукта Legaline..." }
+    ]
+  },
+  "body": {
+    "sections": [
+      {
+        "title": "Проблема",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Описание проблемы..."
+          }
+        ]
+      },
+      {
+        "title": "Решение",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Описание решения..."
+          }
+        ]
+      },
+      {
+        "title": "Результат",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Описание результатов..."
+          }
+        ]
+      }
+    ]
+  },
+  "nextCase": {
+    "slug": "ag1",
+    "title": "AG1"
+  }
+}
+
+

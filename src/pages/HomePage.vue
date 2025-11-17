@@ -1,31 +1,28 @@
 <template>
-  <!-- Sticky Header -->
-  <StickyHeader
-    :slogan="mockData.header.slogan"
-    :navigation-items="mockData.header.navigationItems"
-    :languages="mockData.header.languages"
-    :current-language="mockData.header.currentLanguage"
-    :scrolled="isScrolled"
-    @cta-click="handleCtaClick"
-    @nav-click="handleNavClick"
-    @language-change="handleLanguageChange"
-    :theme="headerTheme"
-    :button-text="mockData.hero.buttonText"
-  />
-  <main class="min-h-screen" role="main">
+  <PageLayout
+    :header-theme="headerTheme"
+    :footer-props="{
+      id: sectionAnchors.benefits.section,
+      'aria-labelledby': sectionAnchors.benefits.heading,
+      headingId: sectionAnchors.benefits.heading,
+    }"
+    @header-cta-click="handleCtaClick"
+    @header-nav-click="handleNavClick"
+    @footer-cta-click="handleCtaClick"
+  >
     <!-- Hero секция -->
     <HeroSection
       ref="heroSectionRef"
       :id="sectionAnchors.hero.section"
       :aria-labelledby="sectionAnchors.hero.heading"
       :heading-id="sectionAnchors.hero.heading"
-      :title="mockData.hero.title"
-      :subtitle="mockData.hero.subtitle"
-      :highlight-text="mockData.hero.highlightText"
-      :highlight-avatars="mockData.hero.highlightAvatars"
-      :button-text="mockData.hero.buttonText"
-      :stats="mockData.hero.stats"
-      :gallery="isMobile ? mockData.hero.galleryMobile : mockData.hero.gallery"
+      :title="content.hero.title"
+      :subtitle="content.hero.subtitle"
+      :highlight-text="content.hero.highlightText"
+      :highlight-avatars="content.hero.highlightAvatars"
+      :button-text="content.hero.buttonText"
+      :stats="content.hero.stats"
+      :gallery="isMobile ? content.hero.galleryMobile : content.hero.gallery"
       @cta-click="handleCtaClick"
       class="pt-[128px] md:pt-[160px] lg:pt-[192px] xl:pb-0"
     />
@@ -36,9 +33,9 @@
       :id="sectionAnchors.tools.section"
       :aria-labelledby="sectionAnchors.tools.heading"
       :heading-id="sectionAnchors.tools.heading"
-      :title="mockData.tools.title"
-      :content="mockData.tools.content"
-      :items="mockData.tools.items"
+      :title="content.tools.title"
+      :content="content.tools.content"
+      :items="content.tools.items"
     />
 
     <!-- Cases Секция -->
@@ -47,9 +44,9 @@
       :id="sectionAnchors.cases.section"
       :aria-labelledby="sectionAnchors.cases.heading"
       :heading-id="sectionAnchors.cases.heading"
-      :title="mockData.cases.title"
-      :subtitle="mockData.cases.subtitle"
-      :cases="mockData.cases.items"
+      :title="content.cases.title"
+      :subtitle="content.cases.subtitle"
+      :cases="content.cases.items"
     />
 
     <!-- How We Work Секция -->
@@ -58,8 +55,8 @@
       :id="sectionAnchors.howWeWork.section"
       :aria-labelledby="sectionAnchors.howWeWork.heading"
       :heading-id="sectionAnchors.howWeWork.heading"
-      :title="mockData.howWeWork.title"
-      :items="mockData.howWeWork.items"
+      :title="content.howWeWork.title"
+      :items="content.howWeWork.items"
     />
 
     <!-- Expertise Секция -->
@@ -68,9 +65,9 @@
       :id="sectionAnchors.expertise.section"
       :aria-labelledby="sectionAnchors.expertise.heading"
       :heading-id="sectionAnchors.expertise.heading"
-      :title="mockData.expertise.title"
-      :subtitle="mockData.expertise.subtitle"
-      :cards="mockData.expertise.items"
+      :title="content.expertise.title"
+      :subtitle="content.expertise.subtitle"
+      :cards="content.expertise.items"
     />
 
     <!-- Comparison Секция -->
@@ -79,9 +76,9 @@
       :id="sectionAnchors.comparison.section"
       :aria-labelledby="sectionAnchors.comparison.heading"
       :heading-id="sectionAnchors.comparison.heading"
-      :title="mockData.comparison.title"
-      :attributes="mockData.comparison.attributes"
-      :columns="mockData.comparison.columns"
+      :title="content.comparison.title"
+      :attributes="content.comparison.attributes"
+      :columns="content.comparison.columns"
     />
 
     <!-- Opportunities Секция -->
@@ -90,12 +87,12 @@
       :id="sectionAnchors.opportunities.section"
       :aria-labelledby="sectionAnchors.opportunities.heading"
       :heading-id="sectionAnchors.opportunities.heading"
-      :title="mockData.opportunities.title"
-      :subtitle="mockData.opportunities.subtitle"
-      :opportunities="mockData.opportunities.items"
-      :footer-text1="mockData.opportunities.footerText1"
-      :footer-text2="mockData.opportunities.footerText2"
-      :button-text="mockData.opportunities.buttonText"
+      :title="content.opportunities.title"
+      :subtitle="content.opportunities.subtitle"
+      :opportunities="content.opportunities.items"
+      :footer-text1="content.opportunities.footerText1"
+      :footer-text2="content.opportunities.footerText2"
+      :button-text="content.opportunities.buttonText"
       @figma-click="handleFigmaClick"
     />
 
@@ -105,9 +102,9 @@
       :id="sectionAnchors.reviews.section"
       :aria-labelledby="sectionAnchors.reviews.heading"
       :heading-id="sectionAnchors.reviews.heading"
-      :title="mockData.reviews.title"
-      :subtitle="mockData.reviews.subtitle"
-      :reviews="mockData.reviews.items"
+      :title="content.reviews.title"
+      :subtitle="content.reviews.subtitle"
+      :reviews="content.reviews.items"
     />
 
     <!-- FAQ Секция -->
@@ -116,49 +113,36 @@
       :id="sectionAnchors.faq.section"
       :aria-labelledby="sectionAnchors.faq.heading"
       :heading-id="sectionAnchors.faq.heading"
-      :title="mockData.faq.title"
-      :faq-items="mockData.faq.items"
+      :title="content.faq.title"
+      :faq-items="content.faq.items"
     />
-
-    <!-- Benefits Секция -->
-    <BenefitsSection
-      ref="benefitsSectionRef"
-      :id="sectionAnchors.benefits.section"
-      :aria-labelledby="sectionAnchors.benefits.heading"
-      :heading-id="sectionAnchors.benefits.heading"
-      :title="mockData.benefits.title"
-      :benefits="mockData.benefits.items"
-      :cta-text="mockData.benefits.ctaText"
-      :cta-button-text="mockData.benefits.ctaButtonText"
-      @cta-click="handleCtaClick"
-    />
-  </main>
+  </PageLayout>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import FaqSection from "../components/sections/FaqSection.vue";
-import HeroSection from "../components/sections/HeroSection.vue";
-import HowWeWorkSection from "../components/sections/HowWeWorkSection.vue";
-import ExpertiseSection from "../components/sections/ExpertiseSection.vue";
-import CasesSection from "../components/sections/CasesSection.vue";
-import OpportunitiesSection from "../components/sections/OpportunitiesSection.vue";
-import ReviewsSection from "../components/sections/ReviewsSection.vue";
-import BenefitsSection from "../components/sections/BenefitsSection.vue";
-import ToolsSection from "../components/sections/ToolsSection.vue";
-import ComparisonSection from "../components/sections/ComparisonSection.vue";
-import StickyHeader from "../components/sections/StickyHeader.vue";
+import PageLayout from "@/layouts/PageLayout.vue";
+import FaqSection from "@/components/sections/FaqSection.vue";
+import HeroSection from "@/components/sections/HeroSection.vue";
+import HowWeWorkSection from "@/components/sections/HowWeWorkSection.vue";
+import ExpertiseSection from "@/components/sections/ExpertiseSection.vue";
+import CasesSection from "@/components/sections/CasesSection.vue";
+import OpportunitiesSection from "@/components/sections/OpportunitiesSection.vue";
+import ReviewsSection from "@/components/sections/ReviewsSection.vue";
+import ToolsSection from "@/components/sections/ToolsSection.vue";
+import ComparisonSection from "@/components/sections/ComparisonSection.vue";
 
-import { useBreakpoints } from "../composables/useBreakpoints.js";
-import { useSectionThemeTracking } from "../composables/useSectionThemeTracking.js";
-import { useMediaPaths } from "../composables/useMediaPaths.js";
-
-import dataRu from "../data.ru.json";
-import dataEn from "../data.en.json";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
+import { useSectionThemeTracking } from "@/composables/useSectionThemeTracking.js";
+import { useContentStore } from "@/stores";
 
 const { isMobile } = useBreakpoints();
+const contentStore = useContentStore();
+
+// Получаем данные из store
+const content = computed(() => contentStore.currentData);
 
 const sectionAnchors = Object.freeze({
   hero: { section: "section-hero", heading: "section-hero-heading" },
@@ -191,26 +175,6 @@ const sectionAnchors = Object.freeze({
 // Регистрируем плагин ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Функция для загрузки данных в зависимости от языка
-const loadDataByLanguage = (lang) => {
-  return lang === "en" ? dataEn : dataRu;
-};
-
-// Инициализируем данные с русским языком по умолчанию
-const initialData = loadDataByLanguage("ru");
-const mockData = ref(useMediaPaths(initialData));
-
-// Текущий язык (берем из данных)
-const currentLanguage = ref(mockData.value.header.currentLanguage);
-
-// Функция для обновления данных при смене языка
-const updateDataByLanguage = (lang) => {
-  const newData = loadDataByLanguage(lang);
-  const processedData = useMediaPaths(newData);
-  // Обновляем все свойства mockData, используя Object.assign для правильной работы с реактивностью
-  Object.assign(mockData.value, processedData);
-};
-
 const handleCtaClick = () => {
   window.open("http://t.me/meisdigital", "_blank");
 };
@@ -232,7 +196,6 @@ const expertiseSectionRef = ref(null);
 const opportunitiesSectionRef = ref(null);
 const reviewsSectionRef = ref(null);
 const faqSectionRef = ref(null);
-const benefitsSectionRef = ref(null);
 
 // Используем композбл для отслеживания тем секций
 const { isScrolled, headerTheme } = useSectionThemeTracking({
@@ -245,16 +208,9 @@ const { isScrolled, headerTheme } = useSectionThemeTracking({
   opportunitiesSectionRef,
   reviewsSectionRef,
   faqSectionRef,
-  benefitsSectionRef,
 });
 
 const handleNavClick = (item) => {
   console.log("Nav clicked:", item);
-};
-
-const handleLanguageChange = (code) => {
-  console.log("Language changed to:", code);
-  currentLanguage.value = code;
-  updateDataByLanguage(code);
 };
 </script>

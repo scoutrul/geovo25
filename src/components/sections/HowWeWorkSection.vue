@@ -26,9 +26,9 @@
 
 <script setup>
 import { computed } from "vue";
-import { BaseContainer, BaseHeading } from "../base";
-import WorkCard from "../ui/WorkCard.vue";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseContainer, BaseHeading } from "@/components/base";
+import WorkCard from "@/components/ui/WorkCard.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg, gtXl } = useBreakpoints();
 

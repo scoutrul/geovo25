@@ -58,7 +58,7 @@ import {
   nextTick,
 } from "vue";
 import { gsap } from "gsap";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtXl, currentBreakpoint, deviceType } = useBreakpoints();
 

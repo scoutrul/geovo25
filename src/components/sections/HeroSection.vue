@@ -39,13 +39,13 @@
 </template>
 
 <script setup>
-import HeroStats from "../ui/HeroStats.vue";
+import HeroStats from "@/components/ui/HeroStats.vue";
 import { computed } from "vue";
-import { BaseContainer, BaseHeading, BaseText } from "../base";
-import GalleryPlaceholder from "../ui/GalleryPlaceholder.vue";
-import AvatarStack from "../ui/AvatarStack.vue";
-import ContactButton from "../ui/ContactButton.vue";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseContainer, BaseHeading, BaseText } from "@/components/base";
+import GalleryPlaceholder from "@/components/ui/GalleryPlaceholder.vue";
+import AvatarStack from "@/components/ui/AvatarStack.vue";
+import ContactButton from "@/components/ui/ContactButton.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtXl } = useBreakpoints();
 

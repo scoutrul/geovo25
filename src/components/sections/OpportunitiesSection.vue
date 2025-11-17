@@ -122,9 +122,9 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, BaseButton } from "../base";
-import OpportunityCard from "../ui/OpportunityCard.vue";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import { BaseContainer, BaseHeading, BaseText, BaseButton } from "@/components/base";
+import OpportunityCard from "@/components/ui/OpportunityCard.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 import { computed } from "vue";
 const logoMark = "/assets/icons/logo-mark.svg";
 const figmaIcon = "/assets/icons/figma.svg";

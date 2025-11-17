@@ -42,8 +42,8 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { useBreakpoints } from "../../composables/useBreakpoints.js";
-import { BaseCard, BaseHeading, BaseText } from "../base";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
+import { BaseCard, BaseHeading, BaseText } from "@/components/base";
 
 const router = useRouter();
 const { gtLg } = useBreakpoints();

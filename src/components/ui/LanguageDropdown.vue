@@ -54,7 +54,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
-import BaseButton from "../base/BaseButton.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 const translateIcon = "/assets/icons/translate.svg";
 const checkIcon = "/assets/icons/check.svg";
 

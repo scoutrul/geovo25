@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { BaseHeading, BaseText } from "../base";
+import { BaseHeading, BaseText } from "@/components/base";
 
 defineProps({
   block: {

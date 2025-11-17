@@ -31,7 +31,7 @@
 import { ref, watch, nextTick, onMounted, computed } from "vue";
 import { gsap } from "gsap";
 import { useResizeObserver } from "@vueuse/core";
-import { BaseText } from "../base";
+import { BaseText } from "@/components/base";
 import { useBreakpoints } from "@/composables/useBreakpoints";
 
 const props = defineProps({

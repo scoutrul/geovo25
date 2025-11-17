@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { BaseCard, BaseText } from "../base";
+import { BaseCard, BaseText } from "@/components/base";
 
 defineProps({
   text: {

@@ -28,8 +28,8 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading } from "../base";
-import AccordionItem from "../ui/AccordionItem.vue";
+import { BaseContainer, BaseHeading } from "@/components/base";
+import AccordionItem from "@/components/ui/AccordionItem.vue";
 import { useAccordion } from "@/composables/useAccordion";
 
 const props = defineProps({

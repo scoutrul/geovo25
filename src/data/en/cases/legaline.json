@@ -1,0 +1,63 @@
+{
+  "id": "legaline",
+  "slug": "legaline",
+  "hero": {
+    "title": "Legaline: eCommerce platform in Legal Law",
+    "stats": [
+      { "value": "TBD", "description": "metric 1" },
+      { "value": "TBD", "description": "metric 2" }
+    ]
+  },
+  "meta": {
+    "items": [
+      { "value": "Legaline", "label": "partner" },
+      { "value": "TBD", "label": "location" },
+      { "value": "TBD", "label": "roles" },
+      { "value": "TBD", "label": "what I did" },
+      { "value": "TBD", "label": "stack" }
+    ]
+  },
+  "overview": {
+    "title": "Product",
+    "sections": [
+      { "text": "Legaline product description..." }
+    ]
+  },
+  "body": {
+    "sections": [
+      {
+        "title": "Problem",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Problem description..."
+          }
+        ]
+      },
+      {
+        "title": "Solution",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Solution description..."
+          }
+        ]
+      },
+      {
+        "title": "Result",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Results description..."
+          }
+        ]
+      }
+    ]
+  },
+  "nextCase": {
+    "slug": "ag1",
+    "title": "AG1"
+  }
+}
+
+
