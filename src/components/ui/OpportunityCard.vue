@@ -1,41 +1,30 @@
 <template>
   <div class="flex flex-col gap-6">
     <!-- Chip/Badge -->
-    <div 
-      class="border border-black-90/5 rounded-full px-6 py-3 w-fit"
-    >
-      <BaseText 
-        :as="'span'" 
-        size="p1" 
-        class="text-black-90"
-      >
+    <div class="border border-black-90/5 rounded-full px-6 py-3 w-fit">
+      <BaseText :as="'span'" size="p1" class="text-black-90">
         {{ category }}
       </BaseText>
     </div>
 
     <!-- Description -->
-    <BaseText 
-      :as="'p'" 
-      size="p2" 
-      class="text-black-50 lg:whitespace-pre-wrap"
-    >
+    <BaseText :as="'p'" size="p2" class="text-black-50 lg:whitespace-pre-wrap">
       {{ description }}
     </BaseText>
   </div>
 </template>
 
 <script setup>
-import { BaseText } from '../base'
+import { BaseText } from "../base";
 
 defineProps({
   category: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>
-

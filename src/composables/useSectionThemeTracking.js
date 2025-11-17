@@ -120,4 +120,3 @@ export function useSectionThemeTracking(sectionRefs) {
     headerTheme,
   };
 }
-

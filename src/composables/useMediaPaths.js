@@ -16,23 +16,23 @@ function resolveAssetPath(path) {
   ) {
     return path;
   }
-  
+
   // Если путь начинается с /, значит это уже абсолютный путь из public
   // Просто возвращаем его как есть
   if (path.startsWith("/")) {
     return path;
   }
-  
+
   // Если путь начинается с ./assets/, преобразуем в /assets/
   if (path.startsWith("./assets/")) {
     return path.replace("./", "/");
   }
-  
+
   // Если путь начинается с assets/, добавляем /
   if (path.startsWith("assets/")) {
     return `/${path}`;
   }
-  
+
   // В остальных случаях возвращаем как есть
   return path;
 }
@@ -68,4 +68,3 @@ export function useMediaPaths(data) {
   const processedData = processMediaPaths(data);
   return reactive(processedData);
 }
-

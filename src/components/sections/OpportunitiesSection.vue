@@ -4,7 +4,7 @@
     <div class="flex flex-col gap-4 mb-16 xl:mb-24">
       <BaseHeading
         :level="gtLg ? 3 : 4"
-        :as="gtLg? 'h2' : 'h3'"
+        :as="gtLg ? 'h2' : 'h3'"
         class="w-full text-black-90"
         :id="headingId || undefined"
       >
@@ -17,13 +17,7 @@
     </div>
 
     <!-- Центральная часть: Flowchart -->
-    <div
-      :class="[
-        'relative mb-16 xl:mb-24',
-        flowHeightClass,
-        'w-full',
-      ]"
-    >
+    <div :class="['relative mb-16 xl:mb-24', flowHeightClass, 'w-full']">
       <!-- Logo в центре (только на desktop) -->
       <div
         v-if="gtLg"
@@ -64,48 +58,47 @@
       </div>
 
       <!-- Карточки -->
-       <div>
-            <!-- Desktop: абсолютное позиционирование -->
-            <template v-if="gtLg">
-                <OpportunityCard
-                  v-for="(opportunity, index) in opportunities"
-                  :key="index"
-                  class="absolute w-[320px] top-1/2 left-1/2"
-                  :style="getCenteredTransform(index)"
-                  :category="opportunity.category"
-                  :description="opportunity.description"
-                />
-            </template>
-            
-            <!-- Mobile/Tablet: horizontal scroll -->
-            <template v-else>
-                <div class="flex gap-4 overflow-x-auto pb-4 md:px-10 -mx-4 md:-mx-10 lg:-mx-16 px-4">
-                    <OpportunityCard
-                    v-for="(opportunity, index) in opportunities"
-                    :key="index"
-                    class="w-[260px] flex-shrink-0"
-                    :category="opportunity.category"
-                    :description="opportunity.description"
-                    />
-                </div>
-            </template>
-        </div>
+      <div>
+        <!-- Desktop: абсолютное позиционирование -->
+        <template v-if="gtLg">
+          <OpportunityCard
+            v-for="(opportunity, index) in opportunities"
+            :key="index"
+            class="absolute w-[320px] top-1/2 left-1/2"
+            :style="getCenteredTransform(index)"
+            :category="opportunity.category"
+            :description="opportunity.description"
+          />
+        </template>
+
+        <!-- Mobile/Tablet: horizontal scroll -->
+        <template v-else>
+          <div
+            class="flex gap-4 overflow-x-auto pb-4 md:px-10 -mx-4 md:-mx-10 lg:-mx-16 px-4"
+          >
+            <OpportunityCard
+              v-for="(opportunity, index) in opportunities"
+              :key="index"
+              class="w-[260px] flex-shrink-0"
+              :category="opportunity.category"
+              :description="opportunity.description"
+            />
+          </div>
+        </template>
+      </div>
     </div>
 
     <!-- Footer -->
-    <div class="flex flex-col gap-8 pt-16 xl:pt-32 border-t border-black-90/5 max-w-[944px] lg:max-w-[780px] m-auto" >
+    <div
+      class="flex flex-col gap-8 pt-16 xl:pt-32 border-t border-black-90/5 max-w-[944px] lg:max-w-[780px] m-auto"
+    >
       <!-- Двухколоночный контент -->
       <!-- Figma icon -->
       <img :src="figmaIcon" alt="Figma" width="54" height="80" />
       <div :class="['flex gap-8']">
         <!-- Колонка 1: Figma icon + текст -->
         <div class="flex-1 flex flex-col gap-8">
-
-          <BaseText
-            :as="'p'"
-            size="p1"
-            class="text-black-90"
-          >
+          <BaseText :as="'p'" size="p1" class="text-black-90">
             {{ footerText1 }}
           </BaseText>
         </div>
@@ -189,28 +182,31 @@ const flowHeightClass = computed(() => {
 // Смещения от центра (dx, dy) в пикселях, соответствующие макету
 
 const xlOffsets = [
-  { dx: -507, dy: -321 }, 
-  { dx: -645, dy: -42 },  
-  { dx: 82,   dy: -391 }, 
-  { dx: 287,  dy: -145 }, 
-  { dx: 82,   dy: 141 },  
-  { dx: -188, dy: 237 },  
+  { dx: -507, dy: -321 },
+  { dx: -645, dy: -42 },
+  { dx: 82, dy: -391 },
+  { dx: 287, dy: -145 },
+  { dx: 82, dy: 141 },
+  { dx: -188, dy: 237 },
 ];
 
 const lgOffsets = [
-  { dx: -472, dy: -309 }, 
-  { dx: -472, dy: -81 },  
-  { dx: -25,  dy: -379 }, 
-  { dx: 152,  dy: -133 }, 
-  { dx: 76,   dy: 104 },  
-  { dx: -324, dy: 225 },  
+  { dx: -472, dy: -309 },
+  { dx: -472, dy: -81 },
+  { dx: -25, dy: -379 },
+  { dx: 152, dy: -133 },
+  { dx: 76, dy: 104 },
+  { dx: -324, dy: 225 },
 ];
 
 // Стиль transform с calc от центра
 const getCenteredTransform = (index) => {
-  const { dx, dy } = (gtXl.value ? xlOffsets : lgOffsets)[index] || { dx: 0, dy: 0 };
+  const { dx, dy } = (gtXl.value ? xlOffsets : lgOffsets)[index] || {
+    dx: 0,
+    dy: 0,
+  };
   return {
-    transform: `translateX(calc(-50% + ${dx+200}px)) translateY(calc(-50% + ${dy+100}px))`,
+    transform: `translateX(calc(-50% + ${dx + 200}px)) translateY(calc(-50% + ${dy + 100}px))`,
   };
 };
 </script>

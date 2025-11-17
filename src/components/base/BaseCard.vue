@@ -9,22 +9,21 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 const props = defineProps({
   variant: {
     type: String,
-    default: 'white',
-    validator: (value) => ['white', 'transparent'].includes(value)
+    default: "white",
+    validator: (value) => ["white", "transparent"].includes(value),
   },
   as: {
     type: String,
-    default: 'article'
-  }
-})
+    default: "article",
+  },
+});
 
 const variantClass = computed(() => {
-  return props.variant === 'transparent' ? 'bg-transparent' : 'bg-white-100'
-})
+  return props.variant === "transparent" ? "bg-transparent" : "bg-white-100";
+});
 </script>
-

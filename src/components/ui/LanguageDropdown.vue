@@ -8,9 +8,9 @@
       :class="buttonThemeClasses"
       @click="toggleDropdown"
     >
-      <img 
-        :src="translateIcon" 
-        alt="Translate" 
+      <img
+        :src="translateIcon"
+        alt="Translate"
         class="w-5 h-5"
         :class="iconColorClass"
       />
@@ -53,16 +53,16 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import BaseButton from '../base/BaseButton.vue'
-const translateIcon = '/assets/icons/translate.svg'
-const checkIcon = '/assets/icons/check.svg'
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import BaseButton from "../base/BaseButton.vue";
+const translateIcon = "/assets/icons/translate.svg";
+const checkIcon = "/assets/icons/check.svg";
 
 const props = defineProps({
   theme: {
     type: String,
-    default: 'dark',
-    validator: (value) => ['light', 'dark'].includes(value)
+    default: "dark",
+    validator: (value) => ["light", "dark"].includes(value),
   },
   languages: {
     type: Array,
@@ -70,91 +70,82 @@ const props = defineProps({
   },
   modelValue: {
     type: String,
-    default: 'ru'
-  }
-})
+    default: "ru",
+  },
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 
-const isOpen = ref(false)
-const dropdownRef = ref(null)
+const isOpen = ref(false);
+const dropdownRef = ref(null);
 
-const isDark = computed(() => props.theme === 'dark')
+const isDark = computed(() => props.theme === "dark");
 
 // Текущий выбранный язык
 const currentLanguage = computed(() => {
-  const lang = props.languages.find(l => l.code === props.modelValue)
-  return lang ? lang.label : props.languages[0].label
-})
+  const lang = props.languages.find((l) => l.code === props.modelValue);
+  return lang ? lang.label : props.languages[0].label;
+});
 
 // Классы для кнопки (состояния по дизайн-системе)
 const buttonThemeClasses = computed(() => {
   return isDark.value
-    ? 'text-white-100 disabled:!text-white-80'
-    : 'text-black-90 hover:!bg-black-90/5 active:!bg-black-90/10 focus-visible:!outline-black-70 disabled:!text-black-70'
-})
+    ? "text-white-100 disabled:!text-white-80"
+    : "text-black-90 hover:!bg-black-90/5 active:!bg-black-90/10 focus-visible:!outline-black-70 disabled:!text-black-70";
+});
 
 // Классы для иконки translate
 const iconColorClass = computed(() => {
-  return isDark.value
-    ? 'brightness-0 invert'
-    : ''
-})
+  return isDark.value ? "brightness-0 invert" : "";
+});
 
 // Классы для дропдауна
 const dropdownClasses = computed(() => {
-  return isDark.value
-    ? 'bg-black-90-alpha'
-    : 'bg-white-100/80'
-})
+  return isDark.value ? "bg-black-90-alpha" : "bg-white-100/80";
+});
 
 // Классы для текста
 const textColorClass = computed(() => {
-  return isDark.value
-    ? 'text-white-90'
-    : 'text-black-90'
-})
+  return isDark.value ? "text-white-90" : "text-black-90";
+});
 
 // Классы для иконки галочки
 const checkIconColorClass = computed(() => {
-  return isDark.value
-    ? 'brightness-0 invert'
-    : ''
-})
+  return isDark.value ? "brightness-0 invert" : "";
+});
 
 // Классы для элемента языка
 const getLanguageItemClasses = (lang) => {
   const baseClasses = isDark.value
-    ? 'hover:bg-white-100/10'
-    : 'hover:bg-black-90/5'
-  
-  return baseClasses
-}
+    ? "hover:bg-white-100/10"
+    : "hover:bg-black-90/5";
+
+  return baseClasses;
+};
 
 // Переключение дропдауна
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
-}
+  isOpen.value = !isOpen.value;
+};
 
 // Выбор языка
 const selectLanguage = (lang) => {
-  emit('update:modelValue', lang.code)
-  isOpen.value = false
-}
+  emit("update:modelValue", lang.code);
+  isOpen.value = false;
+};
 
 // Закрытие при клике вне компонента
 const handleClickOutside = (event) => {
   if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
-    isOpen.value = false
+    isOpen.value = false;
   }
-}
+};
 
 onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
+  document.addEventListener("click", handleClickOutside);
+});
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
-

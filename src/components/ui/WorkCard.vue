@@ -7,19 +7,11 @@
 
     <!-- Контент -->
     <div class="flex flex-col gap-2 w-full">
-      <BaseText 
-        :as="'h3'" 
-        size="p1" 
-        class="text-black-90"
-      >
+      <BaseText :as="'h3'" size="p1" class="text-black-90">
         {{ title }}
       </BaseText>
 
-      <BaseText 
-        :as="'p'" 
-        size="p2" 
-        class="text-black-50"
-      >
+      <BaseText :as="'p'" size="p2" class="text-black-50">
         {{ description }}
       </BaseText>
     </div>
@@ -27,21 +19,20 @@
 </template>
 
 <script setup>
-import { BaseCard, BaseText } from '../base'
+import { BaseCard, BaseText } from "../base";
 
 defineProps({
   icon: {
     type: String,
-    default: ''
+    default: "",
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>
-

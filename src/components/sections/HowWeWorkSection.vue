@@ -1,12 +1,9 @@
 <template>
-  <BaseContainer 
-    :as="'section'"
-    bg="white"
-  >
+  <BaseContainer :as="'section'" bg="white">
     <!-- Заголовок -->
-    <BaseHeading 
-      :level="gtLg ? 3 : 4" 
-      :as="gtLg ? 'h3' : 'h4'" 
+    <BaseHeading
+      :level="gtLg ? 3 : 4"
+      :as="gtLg ? 'h3' : 'h4'"
       class="w-full text-black-90 mb-16 xl:mb-24"
       :class="gtXl ? 'text-center' : 'text-left'"
       :id="headingId || undefined"
@@ -16,11 +13,7 @@
 
     <!-- Адаптивная сетка карточек -->
     <ul :class="gridClasses" role="list">
-      <li
-        v-for="(item, index) in items"
-        :key="index"
-        class="list-none"
-      >
+      <li v-for="(item, index) in items" :key="index" class="list-none">
         <WorkCard
           :icon="item.icon"
           :title="item.title"
@@ -32,46 +25,45 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { BaseContainer, BaseHeading } from '../base'
-import WorkCard from '../ui/WorkCard.vue'
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
+import { computed } from "vue";
+import { BaseContainer, BaseHeading } from "../base";
+import WorkCard from "../ui/WorkCard.vue";
+import { useBreakpoints } from "../../composables/useBreakpoints.js";
 
-const { gtLg, gtXl } = useBreakpoints()
+const { gtLg, gtXl } = useBreakpoints();
 
 const props = defineProps({
   title: {
     type: String,
-    default: 'Как мы будем работать'
+    default: "Как мы будем работать",
   },
   items: {
     type: Array,
     required: true,
     validator: (items) => {
-      return items.every(item => 
-        typeof item.title === 'string' && 
-        typeof item.description === 'string'
-      )
-    }
+      return items.every(
+        (item) =>
+          typeof item.title === "string" && typeof item.description === "string"
+      );
+    },
   },
   headingId: {
     type: String,
-    default: ''
+    default: "",
   },
-})
+});
 
-const gridClasses = computed(() => {  
+const gridClasses = computed(() => {
   // Базовые классы сетки
-  const baseClasses = 'grid w-full gap-x-4 gap-y-16 md:gap-x-6 xl:gap-x-8 '
-  
+  const baseClasses = "grid w-full gap-x-4 gap-y-16 md:gap-x-6 xl:gap-x-8 ";
+
   // Адаптивные колонки
   const columnClasses = [
-    `grid-cols-2`,       
-    `md:grid-cols-3`,       
-    `lg:grid-cols-4`     
-  ].join(' ')
-  
-  return `${baseClasses} ${columnClasses}`
-})
-</script>
+    `grid-cols-2`,
+    `md:grid-cols-3`,
+    `lg:grid-cols-4`,
+  ].join(" ");
 
+  return `${baseClasses} ${columnClasses}`;
+});
+</script>

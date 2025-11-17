@@ -20,9 +20,7 @@
 defineProps({
   avatars: {
     type: Array,
-    default: () => []
-  }
-})
+    default: () => [],
+  },
+});
 </script>
-
-

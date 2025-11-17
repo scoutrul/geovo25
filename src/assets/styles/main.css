@@ -1,6 +1,6 @@
 /* Подключение шрифта TT Neoris Trial */
 /* TODO: Добавить шрифтовые файлы в проект */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 /* Подключение Tailwind CSS */
 @tailwind base;
@@ -36,9 +36,8 @@
   .content-stretch {
     align-content: stretch;
   }
-  
+
   .content-start {
     align-content: flex-start;
   }
 }
-

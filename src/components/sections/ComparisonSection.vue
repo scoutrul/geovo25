@@ -17,16 +17,16 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, AdaptiveGrid } from '../base'
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
-import ComparisonTable from '../ui/ComparisonTable.vue'
+import { BaseContainer, BaseHeading, AdaptiveGrid } from "../base";
+import { useBreakpoints } from "../../composables/useBreakpoints.js";
+import ComparisonTable from "../ui/ComparisonTable.vue";
 
-const { gtLg, gtXl } = useBreakpoints()
+const { gtLg, gtXl } = useBreakpoints();
 
 defineProps({
   title: {
     type: String,
-    default: '',
+    default: "",
   },
   attributes: {
     type: Array,
@@ -38,9 +38,7 @@ defineProps({
   },
   headingId: {
     type: String,
-    default: '',
-  }
-})
+    default: "",
+  },
+});
 </script>
-
-

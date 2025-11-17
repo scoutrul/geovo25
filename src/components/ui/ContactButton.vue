@@ -1,6 +1,6 @@
 <template>
-  <BaseButton 
-    variant="primary" 
+  <BaseButton
+    variant="primary"
     :disabled="disabled"
     :loading="loading"
     @click="handleClick"
@@ -8,42 +8,37 @@
   >
     <!-- Слот для иконки -->
     <slot name="icon">
-      <img 
-        src="/assets/icons/send.svg" 
-        alt="Send" 
-        class="w-5 h-5"
-      />
+      <img src="/assets/icons/send.svg" alt="Send" class="w-5 h-5" />
     </slot>
     <slot>{{ defaultText }}</slot>
   </BaseButton>
 </template>
 
 <script setup>
-import BaseButton from '../base/BaseButton.vue'
+import BaseButton from "../base/BaseButton.vue";
 
 const props = defineProps({
   size: {
     type: String,
-    default: 'md',
+    default: "md",
   },
   disabled: {
     type: Boolean,
-    default: false
+    default: false,
   },
   loading: {
     type: Boolean,
-    default: false
+    default: false,
   },
   defaultText: {
     type: String,
-    default: ''
+    default: "",
   },
-})
+});
 
-const emit = defineEmits(['click'])
+const emit = defineEmits(["click"]);
 
 const handleClick = (event) => {
-  emit('click', event)
-}
+  emit("click", event);
+};
 </script>
-

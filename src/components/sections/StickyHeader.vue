@@ -9,24 +9,23 @@
       class="w-full backdrop-blur-[20px] rounded-lg md:rounded-xl transition-all duration-200 flex items-center justify-between md:justify-start gap-6 p-3 md:px-6 md:gap-10"
       :class="containerClasses"
     >
-
-      <div class="flex items-center gap-6 xl:min-w-[322px]" >
+      <div class="flex items-center gap-6 xl:min-w-[322px]">
         <div class="flex items-center shrink-0" :class="logoSizeClasses">
           <img
-          :src="logoMark"
-          alt="Logo"
-          class="w-full h-full object-contain"
-          :class="logoColorClass"
-        />
+            :src="logoMark"
+            alt="Logo"
+            class="w-full h-full object-contain"
+            :class="logoColorClass"
+          />
+        </div>
+
+        <div class="hidden xl:flex items-center gap-6">
+          <p class="text-p2 whitespace-nowrap" :class="sloganColorClass">
+            {{ slogan }}
+          </p>
+        </div>
       </div>
-      
-      <div class="hidden xl:flex items-center gap-6">
-        <p class="text-p2 whitespace-nowrap" :class="sloganColorClass">
-          {{ slogan }}
-        </p>
-      </div>
-    </div>
-      
+
       <nav
         class="hidden md:flex xl:flex-1 justify-center mr-auto"
         aria-label="Основная навигация"
@@ -52,10 +51,10 @@
       <div class="flex items-center gap-6">
         <div class="hidden lg:block">
           <LanguageDropdown
-          :theme="theme"
-          :languages="languages"
-          :model-value="currentLanguage"
-          @update:model-value="handleLanguageChange"
+            :theme="theme"
+            :languages="languages"
+            :model-value="currentLanguage"
+            @update:model-value="handleLanguageChange"
           />
         </div>
         <!-- CTA -->
@@ -104,11 +103,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits([
-  "cta-click",
-  "nav-click",
-  "language-change",
-]);
+const emit = defineEmits(["cta-click", "nav-click", "language-change"]);
 
 const isDark = computed(() => props.theme === "dark");
 
@@ -135,7 +130,6 @@ const sloganColorClass = computed(() => {
     ? "text-black-70" // #cdcdcd для темной темы
     : "text-black-50"; // #5c5c5c для светлой темы
 });
-
 
 // Классы для ссылок навигации
 const navLinkColorClass = computed(() => {

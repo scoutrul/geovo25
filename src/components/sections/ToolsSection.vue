@@ -14,24 +14,26 @@
         <div class="h-px w-full bg-black-10/60" />
 
         <div class="flex flex-col gap-6 lg:gap-8 mb-24 xl:mb-32">
+          <BaseText
+            v-if="content.question"
+            :as="'p'"
+            size="p1"
+            class="text-black-70"
+            v-show="ltLg"
+          >
+            {{ content.question }}
+          </BaseText>
+          <div
+            class="grid grid-cols-1 lg:flex gap-6 lg:gap-8 items-start lg:grid lg:grid-cols-3"
+          >
             <BaseText
-                v-if="content.question"
-                :as="'p'"
-                size="p1"
-                class="text-black-70"
-                v-show="ltLg"
+              v-if="content.question"
+              :as="'p'"
+              size="p1"
+              class="text-black-70"
+              v-show="gtLg"
             >
-                {{ content.question }}
-            </BaseText>
-          <div class="grid grid-cols-1 lg:flex gap-6 lg:gap-8 items-start lg:grid lg:grid-cols-3">
-            <BaseText
-                v-if="content.question"
-                :as="'p'"
-                size="p1"
-                class="text-black-70"
-                v-show="gtLg"
-            >
-                {{ content.question }}
+              {{ content.question }}
             </BaseText>
 
             <BaseText
@@ -71,43 +73,42 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { BaseContainer, BaseHeading, BaseText } from '../base'
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
+import { computed } from "vue";
+import { BaseContainer, BaseHeading, BaseText } from "../base";
+import { useBreakpoints } from "../../composables/useBreakpoints.js";
 
-const { gtLg, gtXl, gtMd, ltLg } = useBreakpoints()
+const { gtLg, gtXl, gtMd, ltLg } = useBreakpoints();
 
 defineProps({
   title: {
     type: String,
-    default: ''
+    default: "",
   },
   content: {
     type: Object,
     default: () => ({
-      question: '',
-      columns: []
-    })
+      question: "",
+      columns: [],
+    }),
   },
   items: {
     type: Array,
     required: true,
-    validator: (items) => items.every(i => typeof i.text === 'string')
+    validator: (items) => items.every((i) => typeof i.text === "string"),
   },
   headingId: {
     type: String,
-    default: ''
-  }
-})
+    default: "",
+  },
+});
 
 const gridClasses = computed(() => {
   // по умолчанию 1 колонка, sm — 2, lg — 3, 2xl — 6
   return [
-    'grid w-full gap-x-8 gap-y-10',
-    'grid-cols-2',
-    'md:grid-cols-3',
-    'xl:grid-cols-6'
-  ].join(' ')
-})
+    "grid w-full gap-x-8 gap-y-10",
+    "grid-cols-2",
+    "md:grid-cols-3",
+    "xl:grid-cols-6",
+  ].join(" ");
+});
 </script>
-

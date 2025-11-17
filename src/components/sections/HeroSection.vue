@@ -1,6 +1,8 @@
 <template>
   <BaseContainer :as="'section'" bg="black">
-    <div class="grid gap-10 md:gap-20 xl:gap-0 xl:gap-x-20 xl:grid-cols-2 xl:items-start">
+    <div
+      class="grid gap-10 md:gap-20 xl:gap-0 xl:gap-x-20 xl:grid-cols-2 xl:items-start"
+    >
       <!-- Текст и аватары -->
       <div class="flex w-full flex-col gap-8">
         <BaseHeading
@@ -24,69 +26,66 @@
         <ContactButton @click="$emit('cta-click')">
           {{ buttonText }}
         </ContactButton>
-        <HeroStats :stats="stats" v-if="gtXl" class="mt-20"/>
+        <HeroStats :stats="stats" v-if="gtXl" class="mt-20" />
       </div>
-
 
       <!-- Галерея -->
       <GalleryPlaceholder :items="galleryItems" />
 
       <!-- Статистика -->
-      <HeroStats :stats="stats" v-if="!gtXl"/>
+      <HeroStats :stats="stats" v-if="!gtXl" />
     </div>
   </BaseContainer>
 </template>
 
 <script setup>
-import HeroStats from '../ui/HeroStats.vue'
-import { computed } from 'vue'
-import { BaseContainer, BaseHeading, BaseText } from '../base'
-import GalleryPlaceholder from '../ui/GalleryPlaceholder.vue'
-import AvatarStack from '../ui/AvatarStack.vue'
-import ContactButton from '../ui/ContactButton.vue'
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
+import HeroStats from "../ui/HeroStats.vue";
+import { computed } from "vue";
+import { BaseContainer, BaseHeading, BaseText } from "../base";
+import GalleryPlaceholder from "../ui/GalleryPlaceholder.vue";
+import AvatarStack from "../ui/AvatarStack.vue";
+import ContactButton from "../ui/ContactButton.vue";
+import { useBreakpoints } from "../../composables/useBreakpoints.js";
 
-const { gtXl } = useBreakpoints()
+const { gtXl } = useBreakpoints();
 
 const props = defineProps({
   title: {
     type: String,
-    default: ''
+    default: "",
   },
   subtitle: {
     type: String,
-    default: ''
+    default: "",
   },
   highlightText: {
     type: String,
-    default: ''
+    default: "",
   },
   highlightAvatars: {
     type: Array,
-    default: () => [{}, {}, {}]
+    default: () => [{}, {}, {}],
   },
   buttonText: {
     type: String,
-    default: ''
+    default: "",
   },
   stats: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   gallery: {
     type: Array,
-    default: () => [{}, {}, {}]
+    default: () => [{}, {}, {}],
   },
   headingId: {
     type: String,
-    default: ''
-  }
-})
+    default: "",
+  },
+});
 
 // Передаем все элементы галереи - карусель сама управляет отображением
-const galleryItems = computed(() => props.gallery)
+const galleryItems = computed(() => props.gallery);
 
-defineEmits(['cta-click'])
+defineEmits(["cta-click"]);
 </script>
-
-

@@ -16,11 +16,7 @@
     </div>
 
     <AdaptiveGrid is-cards as="ul" role="list">
-      <li
-        v-for="(card, index) in cards"
-        :key="index"
-        class="list-none"
-      >
+      <li v-for="(card, index) in cards" :key="index" class="list-none">
         <ExpertiseCard
           class="min-w-[212px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px] flex-1"
           :title="card.title"

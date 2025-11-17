@@ -18,11 +18,7 @@
 
     <!-- Адаптивная сетка карточек -->
     <AdaptiveGrid is-cards as="ul" role="list">
-      <li
-        v-for="(review, index) in reviews"
-        :key="index"
-        class="list-none"
-      >
+      <li v-for="(review, index) in reviews" :key="index" class="list-none">
         <ReviewCard
           class="min-w-[260px] sm:min-w-[auto] box-content sm:box-border flex-1"
           :text="review.text"
@@ -35,35 +31,34 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from '../base'
-import ReviewCard from '../ui/ReviewCard.vue'
-import { useBreakpoints } from '../../composables/useBreakpoints.js'
+import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "../base";
+import ReviewCard from "../ui/ReviewCard.vue";
+import { useBreakpoints } from "../../composables/useBreakpoints.js";
 
-const { gtLg } = useBreakpoints()
+const { gtLg } = useBreakpoints();
 
 defineProps({
   title: {
     type: String,
-    default: ''
+    default: "",
   },
   subtitle: {
     type: String,
-    default: ''
+    default: "",
   },
   reviews: {
     type: Array,
     required: true,
     validator: (reviews) => {
-      return reviews.every(review =>
-        typeof review.text === 'string' &&
-        typeof review.author === 'string'
-      )
-    }
+      return reviews.every(
+        (review) =>
+          typeof review.text === "string" && typeof review.author === "string"
+      );
+    },
   },
   headingId: {
     type: String,
-    default: ''
-  }
-})
+    default: "",
+  },
+});
 </script>
-
