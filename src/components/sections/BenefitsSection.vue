@@ -9,15 +9,22 @@
         <!-- Заголовок секции -->
         <BaseHeading :level="4" :as="'h2'"
           class="w-full text-white-90 text-[46px] leading-[1.2] sm:text-[64px] sm:leading-none mb-[90px]"
-          :style="{ maxWidth: ltXl ? '430px' : 'inherit' }">
+          :style="{ maxWidth: ltXl ? '430px' : 'inherit' }"
+          :id="headingId || undefined">
           {{ title }}
         </BaseHeading>
 
         <DecorativeLine :pin-count="benefits.length + 1" :hide-line="gtLg" class="hidden sm:block" />
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 w-full">
-          <BenefitCard v-for="(benefit, index) in benefits" :key="index" :text="benefit.text" />
-        </div>
+        <ul class="grid grid-cols-2 sm:grid-cols-4 gap-8 w-full" role="list">
+          <li
+            v-for="(benefit, index) in benefits"
+            :key="index"
+            class="list-none"
+          >
+            <BenefitCard :text="benefit.text" />
+          </li>
+        </ul>
       </div>
 
       <div class="flex flex-col gap-6 items-start w-full xl:w-[max-content] sm:py-4 sm:self-stretch min-w-[240px] sm:min-w-auto shrink-1">
@@ -56,6 +63,10 @@ const props = defineProps({
     default: ''
   },
   ctaButtonText: {
+    type: String,
+    default: ''
+  },
+  headingId: {
     type: String,
     default: ''
   }

@@ -1,7 +1,11 @@
 <template>
-  <div :class="['rounded-2xl overflow-hidden flex flex-col h-full', variantClass]">
+  <component
+    :is="as"
+    :class="['rounded-2xl overflow-hidden flex flex-col h-full', variantClass]"
+    v-bind="$attrs"
+  >
     <slot />
-  </div>
+  </component>
 </template>
 
 <script setup>
@@ -12,6 +16,10 @@ const props = defineProps({
     type: String,
     default: 'white',
     validator: (value) => ['white', 'transparent'].includes(value)
+  },
+  as: {
+    type: String,
+    default: 'article'
   }
 })
 

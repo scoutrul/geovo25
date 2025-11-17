@@ -2,7 +2,12 @@
   <BaseContainer :as="'section'" bg="white">
     <!-- Заголовок и подзаголовок -->
     <div class="flex flex-col gap-4 mb-16 xl:mb-24">
-      <BaseHeading :level="gtLg ? 3 : 4" :as="gtLg ? 'h2' : 'h3'" class="w-full text-black-90">
+      <BaseHeading
+        :level="gtLg ? 3 : 4"
+        :as="gtLg ? 'h2' : 'h3'"
+        class="w-full text-black-90"
+        :id="headingId || undefined"
+      >
         {{ title }}
       </BaseHeading>
 
@@ -12,10 +17,19 @@
     </div>
 
     <!-- Адаптивная сетка карточек -->
-    <AdaptiveGrid is-cards>
-      <CaseCard v-for="(caseItem, index) in cases" :key="index"
-        class="min-w-[260px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px] flex-1"
-        :title="caseItem.title" :description="caseItem.description" :image="caseItem.image" />
+    <AdaptiveGrid is-cards as="ul" role="list">
+      <li
+        v-for="(caseItem, index) in cases"
+        :key="index"
+        class="list-none"
+      >
+        <CaseCard
+          class="min-w-[260px] sm:min-w-[auto] box-content sm:box-border min-h-[380px] sm:min-h-[420px] flex-1"
+          :title="caseItem.title"
+          :description="caseItem.description"
+          :image="caseItem.image"
+        />
+      </li>
     </AdaptiveGrid>
   </BaseContainer>
 </template>
@@ -45,6 +59,10 @@ defineProps({
         typeof caseItem.description === 'string'
       )
     }
+  },
+  headingId: {
+    type: String,
+    default: ''
   }
 })
 </script>

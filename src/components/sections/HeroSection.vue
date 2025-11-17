@@ -3,7 +3,12 @@
     <div class="grid gap-10 md:gap-20 xl:gap-0 xl:gap-x-20 xl:grid-cols-2 xl:items-start">
       <!-- Текст и аватары -->
       <div class="flex w-full flex-col gap-8">
-        <BaseHeading :level="gtXl ? 3 : 5" :as="'h1'" class="text-white-100">
+        <BaseHeading
+          :level="gtXl ? 3 : 5"
+          :as="'h1'"
+          class="text-white-100"
+          :id="headingId || undefined"
+        >
           <span class="block">{{ title }}</span>
           <span class="block">{{ subtitle }}</span>
         </BaseHeading>
@@ -71,6 +76,10 @@ const props = defineProps({
   gallery: {
     type: Array,
     default: () => [{}, {}, {}]
+  },
+  headingId: {
+    type: String,
+    default: ''
   }
 })
 

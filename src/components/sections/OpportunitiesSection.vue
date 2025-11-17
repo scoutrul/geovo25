@@ -6,6 +6,7 @@
         :level="gtLg ? 3 : 4"
         :as="gtLg? 'h2' : 'h3'"
         class="w-full text-black-90"
+        :id="headingId || undefined"
       >
         {{ title }}
       </BaseHeading>
@@ -166,6 +167,10 @@ defineProps({
     default: "",
   },
   buttonText: {
+    type: String,
+    default: "",
+  },
+  headingId: {
     type: String,
     default: "",
   },

@@ -28,18 +28,25 @@
     </div>
       
       <nav
-        class="hidden md:flex xl:flex-1 justify-center gap-6 mr-auto "
+        class="hidden md:flex xl:flex-1 justify-center mr-auto"
+        aria-label="Основная навигация"
       >
-        <a
-          v-for="(item, index) in navigationItems"
-          :key="index"
-          href="#"
-          class="text-p2 hover:text-primary transition-colors whitespace-nowrap"
-          :class="navLinkColorClass"
-          @click.prevent="$emit('nav-click', item)"
-        >
-          {{ item }}
-        </a>
+        <ul class="flex gap-6">
+          <li
+            v-for="(item, index) in navigationItems"
+            :key="index"
+            class="list-none"
+          >
+            <a
+              href="#"
+              class="text-p2 hover:text-primary transition-colors whitespace-nowrap"
+              :class="navLinkColorClass"
+              @click.prevent="$emit('nav-click', item)"
+            >
+              {{ item }}
+            </a>
+          </li>
+        </ul>
       </nav>
 
       <div class="flex items-center gap-6">

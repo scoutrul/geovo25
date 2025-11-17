@@ -1,7 +1,6 @@
 <template>
-  <div id="app" class="min-h-screen">
-    <!-- Sticky Header -->
-    <StickyHeader
+  <!-- Sticky Header -->
+  <StickyHeader
       :slogan="mockData.header.slogan"
       :navigation-items="mockData.header.navigationItems"
       :languages="mockData.header.languages"
@@ -12,11 +11,15 @@
       @language-change="handleLanguageChange"
       :theme="headerTheme"
       :button-text="mockData.hero.buttonText"
-    />
+      />
+      <main class="min-h-screen" role="main">
 
     <!-- Hero секция -->
     <HeroSection
       ref="heroSectionRef"
+      :id="sectionAnchors.hero.section"
+      :aria-labelledby="sectionAnchors.hero.heading"
+      :heading-id="sectionAnchors.hero.heading"
       :title="mockData.hero.title"
       :subtitle="mockData.hero.subtitle"
       :highlight-text="mockData.hero.highlightText"
@@ -31,6 +34,9 @@
     <!-- Tools (Dark) -->
     <ToolsSection
       ref="toolsSectionRef"
+      :id="sectionAnchors.tools.section"
+      :aria-labelledby="sectionAnchors.tools.heading"
+      :heading-id="sectionAnchors.tools.heading"
       :title="mockData.tools.title"
       :content="mockData.tools.content"
       :items="mockData.tools.items"
@@ -40,6 +46,9 @@
     <!-- Cases Секция -->
     <CasesSection
       ref="casesSectionRef"
+      :id="sectionAnchors.cases.section"
+      :aria-labelledby="sectionAnchors.cases.heading"
+      :heading-id="sectionAnchors.cases.heading"
       :title="mockData.cases.title"
       :subtitle="mockData.cases.subtitle"
       :cases="mockData.cases.items"
@@ -48,6 +57,9 @@
     <!-- How We Work Секция -->
     <HowWeWorkSection
       ref="howWeWorkSectionRef"
+      :id="sectionAnchors.howWeWork.section"
+      :aria-labelledby="sectionAnchors.howWeWork.heading"
+      :heading-id="sectionAnchors.howWeWork.heading"
       :title="mockData.howWeWork.title"
       :items="mockData.howWeWork.items"
     />
@@ -55,6 +67,9 @@
     <!-- Expertise Секция -->
     <ExpertiseSection
     ref="expertiseSectionRef"
+    :id="sectionAnchors.expertise.section"
+    :aria-labelledby="sectionAnchors.expertise.heading"
+    :heading-id="sectionAnchors.expertise.heading"
     :title="mockData.expertise.title"
     :subtitle="mockData.expertise.subtitle"
     :cards="mockData.expertise.items"
@@ -63,6 +78,9 @@
     <!-- Comparison Секция -->
     <ComparisonSection
       ref="comparisonSectionRef"
+      :id="sectionAnchors.comparison.section"
+      :aria-labelledby="sectionAnchors.comparison.heading"
+      :heading-id="sectionAnchors.comparison.heading"
       :title="mockData.comparison.title"
       :attributes="mockData.comparison.attributes"
       :columns="mockData.comparison.columns"
@@ -71,6 +89,9 @@
     <!-- Opportunities Секция -->
     <OpportunitiesSection
       ref="opportunitiesSectionRef"
+      :id="sectionAnchors.opportunities.section"
+      :aria-labelledby="sectionAnchors.opportunities.heading"
+      :heading-id="sectionAnchors.opportunities.heading"
       :title="mockData.opportunities.title"
       :subtitle="mockData.opportunities.subtitle"
       :opportunities="mockData.opportunities.items"
@@ -83,6 +104,9 @@
     <!-- Reviews Секция -->
     <ReviewsSection
       ref="reviewsSectionRef"
+      :id="sectionAnchors.reviews.section"
+      :aria-labelledby="sectionAnchors.reviews.heading"
+      :heading-id="sectionAnchors.reviews.heading"
       :title="mockData.reviews.title"
       :subtitle="mockData.reviews.subtitle"
       :reviews="mockData.reviews.items"
@@ -91,6 +115,9 @@
     <!-- FAQ Секция -->
     <FaqSection
       ref="faqSectionRef"
+      :id="sectionAnchors.faq.section"
+      :aria-labelledby="sectionAnchors.faq.heading"
+      :heading-id="sectionAnchors.faq.heading"
       :title="mockData.faq.title"
       :faq-items="mockData.faq.items"
     />
@@ -98,13 +125,16 @@
     <!-- Benefits Секция -->
     <BenefitsSection
       ref="benefitsSectionRef"
+      :id="sectionAnchors.benefits.section"
+      :aria-labelledby="sectionAnchors.benefits.heading"
+      :heading-id="sectionAnchors.benefits.heading"
       :title="mockData.benefits.title"
       :benefits="mockData.benefits.items"
       :cta-text="mockData.benefits.ctaText"
       :cta-button-text="mockData.benefits.ctaButtonText"
       @cta-click="handleCtaClick"
     />
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -131,6 +161,34 @@ import dataRu from "./data.ru.json";
 import dataEn from "./data.en.json";
 
 const { isMobile } = useBreakpoints();
+
+const sectionAnchors = Object.freeze({
+  hero: { section: "section-hero", heading: "section-hero-heading" },
+  tools: { section: "section-tools", heading: "section-tools-heading" },
+  cases: { section: "section-cases", heading: "section-cases-heading" },
+  howWeWork: {
+    section: "section-how-we-work",
+    heading: "section-how-we-work-heading",
+  },
+  expertise: {
+    section: "section-expertise",
+    heading: "section-expertise-heading",
+  },
+  comparison: {
+    section: "section-comparison",
+    heading: "section-comparison-heading",
+  },
+  opportunities: {
+    section: "section-opportunities",
+    heading: "section-opportunities-heading",
+  },
+  reviews: { section: "section-reviews", heading: "section-reviews-heading" },
+  faq: { section: "section-faq", heading: "section-faq-heading" },
+  benefits: {
+    section: "section-benefits",
+    heading: "section-benefits-heading",
+  },
+});
 
 // Регистрируем плагин ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);

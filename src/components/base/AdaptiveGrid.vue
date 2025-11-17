@@ -1,7 +1,12 @@
 <template>
-  <div :class="gridClasses" class="min-w-[100vw] md:min-w-[auto]">
+  <component
+    :is="as"
+    :class="wrapperClasses"
+    v-bind="$attrs"
+    :role="computedRole || undefined"
+  >
     <slot />
-  </div>
+  </component>
 </template>
 
 <script setup>
@@ -11,8 +16,18 @@ const props = defineProps({
   isCards: {
     type: Boolean,
     default: false
+  },
+  as: {
+    type: String,
+    default: 'div'
+  },
+  role: {
+    type: String,
+    default: null
   }
 })
+
+const baseWrapperClasses = 'min-w-[100vw] md:min-w-[auto]'
 
 const gridClasses = computed(() => {
   const classes = [
@@ -27,6 +42,22 @@ const gridClasses = computed(() => {
   }
 
   return classes.join(' ')
+})
+
+const wrapperClasses = computed(() => {
+  return [baseWrapperClasses, gridClasses.value].filter(Boolean).join(' ')
+})
+
+const computedRole = computed(() => {
+  if (props.role) {
+    return props.role
+  }
+
+  if (props.as === 'ul') {
+    return 'list'
+  }
+
+  return null
 })
 </script>
 

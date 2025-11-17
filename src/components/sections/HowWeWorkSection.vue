@@ -9,20 +9,25 @@
       :as="gtLg ? 'h3' : 'h4'" 
       class="w-full text-black-90 mb-16 xl:mb-24"
       :class="gtXl ? 'text-center' : 'text-left'"
+      :id="headingId || undefined"
     >
       {{ title }}
     </BaseHeading>
 
     <!-- Адаптивная сетка карточек -->
-    <div :class="gridClasses">
-      <WorkCard
+    <ul :class="gridClasses" role="list">
+      <li
         v-for="(item, index) in items"
         :key="index"
-        :icon="item.icon"
-        :title="item.title"
-        :description="item.description"
-      />
-    </div>
+        class="list-none"
+      >
+        <WorkCard
+          :icon="item.icon"
+          :title="item.title"
+          :description="item.description"
+        />
+      </li>
+    </ul>
   </BaseContainer>
 </template>
 
@@ -48,6 +53,10 @@ const props = defineProps({
         typeof item.description === 'string'
       )
     }
+  },
+  headingId: {
+    type: String,
+    default: ''
   },
 })
 

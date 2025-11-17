@@ -1,7 +1,12 @@
 <template>
   <BaseContainer :as="'section'" bg="white">
-    <BaseHeading :level="gtLg ? 3 : 4" :as="gtLg ? 'h3' : 'h4'" class="w-full text-black-90 mb-16 xl:mb-24"
-      :class="gtXl ? 'text-center' : 'text-left'">
+    <BaseHeading
+      :level="gtLg ? 3 : 4"
+      :as="gtLg ? 'h3' : 'h4'"
+      class="w-full text-black-90 mb-16 xl:mb-24"
+      :class="gtXl ? 'text-center' : 'text-left'"
+      :id="headingId || undefined"
+    >
       {{ title }}
     </BaseHeading>
 
@@ -31,6 +36,10 @@ defineProps({
     type: Array,
     required: true,
   },
+  headingId: {
+    type: String,
+    default: '',
+  }
 })
 </script>
 

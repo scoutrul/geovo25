@@ -5,6 +5,7 @@
         :level="gtLg ? 3 : 4"
         :as="gtLg ? 'h3' : 'h4'"
         class="w-full text-white-90"
+        :id="headingId || undefined"
       >
         {{ title }}
       </BaseHeading>
@@ -46,8 +47,8 @@
         </div>
       </template>
 
-      <div :class="gridClasses">
-        <div
+      <ul :class="gridClasses" role="list">
+        <li
           v-for="(item, index) in items"
           :key="index"
           class="flex flex-col gap-6 items-start"
@@ -63,8 +64,8 @@
           >
             {{ item.text }}
           </BaseText>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </BaseContainer>
 </template>
@@ -92,6 +93,10 @@ defineProps({
     type: Array,
     required: true,
     validator: (items) => items.every(i => typeof i.text === 'string')
+  },
+  headingId: {
+    type: String,
+    default: ''
   }
 })
 

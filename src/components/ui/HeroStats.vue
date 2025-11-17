@@ -1,20 +1,21 @@
 <template>
   <div class="relative md:overflow-hidden">
     <div class="stats-gradient"></div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <dl class="grid grid-cols-2 md:grid-cols-4 gap-6">
       <div
         v-for="(stat, index) in stats"
         :key="index"
         class="flex flex-col gap-4"
+        role="presentation"
       >
-        <BaseText :as="'p'" size="h5" class="text-white-100">
+        <BaseText :as="'dt'" size="h5" class="text-white-100">
           {{ stat.value }}
         </BaseText>
-        <BaseText :as="'p'" size="p2" class="text-black-70">
+        <BaseText :as="'dd'" size="p2" class="text-black-70">
           {{ stat.description }}
         </BaseText>
       </div>
-    </div>
+    </dl>
   </div>
 </template>
 
