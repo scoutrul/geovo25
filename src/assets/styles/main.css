@@ -9,9 +9,12 @@
 
 /* Глобальные стили */
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     @apply box-border;
     letter-spacing: -0.04rem;
+    border-style: none;
   }
 
   html {
