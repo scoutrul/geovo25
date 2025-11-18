@@ -35,7 +35,7 @@ const { gtLg, gtXl } = useBreakpoints();
 const props = defineProps({
   title: {
     type: String,
-    default: "Как мы будем работать",
+    default: "",
   },
   items: {
     type: Array,

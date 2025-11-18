@@ -26,8 +26,8 @@
 
     <!-- Cases Section -->
     <CasesSection
-      :title="'Кейсы'"
-      :subtitle="'Некоторые из моих историй, которые точно не оставят равнодушным'"
+      :title="casesContent.title"
+      :subtitle="casesContent.subtitle"
       :cases="allCases"
       :active-case="slug"
     />
@@ -53,8 +53,11 @@ const slug = computed(() => route.params.slug);
 // Получаем данные кейса из store
 const caseData = computed(() => casesStore.getCaseBySlug(slug.value));
 
+// Данные секции кейсов из контент стора
+const casesContent = computed(() => contentStore.currentData?.cases || {});
+
 // Получаем список всех кейсов из контента
-const allCases = computed(() => contentStore.cases.items || []);
+const allCases = computed(() => casesContent.value.items || []);
 
 // Функция для обновления title документа
 const updateDocumentTitle = () => {

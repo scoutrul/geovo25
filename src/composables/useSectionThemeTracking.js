@@ -49,6 +49,11 @@ export function useSectionThemeTracking(sectionRefs) {
     ];
 
     sections.forEach(({ ref, key }) => {
+      if (!ref) {
+        console.warn(`Section ref for ${key} is not provided`);
+        return;
+      }
+
       if (!ref.value) {
         console.warn(`Section ref for ${key} is not available`);
         return;

@@ -88,7 +88,7 @@ const handleClick = () => {
 }
 
 .case-card__media {
-  @apply w-full h-full flex items-center justify-center overflow-hidden;
+  @apply w-full h-full flex items-center justify-center;
 }
 
 .case-card__media-surface {
@@ -100,17 +100,12 @@ const handleClick = () => {
   @apply transition-transform duration-300 ease-out;
 }
 
-.case-card:hover {
-  gap: 0;
-}
-
-.case-card--active:hover {
-  gap: 1rem;
-  cursor: default;
-}
-
 .case-card:hover .text-description {
   @apply text-black-90;
+}
+
+.case-card:hover .case-card__image {
+  transform: scale(1.05);
 }
 
 .case-card--active,
