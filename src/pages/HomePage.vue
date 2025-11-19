@@ -5,7 +5,10 @@
       v-if="isLoading"
       class="fixed inset-0 bg-black-90 z-50 flex items-center justify-center"
     >
-      <div class="flex flex-col items-center gap-4">
+      <div class="flex flex-col items-center gap-6">
+        <!-- Логотип с анимацией GSAP -->
+        <LoaderLogo />
+
         <!-- Процент загрузки -->
         <div class="text-white-100 text-4xl font-medium tabular-nums">
           {{ loadingProgress }}%
@@ -178,6 +181,7 @@ import { useSectionThemeTracking } from "@/composables/useSectionThemeTracking.j
 import { useContentStore } from "@/stores";
 import { useVideoPreloader } from "@/composables/useVideoPreloader.js";
 import { useSmoothScroll } from "@/composables/useSmoothScroll.js";
+import LoaderLogo from "@/components/ui/LoaderLogo.vue";
 
 const { isMobile } = useBreakpoints();
 const { scrollToElement } = useSmoothScroll();
