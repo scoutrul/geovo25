@@ -48,11 +48,10 @@ const initAnimation = () => {
     .timeline({
       repeat: -1,
       yoyo: true,
-      repeatDelay: 0.5,
-      defaults: { duration: 1.8, ease: "power2.inOut" },
+      repeatDelay: 0,
+      defaults: { duration: 1, ease: "power2.inOut" },
       onRepeat: () => {
         cycleCount++;
-        // Каждые 2 повтора = 1 полный цикл (вперёд-назад из-за yoyo)
         if (cycleCount === 1) {
           emit("animation-cycle-complete");
           cycleCount = 0;

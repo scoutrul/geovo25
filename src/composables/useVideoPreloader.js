@@ -50,7 +50,7 @@ export function useVideoPreloader() {
   /**
    * Отмечает, что анимация завершила минимум один цикл
    */
-  const markAnimationCycleComplete = () => {
+  const logoAnimationCycleComplete = () => {
     animationCycleCompleted.value = true;
     // Проверяем, можно ли уже завершить загрузку
     checkAllVideosLoaded();
@@ -82,7 +82,7 @@ export function useVideoPreloader() {
     // Методы
     registerVideo,
     markVideoLoaded,
-    markAnimationCycleComplete,
+    logoAnimationCycleComplete,
     reset,
     forceComplete,
   };

@@ -7,7 +7,7 @@
     >
       <div class="flex flex-col items-center gap-6">
         <!-- Логотип с анимацией GSAP -->
-        <LoaderLogo @animation-cycle-complete="handleAnimationCycleComplete" />
+        <LoaderLogo @animation-cycle-complete="handleLogoAnimationCycleComplete" />
       </div>
     </div>
   </Transition>
@@ -172,11 +172,11 @@ import LoaderLogo from "@/components/ui/LoaderLogo.vue";
 const { isMobile } = useBreakpoints();
 const { scrollToElement } = useSmoothScroll();
 const contentStore = useContentStore();
-const { isLoading, markAnimationCycleComplete } = useVideoPreloader();
+const { isLoading, logoAnimationCycleComplete } = useVideoPreloader();
 
 // Обработчик завершения цикла анимации лоадера
-const handleAnimationCycleComplete = () => {
-  markAnimationCycleComplete();
+const handleLogoAnimationCycleComplete = () => {
+  logoAnimationCycleComplete();
 };
 
 // Получаем данные из store
