@@ -19,13 +19,6 @@ export function useSectionThemeTracking(sectionRefs) {
     hero: "dark", // bg-black-90 -> Header должен быть dark
     tools: "dark", // bg-black-90 -> Header должен быть dark
     cases: "light", // bg-white-90 -> Header должен быть dark
-    howWeWork: "light", // bg-white-90 -> Header должен быть dark
-    comparison: "light", // bg-white-90 -> Header должен быть dark
-    expertise: "light", // bg-white-90 -> Header должен быть dark
-    opportunities: "light", // bg-white-90 -> Header должен быть dark
-    reviews: "light", // bg-white-90 -> Header должен быть dark
-    faq: "light", // bg-white-90 -> Header должен быть dark
-    benefits: "dark", // bg-black-90 -> Header должен быть dark
   };
 
   // Отслеживание скролла
@@ -39,13 +32,6 @@ export function useSectionThemeTracking(sectionRefs) {
       { ref: sectionRefs.heroSectionRef, key: "hero" },
       { ref: sectionRefs.toolsSectionRef, key: "tools" },
       { ref: sectionRefs.casesSectionRef, key: "cases" },
-      { ref: sectionRefs.howWeWorkSectionRef, key: "howWeWork" },
-      { ref: sectionRefs.comparisonSectionRef, key: "comparison" },
-      { ref: sectionRefs.expertiseSectionRef, key: "expertise" },
-      { ref: sectionRefs.opportunitiesSectionRef, key: "opportunities" },
-      { ref: sectionRefs.reviewsSectionRef, key: "reviews" },
-      { ref: sectionRefs.faqSectionRef, key: "faq" },
-      { ref: sectionRefs.benefitsSectionRef, key: "benefits" },
     ];
 
     sections.forEach(({ ref, key }) => {
