@@ -1,11 +1,18 @@
 <template>
-  <component :is="tag" :class="headingClasses" v-bind="$attrs">
+  <component
+    :is="tag"
+    ref="headingRef"
+    :class="headingClasses"
+    :style="computedStyles"
+    v-bind="$attrs"
+  >
     <slot />
   </component>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref, onMounted, watch, nextTick } from "vue";
+import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const props = defineProps({
   level: {
@@ -25,6 +32,11 @@ const props = defineProps({
       value === null || ["h5", "p1", "p2", "p3"].includes(value),
   },
 });
+
+// Каждый экземпляр имеет свои собственные refs
+const headingRef = ref(null);
+const measuredHeight = ref(null);
+const { currentBreakpoint } = useBreakpoints();
 
 const tag = computed(() => {
   return props.as || `h${props.level}`;
@@ -56,5 +68,43 @@ const headingClasses = computed(() => {
   }
 
   return [baseClasses, sizeClass].filter(Boolean).join(" ");
+});
+
+// Функция измерения высоты для данного экземпляра
+const measureHeight = async () => {
+  if (!headingRef.value) return;
+
+  // Временно сбрасываем min-height для точного измерения
+  measuredHeight.value = null;
+
+  // Ждем следующего тика для перерисовки
+  await nextTick();
+
+  // Измеряем реальную высоту этого конкретного элемента
+  const height = headingRef.value.offsetHeight;
+
+  if (height > 0) {
+    measuredHeight.value = `${height}px`;
+  }
+};
+
+// Динамические стили для этого экземпляра
+const computedStyles = computed(() => {
+  if (measuredHeight.value) {
+    return {
+      "min-height": measuredHeight.value,
+    };
+  }
+  return {};
+});
+
+// Автоматическое измерение при монтировании компонента
+onMounted(() => {
+  measureHeight();
+});
+
+// Автоматический пересчет при изменении брейкпоинта
+watch(currentBreakpoint, () => {
+  measureHeight();
 });
 </script>

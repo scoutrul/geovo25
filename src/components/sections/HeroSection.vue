@@ -11,8 +11,16 @@
           class="text-white-100"
           :id="headingId || undefined"
         >
-          <span class="block">{{ title }}</span>
-          <span class="block">{{ subtitle }}</span>
+          <span
+            ref="titleRef"
+            class="block"
+            :key="`title-${languageStore.currentLanguage}-${currentBreakpoint}`"
+          ></span>
+          <span
+            ref="subtitleRef"
+            class="block"
+            :key="`subtitle-${languageStore.currentLanguage}-${currentBreakpoint}`"
+          ></span>
         </BaseHeading>
 
         <div class="flex flex-row gap-4 sm:flex-row">
@@ -40,14 +48,21 @@
 
 <script setup>
 import HeroStats from "@/components/ui/HeroStats.vue";
-import { computed } from "vue";
+import { computed, ref, onMounted, watch, nextTick } from "vue";
 import { BaseContainer, BaseHeading, BaseText } from "@/components/base";
 import GalleryPlaceholder from "@/components/ui/GalleryPlaceholder.vue";
 import AvatarStack from "@/components/ui/AvatarStack.vue";
 import ContactButton from "@/components/ui/ContactButton.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
+import { useLanguageStore } from "@/stores/language.js";
+import { createScrambleTextSequence } from "@/utils/gsapAnimations.js";
 
-const { gtXl } = useBreakpoints();
+const { gtXl, currentBreakpoint } = useBreakpoints();
+const languageStore = useLanguageStore();
+
+// Refs для анимации
+const titleRef = ref(null);
+const subtitleRef = ref(null);
 
 const props = defineProps({
   title: {
@@ -86,6 +101,36 @@ const props = defineProps({
 
 // Передаем все элементы галереи - карусель сама управляет отображением
 const galleryItems = computed(() => props.gallery);
+
+// Функция для запуска ScrambleText анимации
+const runScrambleAnimation = () => {
+  if (titleRef.value && subtitleRef.value) {
+    createScrambleTextSequence(
+      [
+        { element: titleRef.value, text: props.title },
+        { element: subtitleRef.value, text: props.subtitle },
+      ],
+      {
+        duration: 1.5,
+        speed: 0.3,
+        language: languageStore.currentLanguage,
+        staggerDelay: 0.3,
+      }
+    );
+  }
+};
+
+// Запуск анимации при монтировании
+onMounted(() => {
+  runScrambleAnimation();
+});
+
+// При смене языка или брейкпоинта span элементы пересоздаются через :key
+// Используем nextTick чтобы дождаться обновления refs
+watch([() => languageStore.currentLanguage, currentBreakpoint], async () => {
+  await nextTick();
+  runScrambleAnimation();
+});
 
 defineEmits(["cta-click"]);
 </script>
