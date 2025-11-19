@@ -1,25 +1,23 @@
 <template>
   <div
-    class="flex flex-col md:flex-row xl:flex-col gap-4 md:sticky md:backdrop-blur-[20px]"
+    class="case-meta-bar min-w-full sticky bottom-0 bg-white-100/100 gap-6 
+    w-[100vw - 16px] md:w-[calc(100vw - 24px)] -mx-[16px] md:mx-[-40px] lg:mx-[-72px]"
     :class="[
-      gtXl
-        ? 'flex flex-col gap-16 bg-transparent'
-        : gtLg
-          ? 'px-10 py-6 bg-white-100/80'
-          : 'px-4 py-4 bg-white-100/80',
+      gtSm ? 'flex justify-between px-4 py-6' : 'flex flex-col gap-4 px-4 py-4'
     ]"
   >
     <!-- Мета-информация -->
     <CaseMetaList
       :items="metaItems"
-      :style="{ minHeight: gtXl ? '660px' : '100%' }"
+      :gap="gtSm ? 'gap-6' : 'gap-4'"
+      :class="[gtSm ? 'flex-row' : 'flex-col']"
     />
 
     <!-- Кнопка "Следующий кейс" -->
     <BaseButton
       v-if="nextCase"
       variant="secondary"
-      size="md"
+      :size="gtSm ? gtLg ? 'lg' : 'md' : 'wide'"
       @click="navigateToNextCase"
     >
       {{ buttonText }}
@@ -37,7 +35,7 @@ import { useContentStore } from "@/stores";
 
 const router = useRouter();
 const contentStore = useContentStore();
-const { gtLg, gtXl } = useBreakpoints();
+const { gtSm, gtLg } = useBreakpoints();
 
 const buttonText = computed(() => contentStore.meta.nextCaseButton || "Next case");
 
@@ -64,3 +62,4 @@ const navigateToNextCase = () => {
   }
 };
 </script>
+

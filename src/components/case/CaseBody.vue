@@ -1,5 +1,5 @@
 <template>
-  <BaseContainer as="section" bg="white" overflow="visible" class="case-body">
+  <BaseContainer as="section" bg="white" overflow="visible" class="case-body" >
     <div class="w-full" :class="[gtXl ? 'flex items-start gap-[83px]' : 'flex flex-col']">
       <!-- Контент -->
       <div
@@ -44,30 +44,36 @@
       </div>
 
       <!-- Summary (только на desktop) -->
-      <div v-if="gtXl" class="w-[438px] flex-shrink-0 sticky top-[280px]">
+      <div v-if="gtXl" class="w-[438px] flex-shrink-0 xl:sticky xl:top-[280px]">
         <CaseSummary
           :meta-items="metaItems"
           :next-case="nextCase"
-          variant="vertical"
         />
       </div>
     </div>
 
-    <!-- Summary для mobile/tablet -->
-    <CaseSummary v-if="!gtXl" :meta-items="metaItems" :next-case="nextCase" />
+    <!-- Meta Bar для mobile/tablet -->
+    <CaseMetaBar 
+      class="mt-20"
+      v-show="!gtXl" 
+      :meta-items="visibleMetaItems" 
+      :next-case="nextCase" 
+    />
   </BaseContainer>
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { BaseContainer, BaseHeading } from "@/components/base/index.js";
 import CaseContentBlock from "@/components/case/CaseContentBlock.vue";
 import CaseTestimonial from "@/components/case/CaseTestimonial.vue";
 import CaseSummary from "@/components/case/CaseSummary.vue";
+import CaseMetaBar from "@/components/case/CaseMetaBar.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
-const { gtLg, gtXl } = useBreakpoints();
+const { gtSm, gtXl } = useBreakpoints();
 
-defineProps({
+const props = defineProps({
   sections: {
     type: Array,
     required: true,
@@ -80,5 +86,16 @@ defineProps({
     type: Object,
     default: null,
   },
+});
+
+// Вычисляемое количество отображаемых элементов метаданных
+const visibleMetaItems = computed(() => {
+ if (gtSm.value ) {
+    // sm и md показываем первые 3
+    return props.metaItems.slice(0, 3);
+  } else {
+    // По умолчанию (мобильные) показываем первый элемент
+    return props.metaItems.slice(0, 2);
+  }
 });
 </script>
