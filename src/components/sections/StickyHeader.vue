@@ -40,12 +40,14 @@
             class="list-none"
           >
             <a
-              href="#"
+
               class="text-p2 hover:text-primary transition-colors whitespace-nowrap"
               :class="navLinkColorClass"
-              @click.prevent="$emit('nav-click', item)"
+              :target="item.type === 'download' ? '_blank' : undefined"
+              :rel="item.type === 'download' ? 'noopener noreferrer' : undefined"
+              @click="handleNavClick($event, item)"
             >
-              {{ item }}
+              {{ item.text }}
             </a>
           </li>
         </ul>
@@ -105,7 +107,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["cta-click", "nav-click", "language-change"]);
+const emit = defineEmits(["cta-click", "nav-case-scroll", "language-change"]);
 
 // Внутреннее состояние для отслеживания скролла
 const isScrolled = ref(false);
@@ -168,5 +170,27 @@ const handleLanguageChange = (code) => {
 // Переход на главную страницу
 const goToHome = () => {
   router.push({ name: "Home" });
+};
+
+// Получить href для навигационной ссылки
+const getNavHref = (item) => {
+  if (typeof item === 'string') return '#';
+  if (item.type === 'download') return item.target;
+  if (item.type === 'scroll') return `#${item.target}`;
+  return '#';
+};
+
+// Обработка клика по навигации
+const handleNavClick = (event, item) => {
+  // Если это download, не предотвращаем дефолтное поведение
+  if (item.type === 'download') {
+    return;
+  }
+
+  // Если это scroll - просто эмитим событие, страницы сами разберутся
+  if (item.type === 'scroll') {
+    event.preventDefault();
+    emit('nav-case-scroll');
+  }
 };
 </script>

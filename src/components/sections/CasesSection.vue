@@ -1,5 +1,5 @@
 <template>
-  <BaseContainer :as="'section'" bg="white">
+  <BaseContainer :as="'section'" bg="white" :id="sectionId || undefined">
     <!-- Заголовок и подзаголовок -->
     <div class="flex flex-col gap-4 mb-16 xl:mb-24">
       <BaseHeading
@@ -64,6 +64,10 @@ defineProps({
     },
   },
   headingId: {
+    type: String,
+    default: "",
+  },
+  sectionId: {
     type: String,
     default: "",
   },

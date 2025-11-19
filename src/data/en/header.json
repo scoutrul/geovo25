@@ -1,6 +1,17 @@
 {
   "slogan": "Growing together",
-  "navigationItems": ["View cases", "Download CV"],
+  "navigationItems": [
+    {
+      "text": "View cases",
+      "type": "scroll",
+      "target": "section-cases"
+    },
+    {
+      "text": "Download CV",
+      "type": "download",
+      "target": "/assets/cv/cv-en.pdf"
+    }
+  ],
   "languages": [
     { "code": "en", "label": "English" },
     { "code": "ru", "label": "Русский" }

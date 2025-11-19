@@ -31,9 +31,7 @@
       'aria-labelledby': sectionAnchors.benefits.heading,
       headingId: sectionAnchors.benefits.heading,
     }"
-    @header-cta-click="handleCtaClick"
-    @header-nav-click="handleNavClick"
-    @footer-cta-click="handleCtaClick"
+    @header-nav-case-scroll="handleNavCaseScroll"
   >
     <!-- Hero секция -->
     <HeroSection
@@ -114,7 +112,6 @@
       :footer-text1="content.opportunities.footerText1"
       :footer-text2="content.opportunities.footerText2"
       :button-text="content.opportunities.buttonText"
-      @figma-click="handleFigmaClick"
     />
 
     <!-- Reviews Секция -->
@@ -142,6 +139,7 @@
 import { ref, computed } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import PageLayout from "@/layouts/PageLayout.vue";
 import FaqSection from "@/components/sections/FaqSection.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
@@ -193,19 +191,8 @@ const sectionAnchors = Object.freeze({
   },
 });
 
-// Регистрируем плагин ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
-
-const handleCtaClick = () => {
-  window.open("http://t.me/meisdigital", "_blank");
-};
-
-const handleFigmaClick = () => {
-  window.open(
-    "https://www.figma.com/design/IYufH6FFbWEplvqjKOB6Gf/geovo",
-    "_blank"
-  );
-};
+// Регистрируем плагины GSAP
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // Refs для секций
 const heroSectionRef = ref(null);
@@ -219,8 +206,20 @@ const { headerTheme } = useSectionThemeTracking({
   casesSectionRef,
 });
 
-const handleNavClick = (item) => {
-  console.log("Nav clicked:", item);
+// Обработка скролла к секции кейсов
+const handleNavCaseScroll = () => {
+  const element = document.getElementById(sectionAnchors.cases.section);
+  if (element) {
+    const headerOffset = 0; // Отступ для фиксированного хедера
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: { y: offsetPosition, autoKill: true },
+      ease: "power2.inOut"
+    });
+  }
 };
 </script>
 

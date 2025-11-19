@@ -113,7 +113,7 @@
 
       <!-- Кнопка -->
       <div>
-        <BaseButton variant="secondary" size="md" @click="$emit('figma-click')">
+        <BaseButton variant="secondary" size="md" @click="handleFigmaClick">
           {{ buttonText }}
         </BaseButton>
       </div>
@@ -174,7 +174,13 @@ defineProps({
   },
 });
 
-defineEmits(["figma-click"]);
+// Обработчик клика по кнопке Figma
+const handleFigmaClick = () => {
+  window.open(
+    "https://www.figma.com/design/IYufH6FFbWEplvqjKOB6Gf/geovo",
+    "_blank"
+  );
+};
 
 // Высота центрального блока по брейкпоинтам
 const flowHeightClass = computed(() => {

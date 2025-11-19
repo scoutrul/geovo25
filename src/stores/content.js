@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import { useLanguageStore } from "./language";
-import { useMediaPaths } from "@/composables/useMediaPaths";
 
 // Импорт русских данных
 import metaRu from "@/data/ru/meta.json";
@@ -35,7 +34,7 @@ export const useContentStore = defineStore("content", () => {
   const languageStore = useLanguageStore();
 
   // Собираем русские данные из отдельных файлов
-  const rawDataRu = ref({
+  const dataRu = ref({
     meta: metaRu,
     header: headerRu,
     hero: heroRu,
@@ -51,7 +50,7 @@ export const useContentStore = defineStore("content", () => {
   });
 
   // Собираем английские данные из отдельных файлов
-  const rawDataEn = ref({
+  const dataEn = ref({
     meta: metaEn,
     header: headerEn,
     hero: heroEn,
@@ -66,14 +65,11 @@ export const useContentStore = defineStore("content", () => {
     benefits: benefitsEn,
   });
 
-  const processedDataRu = ref(useMediaPaths(rawDataRu.value));
-  const processedDataEn = ref(useMediaPaths(rawDataEn.value));
-
   // Getters
   const currentData = computed(() => {
     return languageStore.currentLanguage === "en"
-      ? processedDataEn.value
-      : processedDataRu.value;
+      ? dataEn.value
+      : dataRu.value;
   });
 
   // Секции для удобного доступа
@@ -92,10 +88,8 @@ export const useContentStore = defineStore("content", () => {
 
   return {
     // State
-    rawDataRu,
-    rawDataEn,
-    processedDataRu,
-    processedDataEn,
+    dataRu,
+    dataEn,
     // Getters
     currentData,
     meta,

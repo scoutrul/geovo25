@@ -1,8 +1,6 @@
 <template>
   <PageLayout
-    @header-cta-click="handleCtaClick"
-    @header-nav-click="handleNavClick"
-    @footer-cta-click="handleCtaClick"
+    @header-nav-case-scroll="handleNavCaseScroll"
   >
     <!-- Hero Section -->
     <CaseHero
@@ -26,6 +24,7 @@
 
     <!-- Cases Section -->
     <CasesSection
+      id="cases-section"
       :title="casesContent.title"
       :subtitle="casesContent.subtitle"
       :cases="allCases"
@@ -36,6 +35,8 @@
 <script setup>
 import { computed, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import PageLayout from "@/layouts/PageLayout.vue";
 import CaseHero from "@/components/case/CaseHero.vue";
 import CaseOverview from "@/components/case/CaseOverview.vue";
@@ -46,6 +47,9 @@ import { useCasesStore, useContentStore } from "@/stores";
 const route = useRoute();
 const casesStore = useCasesStore();
 const contentStore = useContentStore();
+
+// Регистрируем плагин ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin);
 
 const slug = computed(() => route.params.slug);
 
@@ -78,12 +82,20 @@ watch(
   }
 );
 
-const handleCtaClick = () => {
-  window.open("http://t.me/meisdigital", "_blank");
-};
+// Обработка скролла к секции кейсов
+const handleNavCaseScroll = () => {
+  const element = document.getElementById('cases-section');
+  if (element) {
+    const headerOffset = 0; // Отступ для фиксированного хедера
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-const handleNavClick = (item) => {
-  console.log("Nav clicked:", item);
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: { y: offsetPosition, autoKill: true },
+      ease: "power2.inOut"
+    });
+  }
 };
 </script>
 

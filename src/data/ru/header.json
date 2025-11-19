@@ -1,6 +1,17 @@
 {
   "slogan": "Растем вместе",
-  "navigationItems": ["Смотреть кейсы", "Скачать CV"],
+  "navigationItems": [
+    {
+      "text": "Смотреть кейсы",
+      "type": "scroll",
+      "target": "section-cases"
+    },
+    {
+      "text": "Скачать CV",
+      "type": "download",
+      "target": "/assets/cv/cv-ru.pdf"
+    }
+  ],
   "languages": [
     { "code": "en", "label": "English" },
     { "code": "ru", "label": "Русский" }

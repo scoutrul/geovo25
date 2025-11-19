@@ -2,8 +2,8 @@
   <div class="page-layout bg-black-90 min-h-screen">
     <StickyHeader
       v-bind="headerProps"
-      @cta-click="$emit('header-cta-click')"
-      @nav-click="$emit('header-nav-click', $event)"
+      @cta-click="handleCtaClick"
+      @nav-case-scroll="$emit('header-nav-case-scroll')"
       @language-change="handleLanguageChange"
     />
 
@@ -13,7 +13,7 @@
 
     <BenefitsSection
       v-bind="computedFooterProps"
-      @cta-click="$emit('footer-cta-click')"
+      @cta-click="handleCtaClick"
     />
   </div>
 </template>
@@ -42,10 +42,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits([
-  "header-cta-click",
-  "header-nav-click",
+  "header-nav-case-scroll",
   "language-change",
-  "footer-cta-click",
 ]);
 
 // Собираем props для хедера из store
@@ -66,6 +64,11 @@ const computedFooterProps = computed(() => ({
   ctaButtonText: contentStore.benefits.ctaButtonText,
   ...props.footerProps, // Дополнительные атрибуты (id, aria-labelledby и т.д.)
 }));
+
+// Обработчик CTA-клика (единый для всего приложения)
+const handleCtaClick = () => {
+  window.open("http://t.me/meisdigital", "_blank");
+};
 
 // Обработчик смены языка
 function handleLanguageChange(code) {
