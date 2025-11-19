@@ -1,12 +1,10 @@
 <template>
   <div
-    class="flex flex-col w-full"
-    :class="gap"
-  >
+    class="flex flex-col sm:w-[70%] md:w-full md:flex-row xl:flex-col xl:max-w-[310px] gap-4 md:gap-6">
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="flex flex-col"
+      class="flex flex-col flex-1 align-start"
     >
       <BaseText :as="'div'" :size="valueSize" class="text-black-90">
         {{ item.value }}
@@ -32,10 +30,7 @@ defineProps({
       );
     },
   },
-  gap: {
-    type: String,
-    default: "gap-6",
-  },
+
   valueSize: {
     type: String,
     default: "p2",

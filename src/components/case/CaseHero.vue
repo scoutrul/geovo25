@@ -5,24 +5,28 @@
     class="case-hero pt-[128px] md:pt-[160px] xl:pt-[200px] !pb-16 md:!pb-24 xl:!pb-16"
   >
     <div
+    class="flex gap-16"
       :class="[
-        gtXl ? 'flex items-start justify-between' : 'flex flex-col gap-16',
+        gtXl ? 'items-start justify-between' : 'flex-col',
       ]"
     >
-      <!-- Левая колонка: Заголовок и статистики -->
       <div
-        class="flex flex-col justify-between h-full"
-        :class="[gtXl ? 'w-[1051px]' : 'w-full']"
+        class="flex flex-col"
+        :class="[
+          gtXl 
+            ? 'min-h-[505px] justify-between' 
+            : 'gap-16'
+        ]"
       >
         <!-- Заголовок -->
-        <div class="mb-16 xl:mb-0">
+        <div>
           <BaseHeading :level="gtXl ? 3 : 4" :as="'h1'" class="text-black-90">
             {{ title }}
           </BaseHeading>
         </div>
 
         <!-- Статистики -->
-        <div class="grid gap-8" :class="[gtLg ? 'grid-cols-2' : 'grid-cols-2']">
+        <div class="grid gap-8 grid-cols-2">
           <div
             v-for="(stat, index) in stats"
             :key="index"
@@ -46,8 +50,7 @@
         </div>
       </div>
 
-      <!-- Правая колонка: Мета-информация (только на desktop) -->
-      <CaseMetaList :variant="gtXl ? 'vertical' : 'horizontal'" :items="metaItems" gap="gap-6" />
+      <CaseMetaList :variant="gtSm ? 'horizontal' : 'vertical'" :items="metaItems" />
     </div>
   </BaseContainer>
 </template>
@@ -57,7 +60,7 @@ import { BaseHeading, BaseText, BaseContainer } from "@/components/base/index.js
 import CaseMetaList from "@/components/case/CaseMetaList.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
-const { gtLg, gtXl } = useBreakpoints();
+const { gtLg, gtXl, gtSm } = useBreakpoints();
 
 defineProps({
   title: {

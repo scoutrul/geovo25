@@ -48,6 +48,7 @@
         <CaseSummary
           :meta-items="metaItems"
           :next-case="nextCase"
+          variant="vertical"
         />
       </div>
     </div>

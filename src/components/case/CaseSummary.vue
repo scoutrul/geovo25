@@ -12,7 +12,6 @@
     <!-- Мета-информация -->
     <CaseMetaList
       :items="metaItems"
-      :gap="gtXl ? 'gap-6' : gtLg ? 'gap-6' : 'gap-4'"
       :style="{ minHeight: gtXl ? '660px' : '100%' }"
     />
 
