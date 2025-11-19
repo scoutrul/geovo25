@@ -8,19 +8,6 @@
       <div class="flex flex-col items-center gap-6">
         <!-- Логотип с анимацией GSAP -->
         <LoaderLogo />
-
-        <!-- Процент загрузки -->
-        <div class="text-white-100 text-4xl font-medium tabular-nums">
-          {{ loadingProgress }}%
-        </div>
-
-        <!-- Прогресс бар -->
-        <div class="w-48 h-1 bg-white-20 rounded-full overflow-hidden">
-          <div
-            class="h-full bg-white-100 transition-all duration-300 ease-out"
-            :style="{ width: `${loadingProgress}%` }"
-          />
-        </div>
       </div>
     </div>
   </Transition>
@@ -148,7 +135,6 @@
 import { ref, computed, defineAsyncComponent } from "vue";
 import PageLayout from "@/layouts/PageLayout.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
-import CasesSection from "@/components/sections/CasesSection.vue";
 import ToolsSection from "@/components/sections/ToolsSection.vue";
 import LazySection from "@/components/LazySection.vue";
 
@@ -186,7 +172,7 @@ import LoaderLogo from "@/components/ui/LoaderLogo.vue";
 const { isMobile } = useBreakpoints();
 const { scrollToElement } = useSmoothScroll();
 const contentStore = useContentStore();
-const { isLoading, loadingProgress } = useVideoPreloader();
+const { isLoading } = useVideoPreloader();
 
 // Получаем данные из store
 const content = computed(() => contentStore.currentData);

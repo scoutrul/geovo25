@@ -1,19 +1,9 @@
-import { ref, readonly, computed } from "vue";
+import { ref, readonly } from "vue";
 
 // Глобальное состояние прелоадера
 const isLoading = ref(true);
 const videosToLoad = ref(new Set());
 const loadedVideos = ref(new Set());
-
-// Вычисляемый процент загрузки
-const loadingProgress = computed(() => {
-  const total = videosToLoad.value.size;
-  const loaded = loadedVideos.value.size;
-  
-  if (total === 0) return 0;
-  
-  return Math.round((loaded / total) * 100);
-});
 
 /**
  * Композабл для глобального управления прелоадингом видео
@@ -79,7 +69,6 @@ export function useVideoPreloader() {
     isLoading: readonly(isLoading),
     videosToLoad: readonly(videosToLoad),
     loadedVideos: readonly(loadedVideos),
-    loadingProgress: readonly(loadingProgress),
     
     // Методы
     registerVideo,
