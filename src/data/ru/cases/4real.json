@@ -19,9 +19,7 @@
   },
   "overview": {
     "title": "Продукт",
-    "sections": [
-      { "text": "Описание продукта 4Real..." }
-    ]
+    "sections": [{ "text": "Описание продукта 4Real..." }]
   },
   "body": {
     "sections": [
@@ -59,5 +57,3 @@
     "title": "Legaline"
   }
 }
-
-

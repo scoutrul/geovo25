@@ -19,9 +19,7 @@
   },
   "overview": {
     "title": "Product",
-    "sections": [
-      { "text": "Legaline product description..." }
-    ]
+    "sections": [{ "text": "Legaline product description..." }]
   },
   "body": {
     "sections": [
@@ -59,5 +57,3 @@
     "title": "AG1"
   }
 }
-
-

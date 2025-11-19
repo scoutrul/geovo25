@@ -19,9 +19,7 @@
   },
   "overview": {
     "title": "Продукт",
-    "sections": [
-      { "text": "Описание продукта Legaline..." }
-    ]
+    "sections": [{ "text": "Описание продукта Legaline..." }]
   },
   "body": {
     "sections": [
@@ -59,5 +57,3 @@
     "title": "AG1"
   }
 }
-
-
