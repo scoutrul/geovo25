@@ -51,8 +51,7 @@
     />
 
     <!-- Cases Секция -->
-    <LazySection
-      :component="LazyCasesSection"
+    <CasesSection
       ref="casesSectionRef"
       :id="sectionAnchors.cases.section"
       :aria-labelledby="sectionAnchors.cases.heading"
@@ -137,6 +136,7 @@ import PageLayout from "@/layouts/PageLayout.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
 import ToolsSection from "@/components/sections/ToolsSection.vue";
 import LazySection from "@/components/LazySection.vue";
+import CasesSection from "@/components/sections/CasesSection.vue";
 
 // Ленивая загрузка секций ниже fold
 const LazyHowWeWorkSection = defineAsyncComponent(() =>
@@ -158,16 +158,13 @@ const LazyFaqSection = defineAsyncComponent(() =>
   import("@/components/sections/FaqSection.vue")
 );
 
-const LazyCasesSection = defineAsyncComponent(() =>
-  import("@/components/sections/CasesSection.vue")
-);
-
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 import { useSectionThemeTracking } from "@/composables/useSectionThemeTracking.js";
 import { useContentStore } from "@/stores";
 import { useVideoPreloader } from "@/composables/useVideoPreloader.js";
 import { useSmoothScroll } from "@/composables/useSmoothScroll.js";
 import LoaderLogo from "@/components/ui/LoaderLogo.vue";
+import { SECTION_ANCHORS } from "@/constants/sectionAnchors.js";
 
 const { isMobile } = useBreakpoints();
 const { scrollToElement } = useSmoothScroll();
@@ -182,33 +179,8 @@ const handleLogoAnimationCycleComplete = () => {
 // Получаем данные из store
 const content = computed(() => contentStore.currentData);
 
-const sectionAnchors = Object.freeze({
-  hero: { section: "section-hero", heading: "section-hero-heading" },
-  tools: { section: "section-tools", heading: "section-tools-heading" },
-  cases: { section: "section-cases", heading: "section-cases-heading" },
-  howWeWork: {
-    section: "section-how-we-work",
-    heading: "section-how-we-work-heading",
-  },
-  expertise: {
-    section: "section-expertise",
-    heading: "section-expertise-heading",
-  },
-  comparison: {
-    section: "section-comparison",
-    heading: "section-comparison-heading",
-  },
-  opportunities: {
-    section: "section-opportunities",
-    heading: "section-opportunities-heading",
-  },
-  reviews: { section: "section-reviews", heading: "section-reviews-heading" },
-  faq: { section: "section-faq", heading: "section-faq-heading" },
-  benefits: {
-    section: "section-benefits",
-    heading: "section-benefits-heading",
-  },
-});
+// Используем константы якорей секций
+const sectionAnchors = SECTION_ANCHORS;
 
 // Refs для секций
 const heroSectionRef = ref(null);
