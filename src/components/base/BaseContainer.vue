@@ -18,7 +18,7 @@ const props = defineProps({
     default: "",
     validator: (value) => {
       if (value === "") return true;
-      return ["white", "black"].includes(value);
+      return ["white", "black", "super-white"].includes(value);
     },
   },
   as: {
@@ -48,6 +48,8 @@ const containerClasses = computed(() => {
     bgClasses = "bg-white-90";
   } else if (props.bg === "black") {
     bgClasses = "bg-black-90";
+  } else if (props.bg === "super-white") {
+    bgClasses = "bg-white-100";
   }
 
   return [baseClasses, overflowClasses, bgClasses].filter(Boolean).join(" ");

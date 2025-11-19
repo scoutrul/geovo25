@@ -1,43 +1,40 @@
 <template>
-  <section class="case-overview bg-white-100 rounded-t-[32px] overflow-hidden">
-    <BaseContainer
-      :as="'div'"
-      bg=""
-      class="!bg-transparent !px-4 md:!px-10 xl:!px-16 !py-32 xl:!py-40"
+  <BaseContainer
+    :as="'section'"
+    bg="super-white"
+  >
+    <div
+      class="w-full max-w-[1592px] mx-auto"
+      :class="[
+        gtXl
+          ? 'grid grid-cols-[1fr_2fr_2fr] gap-8'
+          : gtLg
+            ? 'flex flex-col gap-16'
+            : 'flex flex-col gap-8',
+      ]"
     >
-      <div
-        class="w-full max-w-[1592px] mx-auto"
-        :class="[
-          gtXl
-            ? 'grid grid-cols-[1fr_2fr_2fr] gap-8'
-            : gtLg
-              ? 'flex flex-col gap-16'
-              : 'flex flex-col gap-8',
-        ]"
+      <!-- Заголовок секции -->
+      <BaseText
+        :as="'h2'"
+        size="p1"
+        class="text-black-50"
+        :class="gtXl ? '' : 'mb-8'"
       >
-        <!-- Заголовок секции -->
-        <BaseText
-          :as="'h2'"
-          size="p1"
-          class="text-black-50"
-          :class="gtXl ? '' : 'mb-8'"
-        >
-          {{ title }}
-        </BaseText>
+        {{ title }}
+      </BaseText>
 
-        <!-- Текстовые блоки -->
-        <BaseHeading
-          v-for="(section, index) in sections"
-          :key="index"
-          :level="5"
-          :as="'div'"
-          class="text-black-90"
-        >
-          {{ section.text }}
-        </BaseHeading>
-      </div>
-    </BaseContainer>
-  </section>
+      <!-- Текстовые блоки -->
+      <BaseHeading
+        v-for="(section, index) in sections"
+        :key="index"
+        :level="5"
+        :as="'div'"
+        class="text-black-90"
+      >
+        {{ section.text }}
+      </BaseHeading>
+    </div>
+  </BaseContainer>
 </template>
 
 <script setup>
