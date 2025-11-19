@@ -6,7 +6,7 @@
   >
 
     <div
-    class="flex gap-16 fixed top-[128px] md:top-[160px] xl:top-[200px] left-[16px] right-[16px] md:left-[32px] md:right-[32px] lg:left-[64px] lg:right-[64px] z-0 max-w-[100vw] xl:max-w-[1592px] xl:left-auto xl:right-auto xl:pr-16"
+    class="flex gap-16 fixed top-[128px] md:top-[160px] xl:top-[200px] left-[16px] right-[16px] md:left-[32px] md:right-[32px] lg:left-[64px] lg:right-[64px] z-0 max-w-[100vw] xl:max-w-[1592px] xl:left-auto xl:right-auto xl:pr-[12rem]"
       :class="[
         gtXl ? 'items-start justify-between' : 'flex-col',
       ]"
