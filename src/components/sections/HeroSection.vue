@@ -111,10 +111,9 @@ const runScrambleAnimation = () => {
         { element: subtitleRef.value, text: props.subtitle },
       ],
       {
-        duration: 1.5,
-        speed: 0.3,
-        language: languageStore.currentLanguage,
-        staggerDelay: 0.3,
+        duration: 2,
+        speed: 0.03,
+        staggerDelay: 3,
       }
     );
   }

@@ -5,27 +5,12 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
 /**
- * Получает набор символов для ScrambleText анимации в зависимости от языка
- * @param {string} language - Код языка ('ru' или 'en')
- * @returns {string} Набор символов для анимации
- */
-export function getScrambleChars(language) {
-  const chars = {
-    ru: "абвгдежзийклмнопрстуфхцчшщэюя",
-    en: "abcdefghijklmnopqrstuvwxyz",
-  };
-
-  return chars[language] || chars.en;
-}
-
-/**
  * Создает ScrambleText анимацию с ScrollTrigger
  * @param {HTMLElement} element - DOM элемент для анимации
  * @param {string} text - Текст для отображения
  * @param {Object} options - Опции анимации
  * @param {number} options.duration - Длительность анимации (по умолчанию 1.5)
  * @param {number} options.delay - Задержка перед началом (по умолчанию 0)
- * @param {string} options.language - Язык для символов ('ru' или 'en', по умолчанию 'en')
  * @param {number} options.speed - Скорость смены символов (по умолчанию 0.3)
  * @param {string} options.triggerStart - Позиция срабатывания ScrollTrigger (по умолчанию "top 80%")
  * @returns {gsap.core.Tween} GSAP анимация
@@ -34,7 +19,6 @@ export function createScrambleTextAnimation(element, text, options = {}) {
   const {
     duration = 1.5,
     delay = 0,
-    language = "en",
     speed = 0.3,
     triggerStart = "top 80%",
   } = options;
@@ -44,7 +28,7 @@ export function createScrambleTextAnimation(element, text, options = {}) {
     delay,
     scrambleText: {
       text,
-      chars: getScrambleChars(language),
+      chars: " ",
       speed,
     },
     scrollTrigger: {
