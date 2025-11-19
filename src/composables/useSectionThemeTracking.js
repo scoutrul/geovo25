@@ -24,6 +24,7 @@ export function useSectionThemeTracking(sectionRefs) {
   // Отслеживание скролла
   const handleScroll = () => {
     isScrolled.value = window.scrollY > 20;
+    ScrollTrigger.refresh();
   };
 
   // Инициализация ScrollTrigger для отслеживания секций
@@ -84,9 +85,6 @@ export function useSectionThemeTracking(sectionRefs) {
   onMounted(async () => {
     window.addEventListener("scroll", handleScroll);
 
-    // Ждем, пока все секции будут отрендерены
-    // Используем двойной nextTick для гарантии, что все DOM элементы готовы
-    await nextTick();
     await nextTick();
 
     // Инициализируем отслеживание тем секций
@@ -102,7 +100,7 @@ export function useSectionThemeTracking(sectionRefs) {
 
   onUnmounted(() => {
     window.removeEventListener("scroll", handleScroll);
-    // Очищаем все ScrollTrigger инстансы
+
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   });
 
