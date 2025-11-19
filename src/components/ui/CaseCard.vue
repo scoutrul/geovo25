@@ -1,7 +1,6 @@
 <template>
   <BaseCard
     class="case-card"
-    :class="{ 'case-card--active': active }"
     @click="handleClick"
   >
     <!-- Текстовый контейнер -->
@@ -65,10 +64,6 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  active: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 const handleClick = () => {
@@ -108,7 +103,6 @@ const handleClick = () => {
   transform: scale(1.05);
 }
 
-.case-card--active,
 .case-card:active {
   @apply bg-white-80;
 }

@@ -100,6 +100,7 @@ const buttonClasses = computed(() => {
       : "cursor-pointer";
 
   return [
+    "border-solid",
     baseClasses,
     variantClasses[props.variant],
     sizeClasses[props.size],

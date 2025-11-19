@@ -3,7 +3,6 @@
     as="header"
     :max-width="'full'"
     class="fixed top-0 z-50 w-full transition-all duration-200 !py-3 md:!py-6 overflow-visible"
-    :class="headerClasses"
   >
     <div
       class="w-full backdrop-blur-[20px] rounded-lg md:rounded-xl transition-all duration-200 flex items-center justify-between md:justify-start gap-6 p-3 md:px-6 md:gap-10"
@@ -170,9 +169,4 @@ const handleLanguageChange = (code) => {
 const goToHome = () => {
   router.push({ name: "Home" });
 };
-
-// Классы для хедера
-const headerClasses = computed(() => {
-  return isScrolled.value ? "shadow-sm" : "";
-});
 </script>

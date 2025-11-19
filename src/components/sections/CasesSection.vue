@@ -25,7 +25,6 @@
           :description="caseItem.description"
           :image="caseItem.image"
           :slug="caseItem.slug"
-          :active="activeCase === caseItem.slug"
         />
       </li>
     </AdaptiveGrid>
@@ -33,7 +32,12 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "@/components/base";
+import {
+  BaseContainer,
+  BaseHeading,
+  BaseText,
+  AdaptiveGrid,
+} from "@/components/base";
 import CaseCard from "@/components/ui/CaseCard.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
@@ -60,10 +64,6 @@ defineProps({
     },
   },
   headingId: {
-    type: String,
-    default: "",
-  },
-  activeCase: {
     type: String,
     default: "",
   },

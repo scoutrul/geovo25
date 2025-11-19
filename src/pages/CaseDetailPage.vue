@@ -29,7 +29,6 @@
       :title="casesContent.title"
       :subtitle="casesContent.subtitle"
       :cases="allCases"
-      :active-case="slug"
     />
   </PageLayout>
 </template>

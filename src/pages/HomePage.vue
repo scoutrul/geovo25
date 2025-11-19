@@ -51,7 +51,6 @@
 
     <!-- How We Work Секция -->
     <HowWeWorkSection
-      ref="howWeWorkSectionRef"
       :id="sectionAnchors.howWeWork.section"
       :aria-labelledby="sectionAnchors.howWeWork.heading"
       :heading-id="sectionAnchors.howWeWork.heading"
@@ -61,7 +60,6 @@
 
     <!-- Expertise Секция -->
     <ExpertiseSection
-      ref="expertiseSectionRef"
       :id="sectionAnchors.expertise.section"
       :aria-labelledby="sectionAnchors.expertise.heading"
       :heading-id="sectionAnchors.expertise.heading"
@@ -72,7 +70,6 @@
 
     <!-- Comparison Секция -->
     <ComparisonSection
-      ref="comparisonSectionRef"
       :id="sectionAnchors.comparison.section"
       :aria-labelledby="sectionAnchors.comparison.heading"
       :heading-id="sectionAnchors.comparison.heading"
@@ -83,7 +80,6 @@
 
     <!-- Opportunities Секция -->
     <OpportunitiesSection
-      ref="opportunitiesSectionRef"
       :id="sectionAnchors.opportunities.section"
       :aria-labelledby="sectionAnchors.opportunities.heading"
       :heading-id="sectionAnchors.opportunities.heading"
@@ -98,7 +94,6 @@
 
     <!-- Reviews Секция -->
     <ReviewsSection
-      ref="reviewsSectionRef"
       :id="sectionAnchors.reviews.section"
       :aria-labelledby="sectionAnchors.reviews.heading"
       :heading-id="sectionAnchors.reviews.heading"
@@ -109,7 +104,6 @@
 
     <!-- FAQ Секция -->
     <FaqSection
-      ref="faqSectionRef"
       :id="sectionAnchors.faq.section"
       :aria-labelledby="sectionAnchors.faq.heading"
       :heading-id="sectionAnchors.faq.heading"
@@ -190,24 +184,12 @@ const handleFigmaClick = () => {
 const heroSectionRef = ref(null);
 const toolsSectionRef = ref(null);
 const casesSectionRef = ref(null);
-const howWeWorkSectionRef = ref(null);
-const comparisonSectionRef = ref(null);
-const expertiseSectionRef = ref(null);
-const opportunitiesSectionRef = ref(null);
-const reviewsSectionRef = ref(null);
-const faqSectionRef = ref(null);
 
 // Используем композбл для отслеживания тем секций
-const { isScrolled, headerTheme } = useSectionThemeTracking({
+const { headerTheme } = useSectionThemeTracking({
   heroSectionRef,
   toolsSectionRef,
   casesSectionRef,
-  howWeWorkSectionRef,
-  comparisonSectionRef,
-  expertiseSectionRef,
-  opportunitiesSectionRef,
-  reviewsSectionRef,
-  faqSectionRef,
 });
 
 const handleNavClick = (item) => {

@@ -1,5 +1,5 @@
 <template>
-  <BaseCard variant="transparent" class="gap-6 w-full">
+  <BaseCard variant="transparent" class="gap-6 w-full rounded-none">
     <BaseText :as="'p'" size="p2" class="text-white-100 whitespace-pre-wrap">
       {{ text }}
     </BaseText>
