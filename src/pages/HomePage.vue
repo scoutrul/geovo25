@@ -61,7 +61,8 @@
     />
 
     <!-- Cases Секция -->
-    <CasesSection
+    <LazySection
+      :component="LazyCasesSection"
       ref="casesSectionRef"
       :id="sectionAnchors.cases.section"
       :aria-labelledby="sectionAnchors.cases.heading"
@@ -71,8 +72,9 @@
       :cases="content.cases.items"
     />
 
-    <!-- How We Work Секция -->
-    <HowWeWorkSection
+    <!-- How We Work Секция (Lazy) -->
+    <LazySection
+      :component="LazyHowWeWorkSection"
       :id="sectionAnchors.howWeWork.section"
       :aria-labelledby="sectionAnchors.howWeWork.heading"
       :heading-id="sectionAnchors.howWeWork.heading"
@@ -80,8 +82,9 @@
       :items="content.howWeWork.items"
     />
 
-    <!-- Expertise Секция -->
-    <ExpertiseSection
+    <!-- Expertise Секция (Lazy) -->
+    <LazySection
+      :component="LazyExpertiseSection"
       :id="sectionAnchors.expertise.section"
       :aria-labelledby="sectionAnchors.expertise.heading"
       :heading-id="sectionAnchors.expertise.heading"
@@ -90,8 +93,9 @@
       :cards="content.expertise.items"
     />
 
-    <!-- Comparison Секция -->
-    <ComparisonSection
+    <!-- Comparison Секция (Lazy) -->
+    <LazySection
+      :component="LazyComparisonSection"
       :id="sectionAnchors.comparison.section"
       :aria-labelledby="sectionAnchors.comparison.heading"
       :heading-id="sectionAnchors.comparison.heading"
@@ -100,8 +104,9 @@
       :columns="content.comparison.columns"
     />
 
-    <!-- Opportunities Секция -->
-    <OpportunitiesSection
+    <!-- Opportunities Секция (Lazy) -->
+    <LazySection
+      :component="LazyOpportunitiesSection"
       :id="sectionAnchors.opportunities.section"
       :aria-labelledby="sectionAnchors.opportunities.heading"
       :heading-id="sectionAnchors.opportunities.heading"
@@ -113,8 +118,9 @@
       :button-text="content.opportunities.buttonText"
     />
 
-    <!-- Reviews Секция -->
-    <ReviewsSection
+    <!-- Reviews Секция (Lazy) -->
+    <LazySection
+      :component="LazyReviewsSection"
       :id="sectionAnchors.reviews.section"
       :aria-labelledby="sectionAnchors.reviews.heading"
       :heading-id="sectionAnchors.reviews.heading"
@@ -123,8 +129,9 @@
       :reviews="content.reviews.items"
     />
 
-    <!-- FAQ Секция -->
-    <FaqSection
+    <!-- FAQ Секция (Lazy) -->
+    <LazySection
+      :component="LazyFaqSection"
       :id="sectionAnchors.faq.section"
       :aria-labelledby="sectionAnchors.faq.heading"
       :heading-id="sectionAnchors.faq.heading"
@@ -135,17 +142,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, defineAsyncComponent } from "vue";
 import PageLayout from "@/layouts/PageLayout.vue";
-import FaqSection from "@/components/sections/FaqSection.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
-import HowWeWorkSection from "@/components/sections/HowWeWorkSection.vue";
-import ExpertiseSection from "@/components/sections/ExpertiseSection.vue";
 import CasesSection from "@/components/sections/CasesSection.vue";
-import OpportunitiesSection from "@/components/sections/OpportunitiesSection.vue";
-import ReviewsSection from "@/components/sections/ReviewsSection.vue";
 import ToolsSection from "@/components/sections/ToolsSection.vue";
-import ComparisonSection from "@/components/sections/ComparisonSection.vue";
+import LazySection from "@/components/LazySection.vue";
+
+// Ленивая загрузка секций ниже fold
+const LazyHowWeWorkSection = defineAsyncComponent(() =>
+  import("@/components/sections/HowWeWorkSection.vue")
+);
+const LazyExpertiseSection = defineAsyncComponent(() =>
+  import("@/components/sections/ExpertiseSection.vue")
+);
+const LazyComparisonSection = defineAsyncComponent(() =>
+  import("@/components/sections/ComparisonSection.vue")
+);
+const LazyOpportunitiesSection = defineAsyncComponent(() =>
+  import("@/components/sections/OpportunitiesSection.vue")
+);
+const LazyReviewsSection = defineAsyncComponent(() =>
+  import("@/components/sections/ReviewsSection.vue")
+);
+const LazyFaqSection = defineAsyncComponent(() =>
+  import("@/components/sections/FaqSection.vue")
+);
+
+const LazyCasesSection = defineAsyncComponent(() =>
+  import("@/components/sections/CasesSection.vue")
+);
 
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 import { useSectionThemeTracking } from "@/composables/useSectionThemeTracking.js";
