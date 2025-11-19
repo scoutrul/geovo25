@@ -4,6 +4,7 @@ import { ref, readonly } from "vue";
 const isLoading = ref(true);
 const videosToLoad = ref(new Set());
 const loadedVideos = ref(new Set());
+const animationCycleCompleted = ref(false);
 
 /**
  * Композабл для глобального управления прелоадингом видео
@@ -33,19 +34,26 @@ export function useVideoPreloader() {
   };
 
   /**
-   * Проверяет, загружены ли все видео
+   * Проверяет, загружены ли все видео и завершена ли анимация
    */
   const checkAllVideosLoaded = () => {
-    const allLoaded =
+    const allVideosLoaded =
       videosToLoad.value.size > 0 &&
       videosToLoad.value.size === loadedVideos.value.size;
 
-    if (allLoaded) {
-      // Небольшая задержка для плавности
-      setTimeout(() => {
-        isLoading.value = false;
-      }, 300);
+    // Завершаем загрузку только если видео загружены И анимация завершила цикл
+    if (allVideosLoaded && animationCycleCompleted.value) {
+      isLoading.value = false;
     }
+  };
+
+  /**
+   * Отмечает, что анимация завершила минимум один цикл
+   */
+  const markAnimationCycleComplete = () => {
+    animationCycleCompleted.value = true;
+    // Проверяем, можно ли уже завершить загрузку
+    checkAllVideosLoaded();
   };
 
   /**
@@ -55,6 +63,7 @@ export function useVideoPreloader() {
     isLoading.value = true;
     videosToLoad.value.clear();
     loadedVideos.value.clear();
+    animationCycleCompleted.value = false;
   };
 
   /**
@@ -73,6 +82,7 @@ export function useVideoPreloader() {
     // Методы
     registerVideo,
     markVideoLoaded,
+    markAnimationCycleComplete,
     reset,
     forceComplete,
   };

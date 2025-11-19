@@ -26,15 +26,17 @@ import { DrawSVGPlugin } from "gsap/all";
 
 gsap.registerPlugin(DrawSVGPlugin);
 
+const emit = defineEmits(["animation-cycle-complete"]);
+
 const strokePath = ref(null);
 let strokeTimeline = null;
+let cycleCount = 0;
 
 const cleanup = () => {
   if (strokeTimeline) {
     strokeTimeline.kill();
     strokeTimeline = null;
   }
-
 };
 
 const initAnimation = () => {
@@ -46,7 +48,16 @@ const initAnimation = () => {
     .timeline({
       repeat: -1,
       yoyo: true,
+      repeatDelay: 0.5,
       defaults: { duration: 1.8, ease: "power2.inOut" },
+      onRepeat: () => {
+        cycleCount++;
+        // Каждые 2 повтора = 1 полный цикл (вперёд-назад из-за yoyo)
+        if (cycleCount === 1) {
+          emit("animation-cycle-complete");
+          cycleCount = 0;
+        }
+      },
     })
     .fromTo(strokePath.value, { drawSVG: "0%" }, { drawSVG: "100%" });
 };
