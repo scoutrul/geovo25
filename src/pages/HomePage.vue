@@ -225,11 +225,7 @@ const { headerTheme } = useSectionThemeTracking({
 // Обработка скролла к секции кейсов
 const handleNavCaseScroll = () => {
   const element = document.getElementById(sectionAnchors.cases.section);
-  scrollToElement(element, {
-    offset: 0,
-    overshoot: 30,
-    duration: 1,
-  });
+  scrollToElement(element);
 };
 </script>
 

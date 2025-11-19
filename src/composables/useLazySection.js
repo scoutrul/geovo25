@@ -9,7 +9,7 @@ import { ref, onMounted, onUnmounted } from "vue";
  */
 export function useLazySection(options = {}) {
   const {
-    rootMargin = "600px", // загружаем за 200px до появления
+    rootMargin = "200vh", 
     threshold = 0.01,
   } = options;
 
