@@ -59,8 +59,10 @@ import {
 } from "vue";
 import { gsap } from "gsap";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
+import { useVideoPreloader } from "@/composables/useVideoPreloader.js";
 
 const { gtXl, currentBreakpoint, deviceType } = useBreakpoints();
+const { registerVideo, markVideoLoaded, isLoading } = useVideoPreloader();
 
 const props = defineProps({
   items: {
@@ -89,6 +91,12 @@ const handleVideoLoadStart = (index) => {
 // Обработчик завершения загрузки
 const handleVideoLoaded = (index) => {
   videoLoadedStates.value.set(index, true);
+
+  // Уведомляем глобальный прелоадер о загрузке видео
+  const videoSrc = duplicatedItems.value[index]?.src;
+  if (videoSrc) {
+    markVideoLoaded(videoSrc);
+  }
 };
 
 // Дублируем элементы для бесконечной карусели (3 копии)
@@ -133,9 +141,6 @@ const initCarousel = async () => {
   ) {
     return;
   }
-
-  // Сбрасываем состояние загрузки видео при переинициализации
-  videoLoadedStates.value.clear();
 
   // Убиваем предыдущие анимации, если есть
   if (animation) {
@@ -209,12 +214,20 @@ const initCarousel = async () => {
   }
 };
 
+// Регистрируем все уникальные видео в прелоадере
+const uniqueVideos = new Set(
+  props.items.map((item) => item.src).filter(Boolean)
+);
+uniqueVideos.forEach((videoSrc) => {
+  registerVideo(videoSrc);
+});
+
 onMounted(() => {
   initCarousel();
 });
 
 // Переинициализируем карусель при изменении breakpoint
-watch([currentBreakpoint], () => {
+watch([currentBreakpoint, isLoading], () => {
   initCarousel();
 });
 

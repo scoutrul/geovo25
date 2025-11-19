@@ -122,7 +122,12 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, BaseButton } from "@/components/base";
+import {
+  BaseContainer,
+  BaseHeading,
+  BaseText,
+  BaseButton,
+} from "@/components/base";
 import OpportunityCard from "@/components/ui/OpportunityCard.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 import { computed } from "vue";

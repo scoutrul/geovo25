@@ -29,7 +29,12 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText, AdaptiveGrid } from "@/components/base";
+import {
+  BaseContainer,
+  BaseHeading,
+  BaseText,
+  AdaptiveGrid,
+} from "@/components/base";
 import ExpertiseCard from "@/components/ui/ExpertiseCard.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 

@@ -41,7 +41,11 @@
 </template>
 
 <script setup>
-import { BaseContainer, BaseHeading, BaseText } from "@/components/base/index.js";
+import {
+  BaseContainer,
+  BaseHeading,
+  BaseText,
+} from "@/components/base/index.js";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg, gtXl } = useBreakpoints();

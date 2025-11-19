@@ -1,8 +1,5 @@
 <template>
-  <BaseCard
-    class="case-card"
-    @click="handleClick"
-  >
+  <BaseCard class="case-card" @click="handleClick">
     <!-- Текстовый контейнер -->
     <header class="case-card__header">
       <BaseHeading
