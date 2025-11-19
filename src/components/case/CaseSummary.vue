@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col md:flex-row xl:flex-col gap-4 md:sticky md:backdrop-blur-[20px]"
+    class="flex flex-col md:flex-row xl:flex-col gap-4 md:sticky"
     :class="[
       gtXl
         ? 'flex flex-col gap-16 bg-transparent'

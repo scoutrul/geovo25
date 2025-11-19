@@ -9,26 +9,28 @@
       :meta-items="caseData.meta.items"
     />
 
-    <!-- Overview Section -->
-    <CaseOverview
-      :title="caseData.overview.title"
-      :sections="caseData.overview.sections"
-    />
+    <div class="relative z-10">
+      <!-- Overview Section -->
+      <CaseOverview
+        :title="caseData.overview.title"
+        :sections="caseData.overview.sections"
+      />
 
-    <!-- Body Section -->
-    <CaseBody
-      :sections="caseData.body.sections"
-      :meta-items="caseData.meta.items"
-      :next-case="caseData.nextCase"
-    />
+      <!-- Body Section -->
+      <CaseBody
+        :sections="caseData.body.sections"
+        :meta-items="caseData.meta.items"
+        :next-case="caseData.nextCase"
+      />
 
-    <!-- Cases Section -->
-    <CasesSection
-      id="cases-section"
-      :title="casesContent.title"
-      :subtitle="casesContent.subtitle"
-      :cases="allCases"
-    />
+      <!-- Cases Section -->
+      <CasesSection
+        id="cases-section"
+        :title="casesContent.title"
+        :subtitle="casesContent.subtitle"
+        :cases="allCases"
+      />
+  </div>
   </PageLayout>
 </template>
 

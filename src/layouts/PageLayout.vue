@@ -1,5 +1,5 @@
 <template>
-  <div class="page-layout bg-black-90 min-h-screen">
+  <div class="relative bg-black-90 min-h-screen z-20">
     <StickyHeader
       v-bind="headerProps"
       @cta-click="handleCtaClick"
@@ -74,7 +74,4 @@ function handleLanguageChange(code) {
 </script>
 
 <style scoped>
-.page-layout {
-  @apply relative;
-}
 </style>
