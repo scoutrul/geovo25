@@ -24,7 +24,9 @@ export function useSectionThemeTracking(sectionRefs) {
   // Отслеживание скролла
   const handleScroll = () => {
     isScrolled.value = window.scrollY > 20;
-    ScrollTrigger.refresh();
+    if (!isScrolled.value) {
+      ScrollTrigger.refresh();
+    }
   };
 
   // Инициализация ScrollTrigger для отслеживания секций
