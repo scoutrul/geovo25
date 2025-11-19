@@ -43,7 +43,6 @@ const props = defineProps({
 
 const emit = defineEmits([
   "header-nav-case-scroll",
-  "language-change",
 ]);
 
 // Собираем props для хедера из store
@@ -73,7 +72,6 @@ const handleCtaClick = () => {
 // Обработчик смены языка
 function handleLanguageChange(code) {
   languageStore.setLanguage(code);
-  emit("language-change", code);
 }
 </script>
 

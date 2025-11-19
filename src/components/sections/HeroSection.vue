@@ -31,7 +31,7 @@
           </BaseText>
         </div>
 
-        <ContactButton @click="$emit('cta-click')">
+        <ContactButton @click="handleCtaClick">
           {{ buttonText }}
         </ContactButton>
         <HeroStats :stats="stats" v-if="gtXl" class="mt-20" />
@@ -131,5 +131,8 @@ watch([() => languageStore.currentLanguage, currentBreakpoint], async () => {
   runScrambleAnimation();
 });
 
-defineEmits(["cta-click"]);
+// Обработка клика по CTA
+const handleCtaClick = () => {
+  window.open("http://t.me/meisdigital", "_blank");
+};
 </script>

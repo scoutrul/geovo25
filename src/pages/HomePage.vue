@@ -46,7 +46,6 @@
       :button-text="content.hero.buttonText"
       :stats="content.hero.stats"
       :gallery="isMobile ? content.hero.galleryMobile : content.hero.gallery"
-      @cta-click="handleCtaClick"
       class="pt-[128px] md:pt-[160px] lg:pt-[192px] xl:pb-0"
     />
 
@@ -137,9 +136,6 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import PageLayout from "@/layouts/PageLayout.vue";
 import FaqSection from "@/components/sections/FaqSection.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
@@ -155,8 +151,10 @@ import { useBreakpoints } from "@/composables/useBreakpoints.js";
 import { useSectionThemeTracking } from "@/composables/useSectionThemeTracking.js";
 import { useContentStore } from "@/stores";
 import { useVideoPreloader } from "@/composables/useVideoPreloader.js";
+import { useSmoothScroll } from "@/composables/useSmoothScroll.js";
 
 const { isMobile } = useBreakpoints();
+const { scrollToElement } = useSmoothScroll();
 const contentStore = useContentStore();
 const { isLoading, loadingProgress } = useVideoPreloader();
 
@@ -191,9 +189,6 @@ const sectionAnchors = Object.freeze({
   },
 });
 
-// Регистрируем плагины GSAP
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
 // Refs для секций
 const heroSectionRef = ref(null);
 const toolsSectionRef = ref(null);
@@ -209,17 +204,11 @@ const { headerTheme } = useSectionThemeTracking({
 // Обработка скролла к секции кейсов
 const handleNavCaseScroll = () => {
   const element = document.getElementById(sectionAnchors.cases.section);
-  if (element) {
-    const headerOffset = 0; // Отступ для фиксированного хедера
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-    gsap.to(window, {
-      duration: 1,
-      scrollTo: { y: offsetPosition, autoKill: true },
-      ease: "power2.inOut"
-    });
-  }
+  scrollToElement(element, {
+    offset: 0,
+    overshoot: 30,
+    duration: 1,
+  });
 };
 </script>
 

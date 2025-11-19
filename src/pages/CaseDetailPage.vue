@@ -35,21 +35,18 @@
 <script setup>
 import { computed, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import PageLayout from "@/layouts/PageLayout.vue";
 import CaseHero from "@/components/case/CaseHero.vue";
 import CaseOverview from "@/components/case/CaseOverview.vue";
 import CaseBody from "@/components/case/CaseBody.vue";
 import CasesSection from "@/components/sections/CasesSection.vue";
 import { useCasesStore, useContentStore } from "@/stores";
+import { useSmoothScroll } from "@/composables/useSmoothScroll.js";
 
 const route = useRoute();
 const casesStore = useCasesStore();
 const contentStore = useContentStore();
-
-// Регистрируем плагин ScrollToPlugin
-gsap.registerPlugin(ScrollToPlugin);
+const { scrollToElement } = useSmoothScroll();
 
 const slug = computed(() => route.params.slug);
 
@@ -85,17 +82,11 @@ watch(
 // Обработка скролла к секции кейсов
 const handleNavCaseScroll = () => {
   const element = document.getElementById('cases-section');
-  if (element) {
-    const headerOffset = 0; // Отступ для фиксированного хедера
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-    gsap.to(window, {
-      duration: 1,
-      scrollTo: { y: offsetPosition, autoKill: true },
-      ease: "power2.inOut"
-    });
-  }
+  scrollToElement(element, {
+    offset: 0,
+    overshoot: 30,
+    duration: 1,
+  });
 };
 </script>
 
