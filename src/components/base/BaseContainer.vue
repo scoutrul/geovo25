@@ -29,11 +29,18 @@ const props = defineProps({
     type: String,
     default: "full",
   },
+  overflow: {
+    type: String,
+    default: "hidden",
+    validator: (value) => ["hidden", "visible", "auto"].includes(value),
+  },
 });
 
 const containerClasses = computed(() => {
-  const baseClasses =
-    "w-full px-4 py-16 md:px-10 lg:px-16 xl:py-40 xl:py-40 overflow-hidden";
+  const baseClasses = "w-full px-4 py-16 md:px-10 lg:px-16 xl:py-40 xl:py-40";
+
+  // Overflow
+  const overflowClasses = `overflow-${props.overflow}`;
 
   // Фон: маппинг простых ключей на классы Tailwind
   let bgClasses = "";
@@ -43,6 +50,6 @@ const containerClasses = computed(() => {
     bgClasses = "bg-black-90";
   }
 
-  return [baseClasses, bgClasses].filter(Boolean).join(" ");
+  return [baseClasses, overflowClasses, bgClasses].filter(Boolean).join(" ");
 });
 </script>

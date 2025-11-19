@@ -7,8 +7,7 @@
       @language-change="handleLanguageChange"
     />
 
-
-      <slot />
+    <slot />
 
     <BenefitsSection
       v-bind="computedFooterProps"

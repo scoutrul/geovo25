@@ -1,13 +1,10 @@
 <template>
-  <section
-    class="case-hero bg-white-90 overflow-hidden"
-    :class="[
-      'px-4 md:px-10 xl:px-16',
-      'pt-[128px] pb-16 md:pt-[160px] md:pb-24 xl:pt-[200px] xl:pb-16',
-    ]"
+  <BaseContainer
+    as="section"
+    bg="white"
+    class="case-hero pt-[128px] md:pt-[160px] xl:pt-[200px] !pb-16 md:!pb-24 xl:!pb-16"
   >
     <div
-      class="max-w-[1592px] mx-auto w-full"
       :class="[
         gtXl ? 'flex items-start justify-between' : 'flex flex-col gap-16',
       ]"
@@ -50,26 +47,14 @@
       </div>
 
       <!-- Правая колонка: Мета-информация (только на desktop) -->
-      <div v-if="!gtXl" class="flex flex-col gap-6">
-        <div
-          v-for="(item, index) in metaItems"
-          :key="index"
-          class="flex flex-col"
-        >
-          <BaseText :as="'div'" size="p2" class="text-black-90">
-            {{ item.value }}
-          </BaseText>
-          <BaseText :as="'div'" size="p2" class="text-black-50">
-            {{ item.label }}
-          </BaseText>
-        </div>
-      </div>
+      <CaseMetaList :variant="gtXl ? 'vertical' : 'horizontal'" :items="metaItems" gap="gap-6" />
     </div>
-  </section>
+  </BaseContainer>
 </template>
 
 <script setup>
-import { BaseHeading, BaseText } from "@/components/base/index.js";
+import { BaseHeading, BaseText, BaseContainer } from "@/components/base/index.js";
+import CaseMetaList from "@/components/case/CaseMetaList.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
 const { gtLg, gtXl } = useBreakpoints();
@@ -95,9 +80,3 @@ defineProps({
   },
 });
 </script>
-
-<style scoped>
-.case-hero {
-  @apply relative;
-}
-</style>

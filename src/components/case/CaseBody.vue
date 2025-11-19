@@ -1,16 +1,10 @@
 <template>
-  <section class="case-body bg-white-90">
-    <div class="w-full" :class="[gtXl ? 'flex items-start' : 'flex flex-col']">
+  <BaseContainer as="section" bg="white" overflow="visible" class="case-body">
+    <div class="w-full" :class="[gtXl ? 'flex items-start gap-[83px]' : 'flex flex-col']">
       <!-- Контент -->
       <div
         class="case-body__content"
-        :class="[
-          gtXl
-            ? 'w-[1051px] px-16 py-40'
-            : gtLg
-              ? 'w-full px-10 py-40'
-              : 'w-full px-4 py-16',
-        ]"
+        :class="[gtXl ? 'flex-1 min-w-0' : 'w-full']"
       >
         <div class="flex flex-col gap-24">
           <!-- Итерация по секциям -->
@@ -50,21 +44,21 @@
       </div>
 
       <!-- Summary (только на desktop) -->
-      <CaseSummary
-        v-if="gtXl"
-        :meta-items="metaItems"
-        :next-case="nextCase"
-        class="sticky top-24"
-      />
+      <div v-if="gtXl" class="w-[438px] flex-shrink-0 sticky top-[280px]">
+        <CaseSummary
+          :meta-items="metaItems"
+          :next-case="nextCase"
+        />
+      </div>
     </div>
 
     <!-- Summary для mobile/tablet -->
     <CaseSummary v-if="!gtXl" :meta-items="metaItems" :next-case="nextCase" />
-  </section>
+  </BaseContainer>
 </template>
 
 <script setup>
-import { BaseHeading } from "@/components/base/index.js";
+import { BaseContainer, BaseHeading } from "@/components/base/index.js";
 import CaseContentBlock from "@/components/case/CaseContentBlock.vue";
 import CaseTestimonial from "@/components/case/CaseTestimonial.vue";
 import CaseSummary from "@/components/case/CaseSummary.vue";
@@ -87,9 +81,3 @@ defineProps({
   },
 });
 </script>
-
-<style scoped>
-.case-body {
-  @apply relative min-h-screen;
-}
-</style>
