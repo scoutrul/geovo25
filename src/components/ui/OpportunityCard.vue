@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-6">
     <!-- Chip/Badge -->
-    <div class="border border-black-90/5 rounded-full px-6 py-3 w-fit">
+    <div class="border border-solid border-black-90/5 rounded-full px-6 py-3 w-fit">
       <BaseText :as="'span'" size="p1" class="text-black-90">
         {{ category }}
       </BaseText>
