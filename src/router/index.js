@@ -18,11 +18,16 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { top: 0 };
-    }
+    // Возвращаем promise, чтобы скроллить после завершения анимации перехода
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (savedPosition) {
+          resolve(savedPosition);
+        } else {
+          resolve({ top: 0, behavior: 'instant' });
+        }
+      }, 300); // Задержка соответствует длительности fade-in анимации
+    });
   },
 });
 

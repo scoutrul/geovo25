@@ -7,9 +7,8 @@
       @language-change="handleLanguageChange"
     />
 
-    <main class="min-h-screen" role="main">
+
       <slot />
-    </main>
 
     <BenefitsSection
       v-bind="computedFooterProps"
