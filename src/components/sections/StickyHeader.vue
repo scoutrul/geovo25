@@ -40,7 +40,7 @@
             class="list-none"
           >
             <a
-
+              :href="getNavHref(item)"
               class="text-p2 hover:text-primary transition-colors whitespace-nowrap"
               :class="navLinkColorClass"
               :target="item.type === 'download' ? '_blank' : undefined"
