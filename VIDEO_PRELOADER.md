@@ -9,7 +9,7 @@
 ### Компоненты системы
 
 1. **`useVideoPreloader.js`** - композабл с глобальным состоянием
-2. **`PageLayout.vue`** - отображает черный экран и управляет монтированием контента
+2. **`HomePage.vue`** - отображает черный экран с прогрессом загрузки
 3. **`GalleryPlaceholder.vue`** - регистрирует и отслеживает загрузку видео
 
 ## Как работает
@@ -59,40 +59,32 @@ const checkAllVideosLoaded = () => {
 
 ### 4. Отображение прогресса
 
-`PageLayout.vue` показывает процент загрузки и прогресс бар:
+`HomePage.vue` показывает прелоадер поверх всей страницы:
 
 ```vue
 <template>
-  <div class="page-layout bg-black-90 min-h-screen">
-    <!-- Прелоадер с процентами -->
-    <Transition name="fade">
-      <div v-if="isLoading" class="fixed inset-0 bg-black-90 z-50 flex items-center justify-center">
-        <div class="flex flex-col items-center gap-4">
-          <!-- Процент -->
-          <div class="text-white-100 text-4xl font-medium">
-            {{ loadingProgress }}%
-          </div>
-          
-          <!-- Прогресс бар -->
-          <div class="w-48 h-1 bg-white-20 rounded-full">
-            <div class="h-full bg-white-100" :style="{ width: `${loadingProgress}%` }" />
-          </div>
-          
-          <!-- Счетчик -->
-          <div class="text-white-50 text-sm">
-            {{ loadedVideos.size }} / {{ videosToLoad.size }} видео
-          </div>
+  <!-- Прелоадер видео -->
+  <Transition name="fade">
+    <div v-if="isLoading" class="fixed inset-0 bg-black-90 z-50 flex items-center justify-center">
+      <div class="flex flex-col items-center gap-4">
+        <!-- Процент -->
+        <div class="text-white-100 text-4xl font-medium tabular-nums">
+          {{ loadingProgress }}%
+        </div>
+        
+        <!-- Прогресс бар -->
+        <div class="w-48 h-1 bg-white-20 rounded-full">
+          <div class="h-full bg-white-100" :style="{ width: `${loadingProgress}%` }" />
         </div>
       </div>
-    </Transition>
-    
-    <!-- Контент после загрузки -->
-    <Transition name="fade">
-      <div v-show="!isLoading" class="page-content">
-        <!-- Header, Main, Footer -->
-      </div>
-    </Transition>
-  </div>
+    </div>
+  </Transition>
+  
+  <!-- Основной контент страницы -->
+  <PageLayout v-show="!isLoading">
+    <HeroSection :gallery="galleryVideos" />
+    <!-- Остальные секции -->
+  </PageLayout>
 </template>
 ```
 
@@ -236,16 +228,44 @@ onMounted(() => {
 ## Связанные файлы
 
 - `/src/composables/useVideoPreloader.js` - основной композабл
-- `/src/layouts/PageLayout.vue` - интеграция прелоадера
+- `/src/pages/HomePage.vue` - интеграция прелоадера
 - `/src/components/ui/GalleryPlaceholder.vue` - регистрация видео
+- `/src/components/sections/HeroSection.vue` - секция с галереей видео
 - `/src/data/en/hero.json` - список видео (desktop и mobile)
 
-## Почему прелоадер в PageLayout, а не в App?
+## Почему прелоадер в HomePage, а не в Layout или App?
 
-Прелоадер размещен в `PageLayout.vue` по следующим причинам:
+Прелоадер размещен непосредственно в `HomePage.vue` по следующим причинам:
 
-1. **Контекст**: PageLayout содержит всю структуру страницы (header, main, footer)
-2. **Переиспользование**: Если будут страницы без layout, они не будут ждать видео
-3. **Логическая изоляция**: Прелоадинг связан с контентом layout, а не с роутингом
-4. **Гибкость**: Можно создать другие layout без прелоадера
+1. **Явная связь**: Прелоадер находится там же, где используются видео (HeroSection с галереей)
+2. **Простота**: Не нужно проверять роуты или передавать пропсы через layout
+3. **Локальность**: Логика загрузки видео изолирована в пределах одной страницы
+4. **Гибкость**: Другие страницы не зависят от прелоадера и загружаются мгновенно
+5. **Понятность**: Сразу видно, что прелоадер связан с контентом именно этой страницы
+
+### Структура HomePage
+
+```vue
+<template>
+  <!-- Прелоадер - показывается пока видео загружаются -->
+  <Transition name="fade">
+    <div v-if="isLoading" class="fixed inset-0 bg-black-90 z-50">
+      <!-- Процент и прогресс бар -->
+    </div>
+  </Transition>
+  
+  <!-- Контент - скрыт пока идет загрузка -->
+  <PageLayout v-show="!isLoading">
+    <HeroSection :gallery="videos" /> <!-- Здесь видео -->
+    <!-- Остальные секции -->
+  </PageLayout>
+</template>
+```
+
+### Преимущества такого подхода
+
+- ✅ **Прямая связь**: Прелоадер рядом с компонентом, который использует видео
+- ✅ **Не нужно проверять роуты**: Прелоадер автоматически работает только на этой странице
+- ✅ **Чистый layout**: PageLayout остается простым и переиспользуемым
+- ✅ **Легко понять**: Открыл HomePage - сразу видишь прелоадер и его логику
 

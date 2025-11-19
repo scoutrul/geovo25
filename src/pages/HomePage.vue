@@ -1,5 +1,30 @@
 <template>
+  <!-- Прелоадер видео -->
+  <Transition name="fade" mode="out-in">
+    <div
+      v-if="isLoading"
+      class="fixed inset-0 bg-black-90 z-50 flex items-center justify-center"
+    >
+      <div class="flex flex-col items-center gap-4">
+        <!-- Процент загрузки -->
+        <div class="text-white-100 text-4xl font-medium tabular-nums">
+          {{ loadingProgress }}%
+        </div>
+
+        <!-- Прогресс бар -->
+        <div class="w-48 h-1 bg-white-20 rounded-full overflow-hidden">
+          <div
+            class="h-full bg-white-100 transition-all duration-300 ease-out"
+            :style="{ width: `${loadingProgress}%` }"
+          />
+        </div>
+      </div>
+    </div>
+  </Transition>
+
+  <!-- Основной контент страницы -->
   <PageLayout
+    v-show="!isLoading"
     :header-theme="headerTheme"
     :footer-props="{
       id: sectionAnchors.benefits.section,
@@ -131,9 +156,11 @@ import ComparisonSection from "@/components/sections/ComparisonSection.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 import { useSectionThemeTracking } from "@/composables/useSectionThemeTracking.js";
 import { useContentStore } from "@/stores";
+import { useVideoPreloader } from "@/composables/useVideoPreloader.js";
 
 const { isMobile } = useBreakpoints();
 const contentStore = useContentStore();
+const { isLoading, loadingProgress } = useVideoPreloader();
 
 // Получаем данные из store
 const content = computed(() => contentStore.currentData);
@@ -196,3 +223,20 @@ const handleNavClick = (item) => {
   console.log("Nav clicked:", item);
 };
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+</style>
