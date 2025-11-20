@@ -6,6 +6,7 @@
   >
     <!-- Fixed блок -->
     <CaseHeroContent
+      ref="fixedHero"
       :title="title"
       :stats="stats"
       :meta-items="metaItems"
@@ -23,8 +24,15 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { BaseContainer } from "@/components/base/index.js";
 import CaseHeroContent from "@/components/case/CaseHeroContent.vue";
+import { useHeroFadeAnimation } from "@/composables/useHeroFadeAnimation.js";
+
+const fixedHero = ref(null);
+
+// Применяем fade анимацию к hero секции
+useHeroFadeAnimation(fixedHero);
 
 defineProps({
   title: {

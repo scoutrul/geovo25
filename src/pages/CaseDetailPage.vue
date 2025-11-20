@@ -2,7 +2,6 @@
   <PageLayout @header-nav-case-scroll="handleNavCaseScroll" bg="white">
     <!-- Hero Section -->
     <CaseHero
-      ref="caseHeroRef"
       :title="caseData.hero.title"
       :stats="caseData.hero.stats"
       :meta-items="caseData.meta.items"
@@ -34,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from "vue";
+import { computed, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import PageLayout from "@/layouts/PageLayout.vue";
 import CaseHero from "@/components/case/CaseHero.vue";
@@ -43,16 +42,11 @@ import CaseBody from "@/components/case/CaseBody.vue";
 import CasesSection from "@/components/sections/CasesSection.vue";
 import { useCasesStore, useContentStore } from "@/stores";
 import { useSmoothScroll } from "@/composables/useSmoothScroll.js";
-import { useHeroFadeAnimation } from "@/composables/useHeroFadeAnimation.js";
 
 const route = useRoute();
 const casesStore = useCasesStore();
 const contentStore = useContentStore();
 const { scrollToElement } = useSmoothScroll();
-const caseHeroRef = ref(null);
-
-// Применяем fade анимацию к hero секции
-useHeroFadeAnimation(caseHeroRef);
 
 const slug = computed(() => route.params.slug);
 
