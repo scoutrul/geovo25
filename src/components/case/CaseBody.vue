@@ -49,7 +49,7 @@
       <!-- Summary (только на desktop) -->
       <div
         v-if="gtXl"
-        class="w-[438px] flex-shrink-0 xl:sticky xl:top-[160px] h-[calc(100vh_-_280px)]"
+        class="w-[438px] flex-shrink-0 xl:sticky xl:top-[160px] h-[calc(100vh-280px)]"
       >
         <CaseSummary :meta-items="metaItems" :next-case="nextCase" />
       </div>
@@ -98,7 +98,7 @@ const visibleMetaItems = computed(() => {
     return props.metaItems.slice(0, 3);
   } else {
     // По умолчанию (мобильные) показываем первый элемент
-    return props.metaItems.slice(0, 2);
+    return props.metaItems.slice(0, 0);
   }
 });
 </script>

@@ -1,13 +1,13 @@
 <template>
   <div
-    class="case-meta-bar min-w-full sticky bottom-0 bg-white-100/100 gap-6 
-    w-[100vw - 16px] md:w-[calc(100vw - 24px)] -mx-[16px] md:mx-[-40px] lg:mx-[-72px]"
+    class="case-meta-bar min-w-full sticky sm:relative md:sticky lg:relative bottom-0 gap-6 w-[calc(100vw_-_16px)] -mx-[16px] md:-ml-[40px] lg:-mx-[0] lg:w-auto bg-white-100"
     :class="[
-      gtSm ? 'flex justify-between px-4 py-6' : 'flex flex-col gap-4 px-4 py-4'
+      gtSm ? 'flex justify-between px-4 py-6' : 'flex flex-col gap-4 px-4 py-4',
     ]"
   >
     <!-- Мета-информация -->
     <CaseMetaList
+      v-if="metaItems.length"
       :items="metaItems"
       :gap="gtSm ? 'gap-6' : 'gap-4'"
       :class="[gtSm ? 'flex-row' : 'flex-col']"
@@ -17,7 +17,7 @@
     <BaseButton
       v-if="nextCase"
       variant="secondary"
-      :size="gtSm ? gtLg ? 'lg' : 'md' : 'wide'"
+      :size="gtSm ? (gtLg ? 'lg' : 'md') : 'wide'"
       @click="navigateToNextCase"
     >
       {{ buttonText }}
@@ -37,7 +37,9 @@ const router = useRouter();
 const contentStore = useContentStore();
 const { gtSm, gtLg } = useBreakpoints();
 
-const buttonText = computed(() => contentStore.meta.nextCaseButton || "Next case");
+const buttonText = computed(
+  () => contentStore.meta.nextCaseButton || "Next case"
+);
 
 const props = defineProps({
   metaItems: {
@@ -62,4 +64,3 @@ const navigateToNextCase = () => {
   }
 };
 </script>
-

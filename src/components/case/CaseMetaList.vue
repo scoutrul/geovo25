@@ -1,12 +1,17 @@
 <template>
   <div
-    class="flex flex-col sm:w-[70%] md:w-full md:flex-row xl:flex-col xl:max-w-[310px] gap-4 md:gap-6">
+    class="flex flex-col sm:w-[70%] md:w-full md:flex-row xl:flex-col xl:max-w-[310px] gap-4 md:gap-6"
+  >
     <div
       v-for="(item, index) in items"
       :key="index"
       class="flex flex-col flex-1 align-start"
     >
-      <BaseText :as="'div'" :size="valueSize" class="text-black-90">
+      <BaseText
+        :as="'div'"
+        :size="valueSize"
+        class="text-black-90 whitespace-nowrap xl:whitespace-normal"
+      >
         {{ item.value }}
       </BaseText>
       <BaseText :as="'div'" :size="labelSize" class="text-black-50">
@@ -45,4 +50,3 @@ defineProps({
   },
 });
 </script>
-

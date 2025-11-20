@@ -69,7 +69,7 @@ const buttonClasses = computed(() => {
 
     // Secondary: кнопка с border
     secondary:
-      "border border-black-70 text-black-90 hover:bg-white-100 hover:border-white-100 active:bg-white-80 active:border-white-80 ",
+      "border border-black-70 text-black-90 hover:bg-white-100 hover:border-white-80 active:bg-white-90 active:border-white-90 ",
 
     // Outline: обводка primary
     outline:
