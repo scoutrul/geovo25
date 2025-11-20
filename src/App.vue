@@ -1,7 +1,10 @@
 <template>
   <router-view v-slot="{ Component }">
     <Transition name="fade" mode="out-in">
-      <component :is="Component" />
+      <component
+        :is="Component"
+        :class="languageStore.isRussian ? 'ru-letter-spacing' : ''"
+      />
     </Transition>
   </router-view>
 </template>
@@ -29,13 +32,8 @@ const upsertMetaTag = (attribute, value, content) => {
 
 // Обновление title и meta description
 const updateDocumentMeta = () => {
-  const {
-    title,
-    description,
-    ogTitle,
-    ogDescription,
-    ogImage,
-  } = contentStore.meta;
+  const { title, description, ogTitle, ogDescription, ogImage } =
+    contentStore.meta;
 
   document.title = title || "";
 
@@ -72,6 +70,10 @@ watch(
 </script>
 
 <style>
+.ru-letter-spacing {
+  letter-spacing: -0.04rem;
+}
+
 .fade-enter-active {
   transition: opacity 0.3s ease;
 }
