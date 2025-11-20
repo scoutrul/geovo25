@@ -37,9 +37,7 @@ const router = useRouter();
 const contentStore = useContentStore();
 const { gtSm, gtLg } = useBreakpoints();
 
-const buttonText = computed(
-  () => contentStore.meta.nextCaseButton || "Next case"
-);
+const buttonText = computed(() => contentStore.meta.nextCaseButton || "");
 
 const props = defineProps({
   metaItems: {

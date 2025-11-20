@@ -17,6 +17,7 @@
 
     <!-- Основной контент страницы -->
     <PageLayout
+      bg="black"
       v-show="!isLoading"
       :header-theme="headerTheme"
       :footer-props="{
@@ -163,6 +164,7 @@ import { useSectionThemeTracking } from "@/composables/useSectionThemeTracking.j
 import { useContentStore } from "@/stores";
 import { useVideoPreloader } from "@/composables/useVideoPreloader.js";
 import { useSmoothScroll } from "@/composables/useSmoothScroll.js";
+import { useHeroFadeAnimation } from "@/composables/useHeroFadeAnimation.js";
 import LoaderLogo from "@/components/ui/LoaderLogo.vue";
 import { SECTION_ANCHORS } from "@/constants/sectionAnchors.js";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection.vue";
@@ -188,6 +190,11 @@ const heroSectionRef = ref(null);
 const toolsSectionRef = ref(null);
 const casesSectionRef = ref(null);
 const howWeWorkSectionRef = ref(null);
+
+// Применяем fade анимацию к hero секции
+useHeroFadeAnimation(heroSectionRef);
+useHeroFadeAnimation(toolsSectionRef);
+
 // Используем композбл для отслеживания тем секций
 const { headerTheme } = useSectionThemeTracking({
   heroSectionRef,

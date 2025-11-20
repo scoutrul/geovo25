@@ -1,5 +1,8 @@
 <template>
-  <div class="relative bg-black-90 min-h-screen z-20">
+  <div
+    class="relative min-h-screen z-20"
+    :class="bg === 'black' ? 'bg-black-90' : 'bg-white-90'"
+  >
     <StickyHeader
       v-bind="headerProps"
       @cta-click="handleCtaClick"
@@ -9,10 +12,7 @@
 
     <slot />
 
-    <BenefitsSection
-      v-bind="computedFooterProps"
-      @cta-click="handleCtaClick"
-    />
+    <BenefitsSection v-bind="computedFooterProps" @cta-click="handleCtaClick" />
   </div>
 </template>
 
@@ -32,6 +32,11 @@ const props = defineProps({
     default: "light",
     validator: (value) => ["light", "dark"].includes(value),
   },
+  bg: {
+    type: String,
+    default: "black",
+    validator: (value) => ["black", "white"].includes(value),
+  },
   // Footer props (для дополнительных атрибутов типа id, aria-labelledby)
   footerProps: {
     type: Object,
@@ -39,9 +44,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits([
-  "header-nav-case-scroll",
-]);
+const emit = defineEmits(["header-nav-case-scroll"]);
 
 // Собираем props для хедера из store
 const headerProps = computed(() => ({
@@ -73,5 +76,4 @@ function handleLanguageChange(code) {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
