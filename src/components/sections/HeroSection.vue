@@ -4,11 +4,11 @@
       class="grid gap-10 md:gap-20 xl:gap-0 xl:gap-x-20 xl:grid-cols-2 xl:items-start"
     >
       <!-- Текст и аватары -->
-      <div class="flex w-full flex-col gap-8">
+      <div class="flex w-full flex-col gap-8 relative">
         <BaseHeading
           :level="gtXl ? 3 : 5"
           :as="'h1'"
-          class="text-white-100"
+          class="text-white-100 absolute"
           :id="headingId || undefined"
         >
           <span
@@ -21,6 +21,16 @@
             class="block"
             :key="`subtitle-${languageStore.currentLanguage}-${currentBreakpoint}`"
           ></span>
+        </BaseHeading>
+
+        <BaseHeading
+          :level="gtXl ? 3 : 5"
+          :as="'h1'"
+          class="text-white-100 opacity-0"
+          :id="headingId || undefined"
+        >
+          <span class="block">{{ title }}</span>
+          <span class="block">{{ subtitle }}</span>
         </BaseHeading>
 
         <div class="flex flex-row gap-4 sm:flex-row">
