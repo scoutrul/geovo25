@@ -1,10 +1,19 @@
 <template>
-  <div class="flex gap-16" :class="[containerClasses, gtXl ? 'items-start justify-between' : 'flex-col']">
-    <div class="flex flex-col" :class="[gtXl ? 'min-h-[505px] justify-between' : 'gap-16']">
+  <div
+    class="flex gap-16"
+    :class="[
+      containerClasses,
+      gtXl ? 'items-start justify-between' : 'flex-col',
+    ]"
+  >
+    <div
+      class="flex flex-col"
+      :class="[gtXl ? 'min-h-[505px] justify-between' : 'gap-16']"
+    >
       <!-- Заголовок -->
       <div>
         <BaseHeading :level="gtXl ? 3 : 4" :as="'h1'" class="text-black-90">
-          {{ title }}
+          {{ title }} {{ headerNoWrap }}
         </BaseHeading>
       </div>
 
@@ -24,11 +33,7 @@
         </div>
       </div>
     </div>
-
-    <CaseMetaList
-      :variant="gtSm ? 'horizontal' : 'vertical'"
-      :items="metaItems"
-    />
+    <CaseMetaList :items="metaItems" :header-no-wrap="headerNoWrap" />
   </div>
 </template>
 
@@ -37,7 +42,7 @@ import { BaseHeading, BaseText } from "@/components/base/index.js";
 import CaseMetaList from "@/components/case/CaseMetaList.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
-const { gtLg, gtXl, gtSm } = useBreakpoints();
+const { gtLg, gtXl } = useBreakpoints();
 
 defineProps({
   title: {
@@ -56,6 +61,9 @@ defineProps({
     type: String,
     default: "",
   },
+  headerNoWrap: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
-

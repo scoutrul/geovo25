@@ -10,7 +10,12 @@
       <BaseText
         :as="'div'"
         :size="valueSize"
-        class="text-black-90 whitespace-nowrap xl:whitespace-normal"
+        class="text-black-90"
+        :class="[
+          !headerNoWrap
+            ? 'whitespace-nowrap xl:whitespace-normal'
+            : 'whitespace-normal',
+        ]"
       >
         {{ item.value }}
       </BaseText>
@@ -44,9 +49,9 @@ defineProps({
     type: String,
     default: "p2",
   },
-  variant: {
-    type: String,
-    default: "horizontal",
+  headerNoWrap: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

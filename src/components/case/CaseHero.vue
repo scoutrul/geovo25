@@ -10,7 +10,8 @@
       :title="title"
       :stats="stats"
       :meta-items="metaItems"
-      container-classes="fixed top-[128px] md:top-[160px] xl:top-[200px] left-[16px] right-[16px] md:left-[32px] md:right-[32px] lg:left-[64px] lg:right-[64px] z-0 max-w-[100vw] xl:max-w-[1600px] xl:left-auto xl:right-auto xl:pr-[12rem]"
+      header-no-wrap
+      container-classes="case-hero-fixed invisible lg:visible fixed top-[128px] md:top-[160px] xl:top-[200px] left-[16px] right-[16px] md:left-[32px] md:right-[32px] lg:left-[64px] lg:right-[64px] z-0 max-w-[100vw] xl:max-w-[1592px]"
     />
 
     <!-- Дубликат для fixed эффекта -->
@@ -18,7 +19,8 @@
       :title="title"
       :stats="stats"
       :meta-items="metaItems"
-      container-classes="relative z-9 opacity-0"
+      header-no-wrap
+      container-classes="relative z-9 lg:opacity-0 pointer-events-none"
     />
   </BaseContainer>
 </template>
@@ -55,3 +57,13 @@ defineProps({
   },
 });
 </script>
+
+<style scoped>
+@media (min-width: 1280px) {
+  .case-hero-fixed {
+    width: calc(100vw - 148px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+</style>

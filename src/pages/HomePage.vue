@@ -1,13 +1,12 @@
 <template>
   <main class="min-h-screen" role="main">
     <!-- Прелоадер видео -->
-    <Transition name="fade" mode="out-out">
+    <Transition name="fade" mode="out-in">
       <div
         v-if="isLoading"
         class="fixed inset-0 bg-black-90 z-50 flex items-center justify-center"
       >
         <div class="flex flex-col items-center gap-6">
-          <!-- Логотип с анимацией GSAP -->
           <LoaderLogo
             @animation-cycle-complete="handleLogoAnimationCycleComplete"
           />

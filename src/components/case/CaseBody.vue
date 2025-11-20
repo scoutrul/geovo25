@@ -49,7 +49,7 @@
       <!-- Summary (только на desktop) -->
       <div
         v-if="gtXl"
-        class="w-[438px] flex-shrink-0 xl:sticky xl:top-[160px] h-[calc(100vh-280px)]"
+        class="flex-shrink-0 xl:sticky xl:top-[160px] h-[calc(100vh-280px)]"
       >
         <CaseSummary :meta-items="metaItems" :next-case="nextCase" />
       </div>

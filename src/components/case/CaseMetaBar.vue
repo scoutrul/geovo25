@@ -17,7 +17,7 @@
     <BaseButton
       v-if="nextCase"
       variant="secondary"
-      :size="gtSm ? (gtLg ? 'lg' : 'md') : 'wide'"
+      :size="gtSm ? 'md' : 'wide'"
       @click="navigateToNextCase"
     >
       {{ buttonText }}
