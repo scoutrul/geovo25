@@ -59,7 +59,7 @@ const emit = defineEmits(["click"]);
 
 const buttonClasses = computed(() => {
   const baseClasses =
-    "inline-flex items-center justify-center gap-2 font-sans transition-all duration-200 overflow-hidden whitespace-nowrap";
+    "inline-flex items-center justify-center gap-2 font-sans transition-all duration-200 overflow-hidden whitespace-nowrap min-h-fit";
 
   // Варианты (из дизайн-системы Figma)
   const variantClasses = {

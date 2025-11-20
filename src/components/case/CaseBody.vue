@@ -1,6 +1,9 @@
 <template>
-  <BaseContainer as="section" bg="white" overflow="visible" class="case-body" >
-    <div class="w-full" :class="[gtXl ? 'flex items-start gap-[83px]' : 'flex flex-col']">
+  <BaseContainer as="section" bg="white" overflow="visible" class="case-body">
+    <div
+      class="w-full"
+      :class="[gtXl ? 'flex items-start gap-[83px]' : 'flex flex-col']"
+    >
       <!-- Контент -->
       <div
         class="case-body__content"
@@ -44,20 +47,20 @@
       </div>
 
       <!-- Summary (только на desktop) -->
-      <div v-if="gtXl" class="w-[438px] flex-shrink-0 xl:sticky xl:top-[280px]">
-        <CaseSummary
-          :meta-items="metaItems"
-          :next-case="nextCase"
-        />
+      <div
+        v-if="gtXl"
+        class="w-[438px] flex-shrink-0 xl:sticky xl:top-[160px] h-[calc(100vh_-_280px)]"
+      >
+        <CaseSummary :meta-items="metaItems" :next-case="nextCase" />
       </div>
     </div>
 
     <!-- Meta Bar для mobile/tablet -->
-    <CaseMetaBar 
+    <CaseMetaBar
       class="mt-20"
-      v-show="!gtXl" 
-      :meta-items="visibleMetaItems" 
-      :next-case="nextCase" 
+      v-show="!gtXl"
+      :meta-items="visibleMetaItems"
+      :next-case="nextCase"
     />
   </BaseContainer>
 </template>
@@ -90,7 +93,7 @@ const props = defineProps({
 
 // Вычисляемое количество отображаемых элементов метаданных
 const visibleMetaItems = computed(() => {
- if (gtSm.value ) {
+  if (gtSm.value) {
     // sm и md показываем первые 3
     return props.metaItems.slice(0, 3);
   } else {

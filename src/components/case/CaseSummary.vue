@@ -1,19 +1,16 @@
 <template>
   <div
-    class="flex flex-col md:flex-row xl:flex-col gap-4 md:sticky"
+    class="bg-white-100/80 xl:bg-transparent flex h-full flex-col md:flex-row xl:flex-col gap-4 md:sticky justify-between"
     :class="[
       gtXl
         ? 'flex flex-col gap-16 bg-transparent'
         : gtLg
-          ? 'px-10 py-6 bg-white-100/80'
-          : 'px-4 py-4 bg-white-100/80',
+          ? 'px-10 py-6'
+          : 'px-4 py-4',
     ]"
   >
     <!-- Мета-информация -->
-    <CaseMetaList
-      :items="metaItems"
-      :style="{ minHeight: gtXl ? '660px' : '100%' }"
-    />
+    <CaseMetaList :items="metaItems" />
 
     <!-- Кнопка "Следующий кейс" -->
     <BaseButton
@@ -39,7 +36,9 @@ const router = useRouter();
 const contentStore = useContentStore();
 const { gtLg, gtXl } = useBreakpoints();
 
-const buttonText = computed(() => contentStore.meta.nextCaseButton || "Next case");
+const buttonText = computed(
+  () => contentStore.meta.nextCaseButton || "Next case"
+);
 
 const props = defineProps({
   metaItems: {

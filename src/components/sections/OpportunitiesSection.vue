@@ -113,7 +113,11 @@
 
       <!-- Кнопка -->
       <div>
-        <BaseButton variant="secondary" size="md" @click="handleFigmaClick">
+        <BaseButton
+          variant="secondary"
+          :size="gtSm ? 'md' : 'wide'"
+          @click="handleFigmaClick"
+        >
           {{ buttonText }}
         </BaseButton>
       </div>
@@ -134,7 +138,7 @@ import { computed } from "vue";
 const logoMark = "/assets/icons/logo-mark.svg";
 const figmaIcon = "/assets/icons/figma.svg";
 
-const { gtLg, gtXl } = useBreakpoints();
+const { gtLg, gtXl, gtSm } = useBreakpoints();
 
 defineProps({
   title: {

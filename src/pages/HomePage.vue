@@ -65,8 +65,8 @@
       />
 
       <!-- How We Work Секция (Lazy) -->
-      <LazySection
-        :component="LazyHowWeWorkSection"
+      <HowWeWorkSection
+        ref="howWeWorkSectionRef"
         :id="sectionAnchors.howWeWork.section"
         :aria-labelledby="sectionAnchors.howWeWork.heading"
         :heading-id="sectionAnchors.howWeWork.heading"
@@ -142,10 +142,6 @@ import ToolsSection from "@/components/sections/ToolsSection.vue";
 import LazySection from "@/components/LazySection.vue";
 import CasesSection from "@/components/sections/CasesSection.vue";
 
-// Ленивая загрузка секций ниже fold
-const LazyHowWeWorkSection = defineAsyncComponent(
-  () => import("@/components/sections/HowWeWorkSection.vue")
-);
 const LazyExpertiseSection = defineAsyncComponent(
   () => import("@/components/sections/ExpertiseSection.vue")
 );
@@ -169,6 +165,7 @@ import { useVideoPreloader } from "@/composables/useVideoPreloader.js";
 import { useSmoothScroll } from "@/composables/useSmoothScroll.js";
 import LoaderLogo from "@/components/ui/LoaderLogo.vue";
 import { SECTION_ANCHORS } from "@/constants/sectionAnchors.js";
+import HowWeWorkSection from "@/components/sections/HowWeWorkSection.vue";
 
 const { isMobile } = useBreakpoints();
 const { scrollToElement } = useSmoothScroll();
@@ -190,12 +187,13 @@ const sectionAnchors = SECTION_ANCHORS;
 const heroSectionRef = ref(null);
 const toolsSectionRef = ref(null);
 const casesSectionRef = ref(null);
-
+const howWeWorkSectionRef = ref(null);
 // Используем композбл для отслеживания тем секций
 const { headerTheme } = useSectionThemeTracking({
   heroSectionRef,
   toolsSectionRef,
   casesSectionRef,
+  howWeWorkSectionRef,
 });
 
 // Обработка скролла к секции кейсов

@@ -4,20 +4,13 @@
     bg="white"
     class="case-hero pt-[128px] md:pt-[160px] xl:pt-[200px] !pb-16 md:!pb-24 xl:!pb-16"
   >
-
     <div
-    class="flex gap-16 fixed top-[128px] md:top-[160px] xl:top-[200px] left-[16px] right-[16px] md:left-[32px] md:right-[32px] lg:left-[64px] lg:right-[64px] z-0 max-w-[100vw] xl:max-w-[1592px] xl:left-auto xl:right-auto xl:pr-[12rem]"
-      :class="[
-        gtXl ? 'items-start justify-between' : 'flex-col',
-      ]"
+      class="flex gap-16 fixed top-[128px] md:top-[160px] xl:top-[200px] left-[16px] right-[16px] md:left-[32px] md:right-[32px] lg:left-[64px] lg:right-[64px] z-0 max-w-[100vw] xl:max-w-[1600px] xl:left-auto xl:right-auto xl:pr-[12rem]"
+      :class="[gtXl ? 'items-start justify-between' : 'flex-col']"
     >
       <div
         class="flex flex-col"
-        :class="[
-          gtXl 
-            ? 'min-h-[505px] justify-between' 
-            : 'gap-16'
-        ]"
+        :class="[gtXl ? 'min-h-[505px] justify-between' : 'gap-16']"
       >
         <!-- Заголовок -->
         <div>
@@ -51,23 +44,20 @@
         </div>
       </div>
 
-      <CaseMetaList :variant="gtSm ? 'horizontal' : 'vertical'" :items="metaItems" />
+      <CaseMetaList
+        :variant="gtSm ? 'horizontal' : 'vertical'"
+        :items="metaItems"
+      />
     </div>
 
     <!-- Дубликат для fixed эффекта -->
     <div
-    class="flex gap-16 relative z-9 opacity-0"
-      :class="[
-        gtXl ? 'items-start justify-between' : 'flex-col',
-      ]"
+      class="flex gap-16 relative z-9 opacity-0"
+      :class="[gtXl ? 'items-start justify-between' : 'flex-col']"
     >
       <div
         class="flex flex-col"
-        :class="[
-          gtXl 
-            ? 'min-h-[505px] justify-between' 
-            : 'gap-16'
-        ]"
+        :class="[gtXl ? 'min-h-[505px] justify-between' : 'gap-16']"
       >
         <!-- Заголовок -->
         <div>
@@ -101,14 +91,20 @@
         </div>
       </div>
 
-      <CaseMetaList :variant="gtSm ? 'horizontal' : 'vertical'" :items="metaItems" />
+      <CaseMetaList
+        :variant="gtSm ? 'horizontal' : 'vertical'"
+        :items="metaItems"
+      />
     </div>
-
   </BaseContainer>
 </template>
 
 <script setup>
-import { BaseHeading, BaseText, BaseContainer } from "@/components/base/index.js";
+import {
+  BaseHeading,
+  BaseText,
+  BaseContainer,
+} from "@/components/base/index.js";
 import CaseMetaList from "@/components/case/CaseMetaList.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints.js";
 
