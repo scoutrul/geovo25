@@ -26,23 +26,20 @@
     />
     <!-- eslint-enable vue/no-v-text-v-html-on-component -->
 
-    <!-- Изображение -->
-    <div
+    <!-- Медиа (изображение или видео) -->
+    <CaseMedia
       v-if="block.image"
-      class="image-container bg-white-100 rounded-[16px] overflow-hidden h-[536px]"
-    >
-      <img
-        :src="block.image"
-        :alt="block.subtitle || block.title || 'Case study image'"
-        class="w-full h-full object-cover"
-        loading="lazy"
-      />
-    </div>
+      :src="block.image"
+      :src-mobile="block.imageMobile"
+      :alt="block.subtitle || block.title || 'Case study media'"
+      :poster="block.poster"
+    />
   </div>
 </template>
 
 <script setup>
 import { BaseHeading, BaseText } from "@/components/base";
+import CaseMedia from "@/components/case/CaseMedia.vue";
 
 defineProps({
   block: {
@@ -68,10 +65,6 @@ const formatText = (text) => {
 
 <style scoped>
 .content-block {
-  @apply w-full;
-}
-
-.image-container {
   @apply w-full;
 }
 </style>

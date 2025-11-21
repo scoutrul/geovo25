@@ -45,7 +45,8 @@
           {
             "type": "text-image",
             "text": "AG1 was growing, but faced a typical problem of subscription services: users rarely changed plan, didn't buy additional products and almost didn't interact with personal account.\n\nReasons were simple: necessary functions were deeply hidden, benefits between plans were unclear, and interface didn't help make decision. As a result, average check for repeat purchase remained noticeably below expected.",
-            "image": ""
+            "image": "/assets/videos/vid-1.mp4",
+            "imageMobile": "/assets/videos/vid-1-m.mp4"
           }
         ]
       },
@@ -65,25 +66,30 @@
             "type": "subsection",
             "subtitle": "Understood how people behave in product",
             "text": "Analyzed clicks, scrolls, scenarios. Found out where users slow down, what they don't find and which options they ignore.",
-            "image": ""
+            "image": "/assets/images/case-bg-1-05.jpg"
           },
           {
             "type": "subsection",
             "subtitle": "Rebuilt subscription page structure",
             "text": "Made plan options and additional products more noticeable. Highlighted savings and choice logic.\nReduced number of steps, made process visually clearer.",
-            "image": ""
+            "image": "/assets/videos/vid-2.mp4",
+            "imageMobile": "/assets/videos/vid-2-m.mp4"
           },
           {
             "type": "subsection",
             "subtitle": "Added soft and honest upsell",
             "text": "Not \"buy more!\", but calm hints:\n— show benefits when choosing 2 packs instead of 1;\n— offer travel-packs as additional product;\n— explain difference between options.\nHints appeared only where they really helped user make decision.",
-            "image": ""
+            "image": "/assets/videos/vid-3.mp4",
+            "imageMobile": "/assets/videos/vid-3-m.mp4"
           },
           {
             "type": "subsection",
             "subtitle": "Updated personal account and admin panel",
             "text": "Simplified scenarios for changing delivery date, number of packages, order composition.\nMade product cards and modal windows clearer.",
-            "image": ""
+            "image": [
+              "/assets/images/case-bg-3-05.jpg",
+              "/assets/videos/vid-4.mp4"
+            ]
           },
           {
             "type": "subsection",
